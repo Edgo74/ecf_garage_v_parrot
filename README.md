@@ -23,10 +23,10 @@ Ouvrez une fenêtre de terminal ou d'invite de commande et connectez-vous à MyS
  mysql -u root -p
 
 Une fois connecté à MySQL, créez une nouvelle base de données en utilisant la commande suivante :
-sql CREATE DATABASE garage;
+CREATE DATABASE garage;
 
 Utilisez la commande suivante pour utiliser la nouvelle base de données :
-sql USE garage;
+USE garage;
 
 Enfin, exécutez le fichier SQL dans le dossier de votre projet en utilisant la commande suivante :
 mysql -u root -p garage < garage.sql
