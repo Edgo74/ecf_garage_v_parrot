@@ -31,7 +31,7 @@ sql USE garage;
 Enfin, exécutez le fichier SQL dans le dossier de votre projet en utilisant la commande suivante :
 mysql -u root -p garage < garage.sql
 
-6. **Accéder au projet** : 
+5. **Accéder au projet** : 
 Ouvrez un navigateur web et naviguez vers `http://localhost/ecf_garage_v_parrot`.
 
 Pour se connecter en tant qu'administrateur : 
