@@ -1,0 +1,16 @@
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ index.php?page=$1
+
+ErrorDocument 403 http://localhost/ECF/error403
+ErrorDocument 404 http://localhost/ECF/error404
+ErrorDocument 500 http://localhost/ECF/error500
+
+Options ALL -Indexes
+ServerSignature Off
+Options +FollowSymLinks
+AddDefaultCharset UTF-8
