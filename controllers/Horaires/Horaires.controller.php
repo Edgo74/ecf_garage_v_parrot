@@ -34,7 +34,7 @@ Class HorairesController extends MainController{
         foreach($heures as $index=> $heure){
             $debutHeure_AM = $heure['debutHeure_AM'];
             $finHeure_AM = $heure['finHeure_AM'];
-            $debutHeure_PM = $heure['finHeure_PM'];
+            $debutHeure_PM = $heure['debutHeure_PM'];
             $finHeure_PM = $heure['finHeure_PM'];
             $status = $heure['status'];
             if(!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
