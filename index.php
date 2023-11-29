@@ -18,7 +18,7 @@ $serviceController = new  ServiceController();
 $horaireController = new HorairesController();
 $avisController = new AvisController();
 
-define("URL", str_replace("index.php","",(isset($_SERVER['HTTPS']) ? "https" : "http").
+define("URL", str_replace("index.php","","https".
 "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
 
 echo($URL);
