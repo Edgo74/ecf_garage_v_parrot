@@ -6,9 +6,9 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^(.*)$ index.php?page=$1
 
-ErrorDocument 403 https://lit-caverns-26875-c710f85b7145.herokuapp.com/ecf_garage_v_parrot/error403
-ErrorDocument 404 https://lit-caverns-26875-c710f85b7145.herokuapp.com/ecf_garage_v_parrot/error404
-ErrorDocument 500 https://lit-caverns-26875-c710f85b7145.herokuapp.com/ecf_garage_v_parrot/error500
+ErrorDocument 403 https://app-ecf-garage/error403
+ErrorDocument 404 https://app-ecf-garage/error404
+ErrorDocument 500 https://app-ecf-garage/error500
 
 Options ALL -Indexes
 ServerSignature Off

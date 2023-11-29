@@ -1,4 +1,4 @@
-var baseUrl = "https://lit-caverns-26875-c710f85b7145.herokuapp.com/";
+var baseUrl = "https://app-ecf-garage/";
 
 $(document).ready(function() {
     $('select[name="voitureId"]').change(function() {
