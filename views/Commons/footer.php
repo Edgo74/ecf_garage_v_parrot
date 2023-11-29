@@ -1,6 +1,6 @@
 <?php 
 require_once("controllers/Horaires/Horaires.controller.php");
-require_once("controllers/Garage/Garage.controller.php");
+require_once("controllers/Garage/garage.controller.php");
 $horairesController = new HorairesController();
 $horaires = $horairesController->getHoraires();
 $garageController = new GarageController();
