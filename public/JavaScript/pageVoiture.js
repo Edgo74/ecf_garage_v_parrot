@@ -1,4 +1,4 @@
-var baseUrl = "https://app-ecf-garage/";
+var baseUrl = "https://app-ecf-garage-3d639a49eac3.herokuapp.com/";
 
 $(document).ready(function() {
     $('select[name="voitureId"]').change(function() {
