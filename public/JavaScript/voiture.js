@@ -1,4 +1,4 @@
-var baseUrl = "https://lit-caverns-26875-c710f85b7145.herokuapp.com/ecf_garage_v_parrot/";
+var baseUrl = "https://lit-caverns-26875-c710f85b7145.herokuapp.com/";
 $(document).ready(function(){
     filter_data();
     function filter_data()
