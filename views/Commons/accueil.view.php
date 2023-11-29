@@ -1,5 +1,5 @@
-<div class=" bg-danger text-white mt-3">
-        <p class = "text-center display-5">Nos Services</p>
+<div class="mt-3">
+    <p class = "text-center display-5 fw-bold text-dark">Les Services Proposés</p>
 </div>
     
 
