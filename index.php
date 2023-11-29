@@ -20,6 +20,8 @@ $avisController = new AvisController();
 
 define("URL", str_replace("index.php","",(isset($_SERVER['HTTPS']) ? "https" : "http").
 "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
+
+echo($URL);
 try {
     if(empty($_GET["page"])){
         $page = "accueil";
