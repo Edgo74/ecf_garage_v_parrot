@@ -18,10 +18,8 @@ $serviceController = new  ServiceController();
 $horaireController = new HorairesController();
 $avisController = new AvisController();
 
-define("URL", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]");
-
-
-echo($URL);
+define("URL", str_replace("index.php","",(isset($_SERVER['HTTPS']) ? "https" : "http").
+"://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
 try {
     if(empty($_GET["page"])){
         $page = "accueil";
