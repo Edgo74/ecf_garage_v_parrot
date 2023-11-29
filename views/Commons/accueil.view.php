@@ -1,5 +1,5 @@
 <div class="mt-3">
-    <p class = "text-center display-5 fw-bold text-dark">Les Services Proposés</p>
+    <p class = "text-center display-5 fw-bold text-dark ">Les Services Proposés</p>
 </div>
     
 
