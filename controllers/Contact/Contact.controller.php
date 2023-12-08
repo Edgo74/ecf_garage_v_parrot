@@ -1,6 +1,5 @@
 <?php
 require_once("controllers/Maincontroller.controller.php");
-require 'PHPMailer/PHPMailerAutoload.php';
 require 'vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
