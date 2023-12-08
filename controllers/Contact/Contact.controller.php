@@ -45,9 +45,10 @@ class ContactController extends MainController
             $mail->isHTML(true);
 
             $mail->Subject = 'Here is the subject';
-            $mail->Body = $message;
-            $mail->AltBody = 'Mail : ' . $email . PHP_EOL;
-            'the body in plain text for non-HTML mail clients';
+            $mail->Body = 'Mail : ' . $email . PHP_EOL;
+            $message;
+            // $mail->AltBody = 'Mail : ' . $email . PHP_EOL;
+            // 'the body in plain text for non-HTML mail clients';
 
             if (!$mail->send()) {
                 Toolbox::ajouterMessageAlerte("Un probleme est survenu veuillez réessayer", Toolbox::COULEUR_ROUGE);
