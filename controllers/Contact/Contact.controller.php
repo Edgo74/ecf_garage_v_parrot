@@ -30,16 +30,13 @@ class ContactController extends MainController
             Toolbox::ajouterMessageAlerte("vous n'avez pas le droit d envoyer ce formulaire", Toolbox::COULEUR_ROUGE);
         } else {
             $mail = new PHPMailer;
-
-            $mail = new PHPMailer;
-
             $mail->isSMTP();
             $mail->Host = 'sandbox.smtp.mailtrap.io'; // ou 'live.smtp.mailtrap.io' pour le serveur en direct
             $mail->SMTPAuth = true;
             $mail->Username = getenv('MAILTRAP_USERNAME');
             $mail->Password = getenv('MAILTRAP_PASSWORD');
             //$mail->SMTPSecure = 'tls';
-            $mail->Port = 2525;
+            $mail->Port = 465;
 
             $mail->setFrom('adambayar1357@gmail.com',  $nom . "-" . $prenom);
             $mail->addAddress('lerepairedu74@gmail.com', 'lerepaire-2');
