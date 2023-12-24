@@ -43,6 +43,9 @@ CREATE TABLE voitures (
   kilometre INT NOT NULL,
   price float NOT NULL,
   image varchar(100) NOT NULL
+  immatriculation VARCHAR(50) NOT NULL,
+  type float VARCHAR(50)  NOT NULL,
+  date DATE  NOT NULL
 );
 
 -- Insertion de donnees fictives dans la base de données
@@ -76,9 +79,9 @@ INSERT INTO services (titre, description) VALUES
 ('Pneus et roues', 'Rotation des pneus, équilibrage, alignement, remplacement des pneus.');
 
 INSERT INTO voitures (titre, year, carburant, kilometre, price, image) VALUES
-('Renault', '2002', 'diesel', 50000, 15000, '17424_voiture2.jpg'),
-('Ferrari', '2009', 'diesel', 33000, 42000, '20511_voiture2.jpg'),
-('Mercedes', '2000', 'diesel', 220000, 16000, '34235_voiture.jpg'),
-('Alpha Romeo', '2009', 'diesel', 180000, 42000, '82328_voiture2.jpg');
+('Renault', '2002', 'diesel', 50000, 15000, '17424_voiture2.jpg', 'zsx-56-23', 'utilitaire', '2022-12-24' ),
+('Ferrari', '2009', 'diesel', 33000, 42000, '20511_voiture2.jpg', 'sdf-78-62', 'sport', '2022-06-11' ),
+('Mercedes', '2000', 'diesel', 220000, 16000, '34235_voiture.jpg', 'xyz-21-81', 'sport', '2023-08-02' ),
+('Alpha Romeo', '2009', 'diesel', 180000, 42000, '82328_voiture2.jpg', 'abc-12-89', 'utilitaire', '2023-11-16' );
 
 INSERT INTO garage(numero, adresse) VALUES("Toulouse", "061357896");

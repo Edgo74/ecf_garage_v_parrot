@@ -11,7 +11,7 @@
     ?>
     <meta name="csrf-token" content="<?= $_SESSION['csrf_token'] ?>" />
     <title><?= $page_title ?></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?= URL ?>public/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="<?= URL ?>public/CSS/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -38,6 +38,7 @@
     <?= $page_content ?>
     <?php require("views/Commons/footer.php") ?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="<?= URL ?>public/bootstrap/js/bootstrap.js"></script>
     <?php if (!empty($page_javascript)) : ?>
         <script src="<?= URL ?>public/JavaScript/<?= $page_javascript ?>"></script>
     <?php endif; ?>

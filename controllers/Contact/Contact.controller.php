@@ -1,3 +1,5 @@
+
+
 <?php
 require_once("controllers/Maincontroller.controller.php");
 require 'vendor/autoload.php';
@@ -24,18 +26,32 @@ class ContactController extends MainController
 
 
 
-    public function validationFormulaireContact($nom, $prenom, $email, $message)
+    public function validationFormulaireContact()
     {
         if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
             Toolbox::ajouterMessageAlerte("vous n'avez pas le droit d envoyer ce formulaire", Toolbox::COULEUR_ROUGE);
+        } else if (
+            !isset($_POST["sujet"]) && !isset($_POST["nom"]) && !isset($_POST["prenom"])
+            && !isset($_POST["email"])  &&  !isset($_POST["message"]) && empty($_POST["sujet"])
+            && empty($_POST["nom"]) && empty($_POST["prenom"])  && empty($_POST["email"])
+            && empty($_POST["message"])
+        ) {
+
+            Toolbox::ajouterMessageAlerte("Veuillez renseigner tous les champs demandés", Toolbox::COULEUR_ROUGE);
+            header("location:" . URL . "contact");
         } else {
+            $sujet = Securite::SecureHTML($_POST["sujet"]);
+            $nom = Securite::SecureHTML($_POST["nom"]);
+            $prenom = Securite::SecureHTML($_POST["prenom"]);
+            $email = Securite::SecureHTML($_POST["email"]);
+            $message = Securite::SecureHTML($_POST["message"]);
+            // Paramètres du serveur SMTP
             $mail = new PHPMailer;
             $mail->isSMTP();
-            $mail->Host = 'sandbox.smtp.mailtrap.io'; // ou 'live.smtp.mailtrap.io' pour le serveur en direct
+            $mail->Host = 'sandbox.smtp.mailtrap.io';
             $mail->SMTPAuth = true;
             $mail->Username = getenv('MAILTRAP_USERNAME');
             $mail->Password = getenv('MAILTRAP_PASSWORD');
-            //$mail->SMTPSecure = 'tls';
             $mail->Port = 465;
 
             $mail->setFrom('adambayar1357@gmail.com',  $nom . "-" . $prenom);
@@ -44,7 +60,7 @@ class ContactController extends MainController
 
             $mail->isHTML(true);
 
-            $mail->Subject = 'Here is the subject';
+            $mail->Subject =   $sujet;
             $mail->Body = 'Mail : ' . $email . ' <br> ' . $message;
 
             if (!$mail->send()) {
@@ -54,15 +70,6 @@ class ContactController extends MainController
                 Toolbox::ajouterMessageAlerte("Message Envoyé", Toolbox::COULEUR_VERTE);
                 header("location:" . URL . "accueil");
             }
-            // $destinataire = "adambayar1357@gmail.com";
-            // $mail = mail($destinataire, "-" . $nom . "- " . $prenom, "Mail :" . $email . "Message :" . $message);
-            // if ($mail) {
-            //     Toolbox::ajouterMessageAlerte("Message Envoyé", Toolbox::COULEUR_VERTE);
-            //     header("location:" . URL . "accueil");
-            // } else {
-            //     Toolbox::ajouterMessageAlerte("Un probleme est survenu veuillez réessayer", Toolbox::COULEUR_ROUGE);
-            //     header("location:" . URL . "contact");
-            // }
         }
     }
 }

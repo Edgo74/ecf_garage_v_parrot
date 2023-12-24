@@ -1,39 +1,27 @@
 body {
-  background-color: #f5f5f5;
+  background-color:#F5F7F8;
   font-family:  Arial, Helvetica, sans-serif;
 }
 
 header{
-background-color: white;
+background-color:white !important;
+}
+
+.btn {
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
 }
 
 
-.footer {
-  background-color: #343a40;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
- }
- 
- .footer h3 {
-  color: #fff;
-  margin-bottom: 10px;
- }
- 
- .footer ul {
-  list-style-type: none;
-  padding: 0;
- }
- 
- .footer ul li {
-  margin-bottom: 10px;
- }
- 
- .footer ul li span {
-  font-weight: bold;
- }
-
-
+/* buttons */
  .btn:hover {
   background-color: #0056b3;
   color: white;
@@ -61,3 +49,82 @@ background-color: white;
     transition: transform .2s, background-color .2s, color .2s;
 }
 
+#title {
+  font-size: 50px;
+  color: whitesmoke;
+  text-shadow: 0px 0px 2px black;
+  font-family: "Kanit"
+}
+
+.btnavis {
+  padding: 8px 12px;
+}
+
+.footer {
+  margin-top: 100px;
+  margin-bottom: 30px;
+  background-color: white;
+  border-radius: 12px;
+
+}
+
+.footer li {
+  padding-top: 1px;
+}
+
+.titre-horaires {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+
+.adresse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.perso-color {
+  color: #7f1a55;
+  font-family: bold
+}
+
+
+.info {
+  color: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  width: 250px;
+  height: 50px;
+  background-color: inherit;
+  margin: 5px auto;
+}
+
+.details {
+  border-radius: 5px;
+  width: 125px;
+  height: 50px;
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.details2 {
+  width: 125px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}

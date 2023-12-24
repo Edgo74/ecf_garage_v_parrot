@@ -1,22 +1,27 @@
 <?php
 
-require_once ("./models/MainManager.model.php");
-require("models/Avis/Avis.class.php");
+require_once("models/MainManager.model.php");
+require("objects/Avis/Avis.class.php");
 
 
-Class AvisManager extends Model{
+
+class AvisManager extends Model
+{
 
     private $avis;
 
-    public function ajoutAvis($avi){
+    public function ajoutAvis($avi)
+    {
         $this->avis[] = $avi;
     }
 
-    public function getAvis(){
+    public function getAvis()
+    {
         return $this->avis;
     }
 
-    public function chargementAvis(){
+    public function chargementAvis()
+    {
         $req = "SELECT * FROM avis";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->execute();
@@ -29,61 +34,66 @@ Class AvisManager extends Model{
         }
     }
 
-    public function getAvisById($id){
-        for($i=0; $i<count($this->avis); $i++){
-            if((int)$this->avis[$i]->getId() === (int)$id);
-                return $this->avis[$i];
+    public function getAvisById($id)
+    {
+        for ($i = 0; $i < count($this->avis); $i++) {
+            if ((int)$this->avis[$i]->getId() === (int)$id);
+            return $this->avis[$i];
         }
     }
 
-    public function validerAjoutAvisBD($nom, $note, $commentaire, $estValide){
+    public function validerAjoutAvisBD($nom, $note, $commentaire, $estValide)
+    {
         $req = "INSERT INTO avis(nom, note, commentaire, estValide) VALUES(:nom, :note, :commentaire, :estValide)";
-        $stmt= $this->getBdd()->prepare($req);
+        $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
         $stmt->bindValue(":note", $note, PDO::PARAM_STR);
         $stmt->bindValue(":commentaire", $commentaire, PDO::PARAM_STR);
         $stmt->bindValue(":estValide", $estValide, PDO::PARAM_INT);
         $resultat = $stmt->execute();
         $stmt->closeCursor();
-        if($resultat > 0){
+        if ($resultat > 0) {
             $avis =  new Avis($this->getBdd()->lastInsertId(), $nom, $note, $commentaire, $estValide);
             $this->ajoutAvis($avis);
         }
     }
 
-    public function supprimeAvisBD($id){
+    public function supprimeAvisBD($id)
+    {
         $req = "DELETE FROM avis WHERE id = :id";
-        $stmt= $this->getBdd()->prepare($req);
+        $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
         $resultat = $stmt->execute();
         $stmt->closeCursor();
-        if($resultat > 0){
+        if ($resultat > 0) {
             $avis = $this->getAvisById($id);
             unset($avis);
         }
     }
 
-    public function validerAvisBD($id){
+    public function validerAvisBD($id)
+    {
         $req = "UPDATE avis SET estValide = 1 WHERE id = :id";
-        $stmt= $this->getBdd()->prepare($req);
+        $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
         $resultat = $stmt->execute();
         $stmt->closeCursor();
         return $resultat;
     }
 
-    public function valider_supprimer_avis_BD(){
+    public function valider_supprimer_avis_BD()
+    {
         $id = Securite::SecureHTML($_POST["avisId"]);
         $stmt = $this->getBdd()->prepare("SELECT * FROM avis WHERE id = :id");
-        $stmt->bindValue(':id',  $id , PDO::PARAM_INT);
+        $stmt->bindValue(':id',  $id, PDO::PARAM_INT);
         $resultat = $stmt->execute();
         $output = '';
-        if($resultat > 0){
+        if ($resultat > 0) {
             $avisDetails = $stmt->fetch(PDO::FETCH_OBJ);
             $output = json_encode($avisDetails);
-        }else{
+        } else {
             $output = json_encode(['error' => 'No Data Found']);
         }
         echo $output;
-     }
+    }
 }
