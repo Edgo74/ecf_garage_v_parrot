@@ -9,7 +9,7 @@ require_once("controllers/Utilisateur/Utilisateur.controller.php");
 require_once("controllers/Contact/Contact.controller.php");
 require_once("controllers/Services/Services.controller.php");
 require_once("controllers/Horaires/Horaires.controller.php");
-require_once("objects/Paginator.php");
+
 
 
 $mainController = new MainController();
