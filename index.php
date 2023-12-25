@@ -1,15 +1,14 @@
 <?php
 session_start();
 
-require_once("controllers/Toolbox.class.php");
-require_once("controllers/Securite.class.php");
+require_once("./controllers/Toolbox.class.php");
+require_once("./controllers/Securite.class.php");
 require_once("controllers/Maincontroller.controller.php");
 require_once("controllers/Voitures/Voitures.controller.php");
 require_once("controllers/Utilisateur/Utilisateur.controller.php");
 require_once("controllers/Contact/Contact.controller.php");
 require_once("controllers/Services/Services.controller.php");
 require_once("controllers/Horaires/Horaires.controller.php");
-
 
 
 $mainController = new MainController();
@@ -35,6 +34,9 @@ try {
     }
 
     switch ($page) {
+        case "accueil":
+            $serviceController->accueil();
+            break;
         case "Voitures":
             if (empty($url[1])) {
                 $voitureController->afficherVoitures();
