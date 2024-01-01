@@ -72,25 +72,25 @@ try {
             if (empty($url[1])) {
                 $serviceController->accueil();
             } else if ($url[1] === "ajouterService") {
-                Securite::verifierConnexionAdmin();
+                Securite::isConnectedAndAdmin();
                 $serviceController->ajouterService();
             } else if ($url[1] === "modifierService") {
-                Securite::verifierConnexionAdmin();
+                Securite::isConnectedAndAdmin();
                 $serviceController->modifierService($url[2]);
             } else if ($url[1] === "supprimerService") {
-                Securite::verifierConnexionAdmin();
+                Securite::isConnectedAndAdmin();
                 $serviceController->supprimerService($url[2]);
             } else if ($url[1] === "ValidationAjoutService") {
-                Securite::verifierConnexionAdmin();
+                Securite::isConnectedAndAdmin();
                 $serviceController->validationAjoutService();
             } else if ($url[1] === "ValidationModifService") {
-                Securite::verifierConnexionAdmin();
+                Securite::isConnectedAndAdmin();
                 $serviceController->modifierServiceValidation();
             } else if ($url[1] === "page_modifier_supprimer_service") {
-                Securite::verifierConnexionAdmin();
+                Securite::isConnectedAndAdmin();
                 $serviceController->pageAdminModifierService();
             } else if ($url[1] ===  "modifier_supprimer_service") {
-                Securite::verifierConnexionAdmin();
+                Securite::isConnectedAndAdmin();
                 $serviceController->modifier_supprimer_service();
             }
             break;
@@ -98,11 +98,11 @@ try {
         case "Horaires":
             if (empty($url[1])) {
                 $serviceController->accueil();
-                Securite::verifierConnexionAdmin();
+                Securite::isConnectedAndAdmin();
             } else if ($url[1] === "modifierHoraires") {
                 $horaireController->modifierHoraires();
             } else if ($url[1] === "modifierHorairesValidation") {
-                Securite::verifierConnexionAdmin();
+                Securite::isConnectedAndAdmin();
                 $horaireController->modifierHorairesValidation();
             }
             break;
@@ -206,13 +206,16 @@ try {
 
 
         case "administrateur":
-            if (!Securite::estConnecte()) {
-                Toolbox::ajouterMessageAlerte("Veuillez vous connectez", Toolbox::COULEUR_ROUGE);
+            if (!Securite::isAdmin()) {
+                Toolbox::ajouterMessageAlerte("Veuillez vous reconnectez", Toolbox::COULEUR_ROUGE);
+                setcookie(Securite::COOKIE_NAME, "", time() - 3600, "/");
+                unset($_SESSION["profil"]);
                 header("location:" . URL . "login");
-            } elseif (!Securite::estAdministrateur()) {
-                Toolbox::ajouterMessageAlerte("Vous n'avez pas le droit d'etre ici !", Toolbox::COULEUR_ROUGE);
-                header("location:" . URL . "accueil");
+            } else if (!Securite::checkCookieConnexion()) {
+                unset($_SESSION["profil"]);
+                header("location:" . URL . "login");
             } else {
+                Securite::genererCookieConnexion();
                 switch ($url[1]) {
                     case "administration":
                         $utilisateurController->administration();
@@ -228,6 +231,7 @@ try {
                 }
             }
             break;
+
 
 
         case "mentions":
