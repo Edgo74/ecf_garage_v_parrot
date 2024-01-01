@@ -7,6 +7,17 @@ require_once "objects/Utilisateur/Utilisateur.class.php";
 class UtilisateurManager extends MainManager
 {
 
+    public function getUserRole($mail)
+    {
+        $req = "SELECT * FROM utilisateur WHERE mail = :mail";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":mail", $mail, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $result["role"];
+    }
+
     public function getPasswordUser($mail)
     {
         $req = "SELECT password FROM utilisateur WHERE mail = :mail";

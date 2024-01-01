@@ -1,8 +1,14 @@
-<h1 class="text-center fw-bold">Atelier Garage V. Parrot</h1>
+<h1 class="text-center fw-bold mb-5">Atelier Garage V. Parrot</h1>
 
-
-<div class="row g-0 m-5" id="table">
-    <h2 class="text-center mt-3">Tableau de Bord</h2>
+<div class="container titres ">
+    <div class="col-2 "> <a href="<?= URL ?>Voitures/page_modifier_supprimer_voiture" class="text-decoration-none">Voiture</a></div>
+    <div class="col-2 "> <a href="<?= URL ?>Avis/page_valider_supprimer_avis" class="text-decoration-none">Avis</a></div>
+    <div class="col-2"> <a href="<?= URL ?>Services/page_modifier_supprimer_service" class="text-decoration-none">Services</a></div>
+    <div class="col-2"> <a href="<?= URL ?>administrateur/generer_compte_employe" class="text-decoration-none">Compte</a></div>
+    <div class="col-2"> <a href="<?= URL ?>Horaires/modifierHoraires" class="text-decoration-none">Horaires</a></div>
+</div>
+<div class="row g-0" id="table">
+    <h5 class="mt-3 text-center fw-bold">Tableau de Bord</h5>
     <div class="col-md-4 g-0 mt-3 text-center">
         <a href="<?= URL ?>Voitures/ajoutVoiture" data-bs-toggle="tooltip" data-bs-placement="top" title="ajouter une voiture">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="96" height="96" viewBox="0 0 48 48">

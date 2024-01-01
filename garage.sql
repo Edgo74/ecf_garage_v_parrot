@@ -1,4 +1,9 @@
+CREATE DATABASE garage;
+
+USE garage; 
+
 CREATE TABLE garage (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   numero varchar(50) NOT NULL,
   adresse varchar(250) NOT NULL
 );
@@ -9,7 +14,9 @@ CREATE TABLE avis (
   nom varchar(50) NOT NULL,
   commentaire TEXT NOT NULL,
   note INT NOT NULL,
-  estValide tinyint NOT NULL DEFAULT 0
+  estValide tinyint NOT NULL DEFAULT 0,
+  garage_id INT NOT NULL DEFAULT 1 ,
+  CONSTRAINT fk_avis_garage FOREIGN KEY (garage_id) REFERENCES garage(id) 
 );
 
 CREATE TABLE horaires (
@@ -19,20 +26,27 @@ CREATE TABLE horaires (
   debut_heures_PM time DEFAULT NULL,
   fin_heures_PM time DEFAULT NULL,
   est_ouvert varchar(10) NOT NULL,
-  jour  enum('Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche')
+  jour  enum('Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'),
+  garage_id INT NOT NULL  DEFAULT 1,
+  CONSTRAINT fk_horaires_garage FOREIGN KEY (garage_id) REFERENCES garage(id) 
 );
 
 CREATE TABLE services (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   titre varchar(100) NOT NULL,
-  description TEXT NULL
+  description TEXT NULL,
+  garage_id INT NOT NULL  DEFAULT 1,
+  CONSTRAINT fk_services_garage FOREIGN KEY (garage_id) REFERENCES garage(id) 
 );
 
 CREATE TABLE utilisateur (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   password varchar(100) NOT NULL,
   mail varchar(100) NOT NULL,
-  role varchar(50) NOT NULL DEFAULT 'employe'
+  role varchar(50) NOT NULL DEFAULT 'employe',
+  image varchar(50) NOT NULL DEFAULT "profils/profil.png",
+  garage_id INT NOT NULL  DEFAULT 1,
+  CONSTRAINT fk_utilisateur_garage FOREIGN KEY (garage_id) REFERENCES garage(id) 
 );
 
 CREATE TABLE voitures (
@@ -42,13 +56,19 @@ CREATE TABLE voitures (
   carburant varchar(50) NOT NULL,
   kilometre INT NOT NULL,
   price float NOT NULL,
-  image varchar(100) NOT NULL
-  immatriculation VARCHAR(50) NOT NULL,
-  type float VARCHAR(50)  NOT NULL,
-  date DATE  NOT NULL
+  image varchar(100) NOT NULL,
+  immatriculation VARCHAR(50) NULL,
+  type VARCHAR(50) NULL,
+  date DATE NULL,
+  garage_id INT NOT NULL  DEFAULT 1,
+  CONSTRAINT fk_voitures_garage FOREIGN KEY (garage_id) REFERENCES garage(id) 
 );
 
+
+
 -- Insertion de donnees fictives dans la base de données
+
+INSERT INTO garage(numero, adresse) VALUES("Toulouse", "061357896");
 
 INSERT INTO utilisateur (password, mail, role) VALUES
 ('$2y$10$/pPjdYpzR0Q3Rgv81KyA0.njs.Ik1uAkMzoyeSgQhVc8x3kYldSG6', 'admin@mail.com', 'administrateur');
@@ -78,10 +98,8 @@ INSERT INTO services (titre, description) VALUES
 ('Services de carrosserie', 'Réparation des dommages de carrosserie, peinture, polissage.'),
 ('Pneus et roues', 'Rotation des pneus, équilibrage, alignement, remplacement des pneus.');
 
-INSERT INTO voitures (titre, year, carburant, kilometre, price, image) VALUES
+INSERT INTO voitures (titre, year, carburant, kilometre, price, image, immatriculation, type, date) VALUES
 ('Renault', '2002', 'diesel', 50000, 15000, '17424_voiture2.jpg', 'zsx-56-23', 'utilitaire', '2022-12-24' ),
 ('Ferrari', '2009', 'diesel', 33000, 42000, '20511_voiture2.jpg', 'sdf-78-62', 'sport', '2022-06-11' ),
 ('Mercedes', '2000', 'diesel', 220000, 16000, '34235_voiture.jpg', 'xyz-21-81', 'sport', '2023-08-02' ),
 ('Alpha Romeo', '2009', 'diesel', 180000, 42000, '82328_voiture2.jpg', 'abc-12-89', 'utilitaire', '2023-11-16' );
-
-INSERT INTO garage(numero, adresse) VALUES("Toulouse", "061357896");

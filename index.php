@@ -159,7 +159,7 @@ try {
                 header("location:" . URL . "login");
             } elseif (!Securite::checkCookieConnexion()) {
                 Toolbox::ajouterMessageAlerte("Veuillez vous reconnectez  !", Toolbox::COULEUR_ROUGE);
-                setcookie(Securite::COOKIE_NAME, "", time() - 3600);
+                setcookie(Securite::COOKIE_NAME, "", time() - 3600, "/");
                 unset($_SESSION["profil"]);
                 header("location:" . URL . "login");
             } else {

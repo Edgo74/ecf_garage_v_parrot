@@ -4,7 +4,6 @@ require_once("models/MainManager.model.php");
 require("objects/Garage/Garage.class.php");
 
 
-
 class GarageManager extends Model
 {
 
@@ -30,7 +29,7 @@ class GarageManager extends Model
         $stmt->closeCursor();
 
         foreach ($garages as $garage) {
-            $g = new Garage($garage["adresse"], $garage["numero"]);
+            $g = new Garage($garage["id"], $garage["adresse"], $garage["numero"]);
             $this->ajoutGarage($g);
         }
     }

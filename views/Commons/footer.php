@@ -41,6 +41,3 @@ $garage = $garageController->getGarage();
         </div>
     </div>
 </footer>
-
-
-</html>

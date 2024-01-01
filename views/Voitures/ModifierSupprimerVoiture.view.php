@@ -1,4 +1,3 @@
-</form>
 <h1 class="text-center">Modifier/Supprimer une Voiture</h1>
 
 <div class="container">
@@ -49,9 +48,13 @@
             <input type="file" class="form-control " id="image" name="image">
         </div>
         <input type="hidden" name="identifiant" value="">
-        <button type="submit" class="btn btn-primary mb-3">Valider</button>
+
+        <button type="submit" class="btn btn-primary mb-3" id="validateButton">Valider</button>
+
     </form>
+
     <div class="text-start my-3">
-        <a id="deleteButton" href="<?= URL ?>Voitures/supprimerVoiture/" class="btn btn-danger btnsup" onclick="return confirm('voulez-vous vraiment supprimer ce livre ? ')">Supprimer</a>
+        <a id="deleteButton" href="<?= URL ?>Voitures/supprimerVoiture/" class="btn btn-danger btnsup" onclick="return confirm('voulez-vous vraiment supprimer cette voiture ? ')">Supprimer</a>
     </div>
+
 </div>

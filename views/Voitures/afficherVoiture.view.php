@@ -2,8 +2,8 @@
     <div class="row ">
         <div class="col-md-4 mb-5">
             <div class="card ">
-                <img src="<?= URL ?>public/Assets/images/<?= $voiture->getImage() ?>" class="card-img-top" alt="voiture">
 
+                <img src="<?= URL ?>public/Assets/images/<?= $voiture->getImage() ?>" class="card-img-top" alt="voiture">
                 <div class="card-body shadow">
                     <h5 class="card-title"><?= $voiture->getTitre() ?></h5>
                     <p class="card-text">Année : <?= $voiture->getYear() ?></p>

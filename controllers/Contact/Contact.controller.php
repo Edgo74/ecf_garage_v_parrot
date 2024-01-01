@@ -16,7 +16,7 @@ class ContactController extends MainController
         $data_page = [
             "page_description" => "page de contact ",
             "page_title" => "page de Contact",
-            "page_css" => "style.css",
+            "page_css" => "main.css",
             "view" => "views/contact.view.php",
             "template" => "views/Commons/template.php"
         ];

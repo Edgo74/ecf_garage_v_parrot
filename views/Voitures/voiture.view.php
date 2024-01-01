@@ -12,7 +12,7 @@
             <div class="list-group">
                 <input type="hidden" id="hidden_minimum_price" value="0" />
                 <input type="hidden" id="hidden_maximum_price" value="500000" />
-                <p id="price_show">50 - 500000</p>
+                <p id="price_show">50 - 50000</p>
                 <div id="price_range"></div>
             </div>
         </div>

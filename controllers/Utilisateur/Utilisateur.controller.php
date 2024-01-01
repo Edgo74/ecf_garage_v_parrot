@@ -4,6 +4,7 @@
 require_once("controllers/Maincontroller.controller.php");
 require_once("models/Utilisateur/Utilisateur.model.php");
 
+
 class UtilisateurController extends MainController
 {
 
@@ -38,20 +39,30 @@ class UtilisateurController extends MainController
         $this->genererPage($data_page);
     }
 
+
     public function validation_login($email, $password)
     {
         if (
-            $this->utilisateurManager->isCombinaisonValide($email, $password) &&
-            isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']
+            $this->utilisateurManager->isCombinaisonValide($email, $password)
         ) {
+
+            $token = Securite::generateToken($this->utilisateurManager->getUserRole($email));
+
+            setcookie('token', $token, [
+                'expires' => time() + (60 * 60 * 24),
+                'path' => '/',
+                'secure' => true,
+                'httponly' => true,
+                'samesite' => 'Strict',
+            ]);
+
 
             Toolbox::ajouterMessageAlerte("Bon retour sur le site !", Toolbox::COULEUR_VERTE);
             $_SESSION["profil"] = [
-                "login" => $email
+                "login" => $email,
             ];
             Securite::genererCookieConnexion();
             $datas = $this->utilisateurManager->getUserInformation($_SESSION["profil"]["login"]);
-            $_SESSION["profil"]["role"] = $datas["role"];
             if ($datas["role"] === "administrateur") {
                 header("location:" . URL . "administrateur/administration");
             } else {
@@ -68,7 +79,7 @@ class UtilisateurController extends MainController
     {
         Toolbox::ajouterMessageAlerte("La deconnexion est effectuée", Toolbox::COULEUR_VERTE);
         unset($_SESSION['profil']);
-        setcookie(Securite::COOKIE_NAME, "", time() - 3600);
+        setcookie(Securite::COOKIE_NAME, "", time() - 3600, "/");
         header("Location:" . URL . "accueil");
     }
 
@@ -154,8 +165,6 @@ class UtilisateurController extends MainController
 
     public function page_gestion_employe()
     {
-        $datas = $this->utilisateurManager->getUserInformation($_SESSION["profil"]["login"]);
-        $_SESSION["profil"]["role"] = $datas["role"];
         $data_page = [
             "page_description" => "Page de gestion pour les employé",
             "page_title" => "Page de gestion des employés",
@@ -171,7 +180,7 @@ class UtilisateurController extends MainController
         $data_page = [
             "page_description" => "Page pour créer un compte employé",
             "page_title" => "Génerer un compte employé",
-            "page_css" => "admin.css",
+            "page_css" => "login.css",
             "view" => "views/Utilisateur/generateEmploye.view.php",
             "template" => "views/Commons/template.php"
         ];
@@ -184,6 +193,7 @@ class UtilisateurController extends MainController
         $employe_mail = Securite::SecureHTML($_POST["employe_mail"]);
         if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
             Toolbox::ajouterMessageAlerte("vous n'avez pas le droit d envoyer ce formulaire", Toolbox::COULEUR_ROUGE);
+            header("location:" . URL . "administrateur/generer_compte_employe");
         } elseif (self::checkMatchPasswords($employe_password)) {
             Toolbox::ajouterMessageAlerte("Le mot de passe doit contenir au moins 10 caractères, au moins un minuscule, un majuscule et un caractère spécial.", Toolbox::COULEUR_ROUGE);
             header("location:" . URL . "administrateur/generer_compte_employe");

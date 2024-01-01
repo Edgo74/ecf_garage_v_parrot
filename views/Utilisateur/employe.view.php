@@ -1,5 +1,14 @@
-<h1 class="text-center">Tableau de Bord</h1>
-<div class="row g-0 m-5" id="table">
+<h1 class="text-center mb-5">Tableau de Bord</h1>
+
+
+<div class="container titres ">
+    <div class="col-2 "> <a href="<?= URL ?>Voitures/page_modifier_supprimer_voiture" class="text-decoration-none">Voiture</a></div>
+    <div class="col-2 "> <a href="<?= URL ?>Avis/page_valider_supprimer_avis" class="text-decoration-none">Avis</a></div>
+    <div class="col-2"> <a href="<?= URL ?>Voitures/ajoutVoiture" class="text-decoration-none">Ajout Voiture </a></div>
+    <div class="col-2"> <a href="<?= URL ?>Avis/ajouterAvis" class="text-decoration-none">Ajout Avis</a></div>
+</div>
+
+<div class="row g-0" id="table">
     <div class="col-md-3 g-0 mt-3 text-center">
         <a href="<?= URL ?>Voitures/ajoutVoiture" data-bs-toggle="tooltip" data-bs-placement="top" title="ajouter une voiture" class="justify-content-center ">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="96" height="96" viewBox="0 0 48 48">

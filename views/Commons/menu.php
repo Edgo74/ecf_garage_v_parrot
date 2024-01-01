@@ -23,7 +23,7 @@
                 <li>
                     <a href="<?= URL; ?>compte/profil" class="nav-link <?= (page == 'profil') ? "active" : ""; ?>">Profil</a>
                 </li>
-                <?php if (Securite::estEmploye()) : ?>
+                <?php if (Securite::estConnecte() && !Securite::isAdmin()) : ?>
                     <li class="nav-item">
                         <a href="<?= URL; ?>compte/page_gestion_employe" class="nav-link <?= (page == 'compte/page_gestion_employe') ? "active" : ""; ?>">Page gestion employés</a>
                     </li>
@@ -31,7 +31,7 @@
                 <li class="nav-item">
                     <a href="<?= URL; ?>compte/deconnexion" class="nav-link">Deconnexion</a>
                 </li>
-                <?php if (Securite::estAdministrateur()) : ?>
+                <?php if (Securite::isAdmin()) : ?>
                     <li class="nav-item">
                         <a href="<?= URL; ?>administrateur/administration" class="nav-link <?= (page == 'administrateur/administration') ? "active" : ""; ?>">Administration</a>
                     </li>
