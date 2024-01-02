@@ -1,4 +1,4 @@
-var baseUrl = "http://localhost/ecf_garage_v_parrot/";
+var baseUrl = "http://localhost/TEST/";
 $(document).ready(function(){
     filter_data();
     function filter_data()

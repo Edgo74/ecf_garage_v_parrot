@@ -1,5 +1,5 @@
 
-var baseUrl = "http://localhost/ecf_garage_v_parrot/";
+var baseUrl = "http://localhost/TEST/";
 
 $(document).ready(function() {
     $('select[name="avisId"]').change(function() {

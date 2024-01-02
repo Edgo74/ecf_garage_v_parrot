@@ -1,21 +1,25 @@
 <?php
-require_once "./models/MainManager.model.php";
-require_once("models/Horaires/Horaires.class.php");
+require_once "models/MainManager.model.php";
+require_once("objects/Horaires/Horaires.class.php");
 
 
-Class HoraireManager extends Model{
+class HoraireManager extends Model
+{
 
     private $horaires;
 
-    public function ajoutHoraires($horaire){
+    public function ajoutHoraires($horaire)
+    {
         $this->horaires[] = $horaire;
     }
 
-    public function getHoraires(){
+    public function getHoraires()
+    {
         return $this->horaires;
     }
 
-    public function chargementHoraires(){
+    public function chargementHoraires()
+    {
         $req = "SELECT * FROM horaires";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->execute();
@@ -28,14 +32,16 @@ Class HoraireManager extends Model{
         }
     }
 
-    public function getHorairesById($id){
-        for($i=0; $i<count($this->horaires); $i++){
-            if((int)$this->horaires[$i]->getId() === (int)$id);
-                return $this->horaires[$i];
+    public function getHorairesById($id)
+    {
+        for ($i = 0; $i < count($this->horaires); $i++) {
+            if ((int)$this->horaires[$i]->getId() === (int)$id);
+            return $this->horaires[$i];
         }
     }
 
-    public function ModifierHorairesBD($index, $debutHeure_AM, $finHeure_AM, $debutHeure_PM, $finHeure_PM, $status){
+    public function ModifierHorairesBD($index, $debutHeure_AM, $finHeure_AM, $debutHeure_PM, $finHeure_PM, $status)
+    {
         $req = "UPDATE horaires SET debut_heures_AM = :debutHeure_AM, fin_heures_AM = :finHeure_AM, debut_heures_PM = :debutHeure_PM,
          fin_heures_PM = :finHeure_PM, est_ouvert = :status WHERE id = :id";
         $stmt = $this->getBdd()->prepare($req);
@@ -47,8 +53,5 @@ Class HoraireManager extends Model{
         $stmt->bindValue(":status", $status, PDO::PARAM_STR);
         $stmt->execute();
         $stmt->closeCursor();
-     }
-     
+    }
 }
-
-

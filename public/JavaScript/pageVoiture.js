@@ -1,4 +1,4 @@
-var baseUrl = "http://localhost/ecf_garage_v_parrot/";
+var baseUrl = "http://localhost/TEST/";
 
 $(document).ready(function() {
     $('select[name="voitureId"]').change(function() {
@@ -29,6 +29,9 @@ $(document).ready(function() {
                 $('input[name="kilometre"]').val(voitureData.kilometre);
                 $('input[name="price"]').val(voitureData.price);
                 $('input[name="identifiant"]').val(voitureData.id);
+                $('input[name="immatriculation"]').val(voitureData.immatriculation);
+                $('input[name="type"]').val(voitureData.type);
+                $('input[name="date"]').val(voitureData.date);
                 $('#deleteButton').attr('href', baseUrl + 'Voitures/supprimerVoiture/' + voitureData.id);
                 $('#image').attr('src', baseUrl + 'public/Assets/images/' + voitureData.image);
             }
