@@ -53,7 +53,8 @@ class Securite
 
     public static function generateToken($role)
     {
-        $key =  $_ENV['SECRET_KEY'];
+        //$key =  $_ENV['SECRET_KEY'];
+        $key = getenv("SECRET_KEY");
         $payload = array(
             'role' => $role,
             'iat' => time(),
@@ -66,7 +67,8 @@ class Securite
 
     public static function verifyToken($token)
     {
-        $key =  $_ENV['SECRET_KEY'];
+        //$key =  $_ENV['SECRET_KEY'];
+        $key = getenv("SECRET_KEY");
         try {
             $decoded = JWT::decode($token, new Key($key, 'HS256'));
             $role = $decoded->role;
