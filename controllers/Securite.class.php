@@ -20,7 +20,7 @@ class Securite
     {
         $ticket = session_id() . microtime() . rand(0, 999999);
         $ticket = hash("sha512", $ticket);
-        setcookie(self::COOKIE_NAME, $ticket, time() + (60 * 1), "/");
+        setcookie(self::COOKIE_NAME, $ticket, time() + (60 * 60), "/");
         $_SESSION["profil"][self::COOKIE_NAME] = $ticket;
     }
 
