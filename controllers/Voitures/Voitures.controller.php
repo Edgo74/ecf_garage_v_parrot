@@ -171,7 +171,7 @@ class VoitureController extends MainController
             "page_title" => "Page pour modifier/supprimer une voiture",
             "voitures" => $voitures,
             "page_css" => "disable-button.css",
-            "page_javascript" => "pageVoiture.js",
+            "page_javascript" => ["pageVoiture.js", "modifVoiture.js"],
             "view" => "views/Voitures/ModifierSupprimerVoiture.view.php",
             "template" => "views/Commons/template.php"
         ];
