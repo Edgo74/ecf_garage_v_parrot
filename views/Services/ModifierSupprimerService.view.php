@@ -3,10 +3,10 @@
 <div class="container">
     <form method="POST" action="<?= URL ?>Services/ValidationModifService">
         <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>" />
-        <select name="serviceId" class="form-select mt-2">
+        <select id="select" name="serviceId" class="form-select mt-2">
             <option value=""></option>
             <?php foreach ($services as $service) : ?>
-                <option id="select" value="<?= $service->getId() ?>"><?= $service->getTitre() ?></option>
+                <option value="<?= $service->getId() ?>"><?= $service->getTitre() ?></option>
             <?php endforeach; ?>
         </select>
         <div class="mb-3">

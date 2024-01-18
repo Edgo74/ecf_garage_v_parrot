@@ -3,10 +3,10 @@
 <div class="container">
     <form method="POST" action="<?= URL ?>Voitures/ValidationModifVoiture" enctype="multipart/form-data">
         <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>" />
-        <select name="voitureId" class="form-select mt-2">
+        <select id="select" name="voitureId" class="form-select mt-2">
             <option value=""></option>
             <?php foreach ($voitures as $voiture) : ?>
-                <option id="select" value="<?= $voiture->getId() ?>"><?= $voiture->getTitre() ?></option>
+                <option value="<?= $voiture->getId() ?>"><?= $voiture->getTitre() ?></option>
             <?php endforeach; ?>
         </select>
         <div class="form-group mb-3">
