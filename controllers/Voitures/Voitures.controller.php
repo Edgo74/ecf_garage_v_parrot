@@ -17,7 +17,7 @@ class VoitureController extends MainController
         $data_page = [
             "page_description" => "Description de la page nos voitures",
             "page_title" => "Nos Voitures",
-            "page_javascript" => "voiture.js",
+            "page_javascript" => ["voiture.js"],
             "page_css" =>  "voitures.css",
             "view" => "views/Voitures/voiture.view.php",
             "template" => "views/Commons/template.php"

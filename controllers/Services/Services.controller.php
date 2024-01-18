@@ -24,7 +24,7 @@ class ServiceController extends MainController
             "page_description" => "Description de la page d'accueil",
             "page_title" => "Titre de la page d'accueil",
             "page_css" => "main.css",
-            "page_javascript" => "accueil.js",
+            "page_javascript" => ["accueil.js"],
             "services" => $services,
             "avis" => $avis,
             "view" => "views/Commons/accueil.view.php",

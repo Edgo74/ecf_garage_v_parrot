@@ -72,7 +72,7 @@ class AvisController extends MainController
         $data_page = [
             "page_description" => "Page de modification et de suppression avis",
             "page_title" => "Page pour modifier et supprimer un avis",
-            "page_javascript" => "avisPage.js",
+            "page_javascript" => ["avisPage.js"],
             "avis" => $avis,
             "page_css" => "main.css",
             "view" => "views/Avis/ValiderSupprimerAvis.view.php",

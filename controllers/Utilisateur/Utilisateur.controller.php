@@ -32,7 +32,7 @@ class UtilisateurController extends MainController
             "page_description" => "page de profil",
             "page_title" => "Titre page de profil",
             "utilisateur" => $datas,
-            "page_javascript" => "profil.js",
+            "page_javascript" => ["profil.js"],
             "view" => "views/Utilisateur/profil.view.php",
             "template" => "views/Commons/template.php"
         ];
@@ -100,7 +100,7 @@ class UtilisateurController extends MainController
         $data_page = [
             "page_description" => "Page de modification du password",
             "page_title" => "Page de modification du password",
-            "page_javascript" => "modificationPassword.js",
+            "page_javascript" => ["modificationPassword.js"],
             "view" => "views/Utilisateur/modificationPassword.view.php",
             "template" => "views/Commons/template.php"
         ];
