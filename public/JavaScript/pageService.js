@@ -1,4 +1,7 @@
+console.log("pageService.js chargé");
+
 if (document.readyState === "complete" || document.readyState === "interactive") {
+  console.log("pageService.js : DOM ready");
     let titre = document.querySelector("#Titre");
     let description = document.querySelector("#description");
 
