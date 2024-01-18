@@ -3,7 +3,7 @@
     <div class="container">
         <div class="form-group mb-3">
             <label for="Titre" class="form-label">Titre :</label>
-            <input type="text" class="form-control" id="Titre" name="Titre" value="<?= json_decode($service->getTitre()) ?>">
+            <input type="text" class="form-control" id="Titre" name="Titre" value="<?= $service->getTitre() ?>">
         </div>
         <div class="form-group mb-3">
             <label for="description" class="form-label">Description : </label>

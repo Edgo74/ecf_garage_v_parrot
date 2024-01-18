@@ -98,6 +98,6 @@ class ServiceManager extends Model
         } else {
             $output = json_encode(['error' => 'No Data Found']);
         }
-        echo $output;
+        echo json_decode($output, true);
     }
 }
