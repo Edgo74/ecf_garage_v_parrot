@@ -2,6 +2,7 @@
   console.log("pageService.js : DOM ready");
     let titre = document.querySelector("#Titre");
     let description = document.querySelector("#description");
+    let select = document.querySelector("#select");
 
     function updateButtonsState() {
       if (
@@ -25,7 +26,5 @@
 
   updateButtonsState();
 
-  // Add event listeners to update button state on input change
-  titre.addEventListener("input", updateButtonsState);
-  description.addEventListener("input", updateButtonsState);
-  
+updateButtonsState()
+select.addEventListener("change", updateButtonsState);

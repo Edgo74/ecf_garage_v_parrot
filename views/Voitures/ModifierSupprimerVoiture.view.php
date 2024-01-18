@@ -6,7 +6,7 @@
         <select name="voitureId" class="form-select mt-2">
             <option value=""></option>
             <?php foreach ($voitures as $voiture) : ?>
-                <option value="<?= $voiture->getId() ?>"><?= $voiture->getTitre() ?></option>
+                <option id="select" value="<?= $voiture->getId() ?>"><?= $voiture->getTitre() ?></option>
             <?php endforeach; ?>
         </select>
         <div class="form-group mb-3">

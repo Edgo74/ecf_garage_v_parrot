@@ -6,7 +6,7 @@
         <select name="serviceId" class="form-select mt-2">
             <option value=""></option>
             <?php foreach ($services as $service) : ?>
-                <option value="<?= $service->getId() ?>"><?= $service->getTitre() ?></option>
+                <option id="select" value="<?= $service->getId() ?>"><?= $service->getTitre() ?></option>
             <?php endforeach; ?>
         </select>
         <div class="mb-3">

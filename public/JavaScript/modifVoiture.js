@@ -8,6 +8,7 @@ let type = document.querySelector("#type");
 let date = document.querySelector("#date");
 let price = document.querySelector("#price");
 let file = document.querySelector("input[type=file]");
+let select = document.querySelector("#select");
 
 function updateButtonsState() {
     if (
@@ -37,13 +38,4 @@ function updateButtonsState() {
 
 
 updateButtonsState()
-// Add event listeners to update button state on change change
-titre.addEventListener("change", updateButtonsState);
-year.addEventListener("change", updateButtonsState);
-carburant.addEventListener("change", updateButtonsState);
-kilometre.addEventListener("change", updateButtonsState);
-immatriculation.addEventListener("change", updateButtonsState);
-type.addEventListener("change",updateButtonsState);
-date.addEventListener("change", updateButtonsState);
-price.addEventListener("change",updateButtonsState);
-file.addEventListener("change", updateButtonsState);
+select.addEventListener("change", updateButtonsState);
