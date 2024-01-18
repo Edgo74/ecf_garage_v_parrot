@@ -37,13 +37,13 @@ function updateButtonsState() {
 
 
 updateButtonsState()
-// Add event listeners to update button state on input change
-titre.addEventListener("input", updateButtonsState);
-year.addEventListener("input", updateButtonsState);
-carburant.addEventListener("input", updateButtonsState);
-kilometre.addEventListener("input", updateButtonsState);
-immatriculation.addEventListener("input", updateButtonsState);
-type.addEventListener("input",updateButtonsState);
-date.addEventListener("input", updateButtonsState);
-price.addEventListener("input",updateButtonsState);
-file.addEventListener("input", updateButtonsState);
+// Add event listeners to update button state on change change
+titre.addEventListener("change", updateButtonsState);
+year.addEventListener("change", updateButtonsState);
+carburant.addEventListener("change", updateButtonsState);
+kilometre.addEventListener("change", updateButtonsState);
+immatriculation.addEventListener("change", updateButtonsState);
+type.addEventListener("change",updateButtonsState);
+date.addEventListener("change", updateButtonsState);
+price.addEventListener("change",updateButtonsState);
+file.addEventListener("change", updateButtonsState);
