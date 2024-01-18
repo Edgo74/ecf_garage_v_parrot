@@ -1,6 +1,5 @@
-
-
-let titre = document.querySelector("#Titre");
+window.addEventListener("DOMContentLoaded", () => {
+  let titre = document.querySelector("#Titre");
 let year = document.querySelector("#year");
 let carburant = document.querySelector("#carburant");
 let kilometre = document.querySelector("#kilometre");
@@ -35,6 +34,8 @@ function updateButtonsState() {
         });
     }
 }
+})
+
 updateButtonsState();
 
 // Add event listeners to update button state on input change
@@ -91,3 +92,7 @@ $(document).ready(function() {
     });
   });
 });
+
+
+
+
