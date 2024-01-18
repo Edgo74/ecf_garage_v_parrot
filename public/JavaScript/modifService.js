@@ -25,6 +25,6 @@
 
 
   updateButtonsState();
-
-updateButtonsState()
-select.addEventListener("change", updateButtonsState);
+  document.querySelector("#select").addEventListener("change", ()=>{
+    updateButtonsState()
+});
