@@ -169,10 +169,9 @@ class VoitureController extends MainController
         $data_page = [
             "page_description" => "Page de modification/suppression d 'une voiture",
             "page_title" => "Page pour modifier/supprimer une voiture",
-            "page_javascript" => "pageVoiture.js",
             "voitures" => $voitures,
             "page_css" => "disable-button.css",
-            "page_javascript" => "modifVoiture.js",
+            "page_javascript" => "pageVoiture.js",
             "view" => "views/Voitures/ModifierSupprimerVoiture.view.php",
             "template" => "views/Commons/template.php"
         ];

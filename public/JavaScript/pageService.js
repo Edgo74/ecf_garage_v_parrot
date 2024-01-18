@@ -27,6 +27,9 @@ updateButtonsState();
 // Add event listeners to update button state on input change
 titre.addEventListener("input", updateButtonsState);
 description.addEventListener("input", updateButtonsState);
+
+
+
 var baseUrl = "https://app-ecf-garage-3d639a49eac3.herokuapp.com/";
 
 $(document).ready(function() {
