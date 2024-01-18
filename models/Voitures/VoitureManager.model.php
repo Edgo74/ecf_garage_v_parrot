@@ -165,6 +165,7 @@ class VoitureManager extends Model
         } else {
             $output = json_encode(['error' => 'No Data Found']);
         }
-        echo json_decode($output, true);
+        $output = html_entity_decode($output, ENT_QUOTES, 'UTF-8');
+        echo $output;
     }
 }
