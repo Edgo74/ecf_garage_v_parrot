@@ -39,7 +39,11 @@ function updateButtonsState() {
 
 updateButtonsState()
 document.querySelector("#select").addEventListener("change", ()=>{
-    updateButtonsState()
+    document.querySelector("#validateButton").disabled = false;
+    document.querySelector("#deleteButton").classList.remove("btn-disabled");
+    document.querySelector("#deleteButton").addEventListener("click", function (event) {
+        confirm('voulez-vous vraiment supprimer cette voiture ? ');
+    });
 });
 
 
