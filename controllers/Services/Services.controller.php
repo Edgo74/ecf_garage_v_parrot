@@ -101,7 +101,7 @@ class ServiceController extends MainController
             "page_title" => "Page pour modifier un service",
             "services" => $services,
             "page_css" => "disable-button.css",
-            "page_javascript" => "pageService.js",
+            "page_javascript" => ["pageService.js", "modifService.js"],
             "view" => "views/Services/ModifierSupprimerService.view.php",
             "template" => "views/Commons/template.php"
         ];
