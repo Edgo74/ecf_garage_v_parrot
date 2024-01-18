@@ -1,4 +1,7 @@
-window.addEventListener("DOMContentLoaded", () => {
+
+var myfunction;
+
+window.addEventListener("load", () => {
   let titre = document.querySelector("#Titre");
 let year = document.querySelector("#year");
 let carburant = document.querySelector("#carburant");
@@ -9,7 +12,7 @@ let date = document.querySelector("#date");
 let price = document.querySelector("#price");
 let file = document.querySelector("input[type=file]");
 
-function updateButtonsState() {
+myfunction = function updateButtonsState() {
     if (
         titre.value == "" ||
         year.value == "" ||
@@ -36,18 +39,17 @@ function updateButtonsState() {
 }
 })
 
-updateButtonsState();
 
 // Add event listeners to update button state on input change
-titre.addEventListener("input", updateButtonsState);
-year.addEventListener("input", updateButtonsState);
-carburant.addEventListener("input", updateButtonsState);
-kilometre.addEventListener("input", updateButtonsState);
-immatriculation.addEventListener("input", updateButtonsState);
-type.addEventListener("input", updateButtonsState);
-date.addEventListener("input", updateButtonsState);
-price.addEventListener("input", updateButtonsState);
-file.addEventListener("input", updateButtonsState);
+titre.addEventListener("input", myfunction);
+year.addEventListener("input", myfunction);
+carburant.addEventListener("input", myfunction);
+kilometre.addEventListener("input", myfunction);
+immatriculation.addEventListener("input", myfunction);
+type.addEventListener("input",myfunction);
+date.addEventListener("input", myfunction);
+price.addEventListener("input",myfunction);
+file.addEventListener("input", myfunction);
 
 
 
