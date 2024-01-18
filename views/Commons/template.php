@@ -40,7 +40,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="<?= URL ?>public/bootstrap/js/bootstrap.js"></script>
     <?php if (!empty($page_javascript)) : ?>
-        <script src="<?= URL ?>public/JavaScript/<?= $page_javascript ?>"></script>
+        <script src="<?= URL ?>public/JavaScript/<?= $page_javascript ?>" defer></script>
     <?php endif; ?>
     <!-- 100% privacy-first analytics -->
     <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
