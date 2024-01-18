@@ -11,16 +11,16 @@
         </select>
         <div class="mb-3">
             <label for="Titre">Titre:</label>
-            <input type="text" name="Titre" class="form-control">
+            <input type="text" name="Titre" id="Titre" class="form-control">
         </div>
         <div>
             <label for="description">Description</label>
-            <textarea name="description" class="form-control"></textarea>
+            <textarea name="description" id="description" class="form-control"></textarea>
         </div>
         <input type="hidden" name="identifiant" value="">
-        <button type="submit" class="btn btn-primary my-3">Modifier</button>
+        <div class="mt-2">
+            <button type="submit" id="validateButton" class="btn btn-primary" disabled>Modifier</button>
+            <a id="deleteButton" href="<?= URL ?>Services/supprimerService/" class="btn btn-danger btnsup">Supprimer</a>
+        </div>
     </form>
-    <div class=text-start>
-        <a id="deleteButton" href="<?= URL ?>Services/supprimerService/" class="btn btn-danger btnsup" onclick="return confirm('voulez-vous vraiment supprimer ce service ? ')">Supprimer</a>
-    </div>
 </div>

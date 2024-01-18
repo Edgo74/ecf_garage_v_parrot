@@ -94,7 +94,8 @@ class ServiceManager extends Model
         $output = '';
         if ($resultat > 0) {
             $serviceDetails = $stmt->fetch(PDO::FETCH_OBJ);
-            $output = json_encode($serviceDetails);
+            //$output = json_encode($serviceDetails);
+            $output = $serviceDetails;
         } else {
             $output = json_encode(['error' => 'No Data Found']);
         }

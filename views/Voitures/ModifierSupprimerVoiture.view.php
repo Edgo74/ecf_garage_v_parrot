@@ -11,35 +11,35 @@
         </select>
         <div class="form-group mb-3">
             <label for="Titre" class="form-label">Titre :</label>
-            <input type="text" class="form-control" id="Titre" name="Titre" value="">
+            <input type="text" class="form-control" id="Titre" name="Titre" value="" required>
         </div>
         <div class="form-group mb-3">
             <label for="year" class="form-label">Année de mise en circulation : </label>
-            <input type="number" class="form-control" id="year" name="year" value="">
+            <input type="number" class="form-control" id="year" name="year" value="" required>
         </div>
         <div class="form-group mb-3">
             <label for="carburant" class="form-label">type carburant : </label>
-            <input type="texte" class="form-control" id="carburant" name="carburant" value="">
+            <input type="text" class="form-control" id="carburant" name="carburant" value="" required>
         </div>
         <div class="form-group mb-3">
             <label for="kilometre" class="form-label">kilometre : </label>
-            <input type="number" class="form-control" id="kilometre" name="kilometre" value="">
+            <input type="number" class="form-control" id="kilometre" name="kilometre" value="" required>
         </div>
         <div class="form-group mb-3">
             <label for="immatriculation" class="form-label">Immatriculation : </label>
-            <input type="texte" class="form-control" id="immatriculation" name="immatriculation">
+            <input type="texte" class="form-control" id="immatriculation" name="immatriculation" required>
         </div>
         <div class="form-group mb-3">
             <label for="type" class="form-label">Type : </label>
-            <input type="texte" class="form-control" id="type" name="type">
+            <input type="texte" class="form-control" id="type" name="type" required>
         </div>
         <div class="form-group mb-3">
             <label for="date" class="form-label">Date d'arrivée : </label>
-            <input type="date" class="form-control" id="date" name="date">
+            <input type="date" class="form-control" id="date" name="date" required>
         </div>
         <div class="form-group mb-3">
             <label for="price" class="form-label">Prix : </label>
-            <input type="number" class="form-control" id="price" name="price" value="">
+            <input type="number" class="form-control" id="price" name="price" value="" required>
         </div>
         <h3>Images :</h3>
         <img id="image" src="<?= URL ?>public/Assets/images/" alt="l'image de la voiture">
@@ -49,12 +49,11 @@
         </div>
         <input type="hidden" name="identifiant" value="">
 
-        <button type="submit" class="btn btn-primary mb-3" id="validateButton">Valider</button>
+        <div>
+            <button type="submit" class="btn btn-primary " id="validateButton" disabled>Valider</button>
+            <a id="deleteButton" href="<?= URL ?>Voitures/supprimerVoiture/" class=" btn btn-danger btnsup">Supprimer</a>
+        </div>
 
     </form>
-
-    <div class="text-start my-3">
-        <a id="deleteButton" href="<?= URL ?>Voitures/supprimerVoiture/" class="btn btn-danger btnsup" onclick="return confirm('voulez-vous vraiment supprimer cette voiture ? ')">Supprimer</a>
-    </div>
 
 </div>

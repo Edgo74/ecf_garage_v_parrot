@@ -1,0 +1,13 @@
+/* Define a custom style for the disabled button */
+.btn-disabled {
+    background-color: #cccccc; /* Use a background color to visually indicate disabled state */
+    color: #666666; /* Adjust text color for better visibility */
+    cursor: not-allowed; /* Change cursor to indicate non-interactive state */
+    pointer-events: none; /* Prevent mouse events on the element */
+    /* Add any other styles you want for the disabled state */
+  }
+  
+  /* Optionally, you can add styles for a disabled link with the same class */
+  .btn-disabled, .btn-disabled:hover {
+    text-decoration: none; /* Remove underline on hover for links */
+  }
