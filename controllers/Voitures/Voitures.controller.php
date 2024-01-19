@@ -61,6 +61,7 @@ class VoitureController extends MainController
             "page_description" => " page Ajout voiture",
             "page_title" => "Ajout Voiture",
             "page_css" => "main.css",
+            "page_javascript" => ["ajoutVoiture.js"],
             "view" => "views/Voitures/ajoutVoiture.view.php",
             "template" => "views/Commons/template.php"
         ];

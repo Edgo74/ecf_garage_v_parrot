@@ -81,19 +81,20 @@ class AvisManager extends Model
         return $resultat;
     }
 
-    public function valider_supprimer_avis_BD()
-    {
-        $id = Securite::SecureHTML($_POST["avisId"]);
-        $stmt = $this->getBdd()->prepare("SELECT * FROM avis WHERE id = :id");
-        $stmt->bindValue(':id',  $id, PDO::PARAM_INT);
-        $resultat = $stmt->execute();
-        $output = '';
-        if ($resultat > 0) {
-            $avisDetails = $stmt->fetch(PDO::FETCH_OBJ);
-            $output = json_encode($avisDetails);
-        } else {
-            $output = json_encode(['error' => 'No Data Found']);
-        }
-        echo $output;
-    }
+    // public function valider_supprimer_avis_BD()
+    // {
+    //     $id = Securite::SecureHTML($_POST["avisId"]);
+    //     $stmt = $this->getBdd()->prepare("SELECT * FROM avis WHERE id = :id");
+    //     $stmt->bindValue(':id',  $id, PDO::PARAM_INT);
+    //     $resultat = $stmt->execute();
+    //     $output = '';
+    //     if ($resultat > 0) {
+    //         $avisDetails = $stmt->fetch(PDO::FETCH_OBJ);
+    //         $output = json_encode($avisDetails);
+    //     } else {
+    //         $output = json_encode(['error' => 'No Data Found']);
+    //     }
+    //     $output = html_entity_decode($output, ENT_QUOTES, 'UTF-8');
+    //     echo $output;
+    // }
 }

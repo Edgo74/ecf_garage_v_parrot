@@ -39,6 +39,6 @@
             <input type="file" class="form-control " id="image" name="image">
         </div>
 
-        <button type="submit" class="btn btn-primary mb-3">Ajouter</button>
+        <button id="validateButton" type="submit" class="btn btn-primary mb-3" disabled>Ajouter</button>
     </div>
 </form>

@@ -38,7 +38,8 @@ class ServiceController extends MainController
         $data_page = [
             "page_description" => "Description de la page Ajout sevice ",
             "page_title" => "Titre de la page Ajout service",
-            "page_css" => "main.css",
+            "page_css" => "disable-button.css",
+            "page_javascript" => ["ajoutService.js"],
             "view" => "views/Services/ajoutService.view.php",
             "template" => "views/Commons/template.php"
         ];

@@ -14,6 +14,6 @@
             <label for="carburant" class="form-label">Commentaire : </label>
             <textarea name="comment" class="form-control" id="comment" cols="30" rows="5"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary mb-3">Ajouter</button>
+        <button id="validateButton" type="submit" class="btn btn-primary mb-3" disabled>Ajouter</button>
     </div>
 </form>

@@ -25,7 +25,8 @@ class AvisController extends MainController
             "page_description" => " Page d'avis",
             "page_title" => "Avis",
             "avis" => $avis,
-            "page_css" => "main.css",
+            "page_css" => "disable-button.css",
+            "page_javascript" => ["ajoutAvis.js"],
             "view" => "views/Avis/avis.view.php",
             "template" => "views/Commons/template.php"
         ];

@@ -1,5 +1,4 @@
 
-  console.log("pageService.js : DOM ready");
     let titre = document.querySelector("#Titre");
     let description = document.querySelector("#description");
     let select = document.querySelector("#select");
