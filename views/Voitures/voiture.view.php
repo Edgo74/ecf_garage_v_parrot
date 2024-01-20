@@ -1,8 +1,9 @@
 <div class="container">
     <?php if (Securite::estConnecte()) : ?>
         <div class="text-end">
-            <a href="<?= URL ?>Voitures/ajoutVoiture" class="btn btn-primary">Ajouter une voiture</a>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Ajouter une voiture</button>
         </div>
+        <?php include "views/Commons/add.php" ?>
     <?php endif ?>
     <div class="row mb-5 align-items-center">
         <div class="col-md-1 mt-5">
@@ -11,7 +12,7 @@
         <div class="col-md-3">
             <div class="list-group">
                 <input type="hidden" id="hidden_minimum_price" value="0" />
-                <input type="hidden" id="hidden_maximum_price" value="500000" />
+                <input type="hidden" id="hidden_maximum_price" value="50000" />
                 <p id="price_show">50 - 50000</p>
                 <div id="price_range"></div>
             </div>

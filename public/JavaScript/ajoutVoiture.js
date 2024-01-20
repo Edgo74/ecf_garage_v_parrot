@@ -22,10 +22,8 @@ function updateButtonsState() {
         file.value == ""
     ) {
         document.querySelector("#validateButton").disabled = true;
-        document.querySelector("#validateButton").classList.add("btn-disabled");
     } else {
         document.querySelector("#validateButton").disabled = false;
-        document.querySelector("#deleteButton").classList.remove("btn-disabled");
     }
 }
 
