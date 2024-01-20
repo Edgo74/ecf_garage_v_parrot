@@ -17,7 +17,14 @@
           document.querySelector("#validateButton").disabled = false;
           document.querySelector("#deleteButton").classList.remove("btn-disabled");
           document.querySelector("#deleteButton").addEventListener("click", function (event) {
-              confirm('voulez-vous vraiment supprimer ce service ? ');
+              
+            event.preventDefault();
+
+            let confirmation = confirm('Voulez-vous vraiment supprimer ce service ? ');
+            
+            if (confirmation) {
+                window.location.href = document.getElementById("deleteButton").getAttribute("href");
+            }
           });
       }
   }
@@ -28,6 +35,13 @@
     document.querySelector("#validateButton").disabled = false;
     document.querySelector("#deleteButton").classList.remove("btn-disabled");
     document.querySelector("#deleteButton").addEventListener("click", function (event) {
-        confirm('voulez-vous vraiment supprimer ce service ? ');
+
+        event.preventDefault();
+
+        let confirmation = confirm('Voulez-vous vraiment supprimer ce service ? ');
+        
+        if (confirmation) {
+            window.location.href = document.getElementById("deleteButton").getAttribute("href");
+        }
     });
 });

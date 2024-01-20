@@ -31,7 +31,14 @@ function updateButtonsState() {
         document.querySelector("#validateButton").disabled = false;
         document.querySelector("#deleteButton").classList.remove("btn-disabled");
         document.querySelector("#deleteButton").addEventListener("click", function (event) {
-            confirm('voulez-vous vraiment supprimer cette voiture ? ');
+            
+            event.preventDefault();
+
+            let confirmation = confirm('Voulez-vous vraiment supprimer cette voiture ? ');
+            
+            if (confirmation) {
+                window.location.href = document.getElementById("deleteButton").getAttribute("href");
+            }
         });
     }
 }
@@ -42,7 +49,13 @@ document.querySelector("#select").addEventListener("change", ()=>{
     document.querySelector("#validateButton").disabled = false;
     document.querySelector("#deleteButton").classList.remove("btn-disabled");
     document.querySelector("#deleteButton").addEventListener("click", function (event) {
-        confirm('voulez-vous vraiment supprimer cette voiture ? ');
+        event.preventDefault();
+
+        let confirmation = confirm('Voulez-vous vraiment supprimer cette voiture ? ');
+        
+        if (confirmation) {
+            window.location.href = document.getElementById("deleteButton").getAttribute("href");
+        }
     });
 });
 
