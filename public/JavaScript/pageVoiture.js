@@ -1,45 +1,56 @@
 
 var baseUrl = "https://app-ecf-garage-3d639a49eac3.herokuapp.com/";
 
-$(document).ready(function() {
-  $('select[name="voitureId"]').change(function() {
-    var voitureId = $(this).val();
+document.addEventListener("DOMContentLoaded", function() {
+  var voitureSelect = document.querySelector('select[name="voitureId"]');
+  voitureSelect.addEventListener('change', function() {
+    var voitureId = this.value;
+    var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    myHeaders.append("X-CSRF-TOKEN", csrfToken);
 
-    $.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-   });
-
-    $.ajax({
-      url: baseUrl + 'Voitures/modifier_supprimer_voiture',
-      method: 'post',
-      data: {
-        csrf_token: $('meta[name="csrf-token"]').attr('content'),
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: new URLSearchParams({
+        csrf_token: csrfToken,
         voitureId: voitureId
-      },
-      success: function(result) {
-          var voitureData = JSON.parse(result);
-          if (voitureData.error) {
-              alert(voitureData.error);
-          } else {
-              $('input[name="Titre"]').val(voitureData.titre);
-              $('input[name="year"]').val(voitureData.year);
-              $('input[name="carburant"]').val(voitureData.carburant);
-              $('input[name="kilometre"]').val(voitureData.kilometre);
-              $('input[name="price"]').val(voitureData.price);
-              $('input[name="identifiant"]').val(voitureData.id);
-              $('input[name="immatriculation"]').val(voitureData.immatriculation);
-              $('input[name="type"]').val(voitureData.type);
-              $('input[name="date"]').val(voitureData.date);
-              $('#deleteButton').attr('href', baseUrl + 'Voitures/supprimerVoiture/' + voitureData.id);
-              $('#image').attr('src', baseUrl + 'public/Assets/images/' + voitureData.image);
-          }
-      }
-    });
+      }).toString(),
+      redirect: 'follow'
+    };
+
+    fetch(baseUrl + 'Voitures/modifier_supprimer_voiture', requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        var voitureData = JSON.parse(result);
+        if (voitureData.error) {
+          alert(voitureData.error);
+        } else {
+          document.querySelector('input[name="Titre"]').value = voitureData.titre;
+          document.querySelector('input[name="year"]').value = voitureData.year;
+          document.querySelector('input[name="carburant"]').value = voitureData.carburant;
+          document.querySelector('input[name="kilometre"]').value = voitureData.kilometre;
+          document.querySelector('input[name="price"]').value = voitureData.price;
+          document.querySelector('input[name="identifiant"]').value = voitureData.id;
+          document.querySelector('input[name="immatriculation"]').value = voitureData.immatriculation;
+          document.querySelector('input[name="type"]').value = voitureData.type;
+          document.querySelector('textarea[name="date"]').value = voitureData.date;
+          document.getElementById('deleteButton').setAttribute('href', baseUrl + 'Voitures/supprimerVoiture/' + voitureData.id);
+          document.getElementById('image').setAttribute('src', baseUrl + 'public/Assets/images/' + voitureData.image);
+        }
+      })
+      .catch(error => console.log('error', error));
   });
 });
+
+
+
+
+
+
+
 
 
 
