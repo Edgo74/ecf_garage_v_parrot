@@ -8,7 +8,7 @@ var baseUrl = "https://app-ecf-garage-3d639a49eac3.herokuapp.com/";
          fetch(baseUrl + 'Services/modifier_supprimer_service', {
              method: 'POST',
              headers: {
-                 'Content-Type': 'application/json',
+                 'Content-Type': 'application/x-www-form-urlencoded',
                  'X-CSRF-TOKEN': csrfToken
              },
              body: JSON.stringify({
@@ -38,3 +38,6 @@ var baseUrl = "https://app-ecf-garage-3d639a49eac3.herokuapp.com/";
      });
  });
  
+
+
+
