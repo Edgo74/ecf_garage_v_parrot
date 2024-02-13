@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", function() {
           document.querySelector('input[name="identifiant"]').value = voitureData.id;
           document.querySelector('input[name="immatriculation"]').value = voitureData.immatriculation;
           document.querySelector('input[name="type"]').value = voitureData.type;
-          document.querySelector('textarea[name="date"]').value = voitureData.date;
+          document.querySelector('input[name="date"]').value = voitureData.date;
           document.getElementById('deleteButton').setAttribute('href', baseUrl + 'Voitures/supprimerVoiture/' + voitureData.id);
-          document.getElementById('image').setAttribute('src', baseUrl + 'public/Assets/images/' + voitureData.image);
+          document.getElementById('image').src = baseUrl + 'public/Assets/images/'+ voitureData.image;
         }
       })
       .catch(error => console.log('error', error));
