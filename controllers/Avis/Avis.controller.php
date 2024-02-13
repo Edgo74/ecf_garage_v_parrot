@@ -32,6 +32,7 @@ class AvisController extends MainController
         ];
         $this->genererPage($data_page);
     }
+
     public function ajouterAvisValidation()
     {
         $nom = Securite::SecureHTML($_POST["nom"]);
@@ -41,6 +42,10 @@ class AvisController extends MainController
         $nonValide = 0;
         if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
             Toolbox::ajouterMessageAlerte("vous n'avez pas le droit d envoyer ce formulaire", Toolbox::COULEUR_ROUGE);
+            header("location:" . URL . "Avis/ajouterAvis");
+        } elseif (empty($nom) || empty($note) || empty($comment)) {
+            Toolbox::ajouterMessageAlerte("Vous devez remplir tous les champs !", Toolbox::COULEUR_ROUGE);
+            header("location:" . URL . "Avis/ajouterAvis");
         } elseif ((int)$note > 5 || (int)$note < 0) {
             Toolbox::ajouterMessageAlerte("Vous devez mettre une note sur /5 !", Toolbox::COULEUR_ROUGE);
             header("location:" . URL . "Avis/ajouterAvis");
@@ -54,6 +59,7 @@ class AvisController extends MainController
             header("location:" . URL . "accueil");
         }
     }
+
     public function supprimerAvis($id)
     {
         $this->avisManager->supprimeAvisBD($id);

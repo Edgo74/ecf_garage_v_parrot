@@ -3,7 +3,7 @@
     <div class="mt-3">
         <p class="text-center display-5 fw-bold " id="title">Les Services Proposés</p>
     </div>
-    <?php if (Securite::estConnecte() && !Securite::isAdmin()) : ?>
+    <?php if (Securite::estConnecte() && Securite::isAdmin()) : ?>
         <a href="<?= URL ?>Services/ajouterService" class="btn btn-primary">Ajouter un Service</a>
     <?php endif ?>
     <div class="row mt-4">
@@ -16,7 +16,7 @@
                             <p class="card-text"><?= $services[$i]->getDescription(); ?> </p>
 
                             <div class="text-center ">
-                                <?php if (Securite::estConnecte() && !Securite::isAdmin()) : ?>
+                                <?php if (Securite::estConnecte() && Securite::isAdmin()) : ?>
                                     <a href="<?= URL ?>Services/modifierService/<?= $services[$i]->getId() ?>" class="btn btn-primary">Modifier</a>
                                     <a href="<?= URL ?>Services/supprimerService/<?= $services[$i]->getId() ?>" class="btn btn-danger btnsup" onclick="return confirm('voulez-vous vraiment supprimer ce service ? ')">Supprimer</a>
                                 <?php endif ?>
