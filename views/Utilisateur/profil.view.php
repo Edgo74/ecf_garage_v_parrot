@@ -28,5 +28,3 @@
 <div class="author">
     <p id="author" class=" text-white mt-5"></p>
 </div>
-
-<style>
