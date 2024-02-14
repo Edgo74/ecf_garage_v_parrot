@@ -1,47 +1,37 @@
-<div class="container">
+<div class="container ">
     <?php if (Securite::estConnecte()) : ?>
-        <div class="text-end">
+        <div class="text-center">
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Ajouter une voiture</button>
         </div>
         <?php include "views/Commons/add.php" ?>
     <?php endif ?>
-    <div class="row mb-5 align-items-center">
-        <div class="col-md-1 mt-5">
-            <p class="text-center">Prix:</p>
-        </div>
-        <div class="col-md-3">
+
+    <div class="row d-flex mx-5 ">
+
+        <div class="col-md-4 ">
             <div class="list-group">
-                <input type="hidden" id="hidden_minimum_price" value="0" />
-                <input type="hidden" id="hidden_maximum_price" value="50000" />
-                <p id="price_show">50 - 50000</p>
-                <div id="price_range"></div>
+                <label>Prix : </label>
+                <input type="number" id="minimum_price" value="0" />
+                <input type="number" id="maximum_price" value="50000" />
             </div>
         </div>
-        <div class="col-md-1 mt-5">
-            <p class="text-center">Km:</p>
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-4 ">
             <div class="list-group">
-                <input type="hidden" id="hidden_minimum_kilometre" value="0" />
-                <input type="hidden" id="hidden_maximum_kilometre" value="500000" />
-                <p id="kilometre_show">50 - 500000</p>
-                <div id="kilometre_range"></div>
+                <label>Kilometre : </label>
+                <input type="number" id="minimum_kilometre" value="0" />
+                <input type="number" id="maximum_kilometre" value="500000" />
             </div>
         </div>
-        <div class="col-md-1 mt-5">
-            <p class="text-center">Année:</p>
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-4 ">
             <div class="list-group">
-                <input type="hidden" id="hidden_minimum_year" value="1970" />
-                <input type="hidden" id="hidden_maximum_year" value="2024" />
-                <p id="year_show">1980 - 2023</p>
-                <div id="year_range"></div>
+                <label>Annee : </label>
+                <input type="number" id="minimum_year" value="1950" />
+                <input type="number" id="maximum_year" value="2024" />
             </div>
         </div>
     </div>
 
-    <div class="row d-flex filter_data">
+    <div class="filter_data">
 
     </div>
 </div>
