@@ -1,29 +1,10 @@
-<div class="col-md-4 mb-5 d-flex">
-    <div class="card ">
-
-        <img src="public/Assets/images/<?= $car->image ?>" class="card-img-top" alt="voiture">
-
-
-        <div class="card-body shadow d-flex flex-column ">
-            <h5 class="card-title"><?= $car->titre ?></h5>
-            <p class="card-text card-year">Année : <?= $car->year ?></p>
-            <p class="card-text"><?= $car->carburant ?></p>
-            <div class="row  mb-auto">
-                <div class="col-md-6">
-                    <p class="card-text card-km"><?= $car->kilometre ?>km</p>
-                </div>
-                <div class="col-md-6">
-                    <p class="card-text"><span class="badge bg-success card-price">Prix : <?= $car->price ?>€</span></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-footer text-center ">
-            <a href="<?= URL ?>Voitures/afficherVoiture/<?= $car->id ?>" class="btn btn-primary">Details</a>
-            <a href="<?= URL ?>contact/<?= urlencode($car->titre) ?>" class="btn btn-primary">Nous Contacter</a>
-            <?php if (Securite::estConnecte()) : ?>
-                <a href="<?= URL ?>Voitures/modifierVoiture/<?= $car->id ?>" class="btn btn-primary">Modifier</a>
-            <?php endif ?>
-        </div>
+<section class="my-card">
+    <img src="public/Assets/images/<?= $car->image ?>" class="img" alt="voiture">
+    <div class="card-right">
+        <h2><?= $car->titre ?></h2>
+        <h3><?= $car->year ?></h3>
+        <p><?= $car->carburant ?> <span><?= $car->kilometre ?>km</span></p>
+        <h3><span class="badge bg-success card-price"><?= $car->price ?>€</span></h3>
+        <span><a class="link-1" href="<?= URL ?>Voitures/afficherVoiture/<?= $car->id ?>">Details</a> <span><a class="link-2" href="<?= URL ?>contact/<?= urlencode($car->titre) ?>">Contact</a></span></span>
     </div>
-</div>
+</section>
