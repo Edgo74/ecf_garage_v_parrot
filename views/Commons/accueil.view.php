@@ -9,7 +9,7 @@
 
         <p class="desc">Voici la liste non exhaustives des services que l'on propose. Un probleme de voiture ? Appelez-nous maintenat !</p>
 
-        <div class="container mt-4">
+        <div class="container mt-4 text-center">
 
             <?php if (Securite::estConnecte() && Securite::isAdmin()) : ?>
                 <a href="<?= URL ?>Services/ajouterService" class="btn">Ajouter un Service</a>
