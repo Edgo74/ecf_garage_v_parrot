@@ -1,4 +1,4 @@
-<h1 class="text-center">Modifier/Supprimer un Service</h1>
+<h1 class="text-center">Modifier/Supprimer un Service 📝</h1>
 
 <div class="container">
     <form method="POST" action="<?= URL ?>Services/ValidationModifService">

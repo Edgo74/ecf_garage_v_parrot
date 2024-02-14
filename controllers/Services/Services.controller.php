@@ -23,7 +23,7 @@ class ServiceController extends MainController
         $data_page = [
             "page_description" => "Description de la page d'accueil",
             "page_title" => "Titre de la page d'accueil",
-            "page_css" => "main.css",
+            "page_css" => "accueil.css",
             "page_javascript" => ["accueil.js"],
             "services" => $services,
             "avis" => $avis,

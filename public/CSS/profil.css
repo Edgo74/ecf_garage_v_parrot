@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+    background: no-repeat center center fixed;
+    /* color: white; */
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: Arial, Helvetica, sans-serif;
+    /* Black with  50% opacity */
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+}
+
+.little {
+    font-size: 1.5rem;
+}
+
+.author {
+    display: flex;
+}
+
+p#author {
+    margin: auto;
+    font-size: 1rem;
+}
+
+.weather-info {
+    display: flex;
+}
+
+div.row>img {
+    width: 100px;
+    margin: auto;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+p.weather-city {
+    width: 100%;
+    margin: 0;
+    margin-top: -10px;
+    font-size: 1.2rem;
+}
+
+p.weather-temp {
+    margin: 0;
+    font-size: 1.7rem;
+}
+
+#time {
+    text-align: center;
+    font-size: 3rem;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}

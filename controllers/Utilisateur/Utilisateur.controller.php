@@ -32,6 +32,7 @@ class UtilisateurController extends MainController
             "page_description" => "page de profil",
             "page_title" => "Titre page de profil",
             "utilisateur" => $datas,
+            "page_css" => "profil.css",
             "page_javascript" => ["profil.js"],
             "view" => "views/Utilisateur/profil.view.php",
             "template" => "views/Commons/template.php"

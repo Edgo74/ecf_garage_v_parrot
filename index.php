@@ -240,13 +240,13 @@ try {
 
 
         case "error403":
-            throw new Exception("La page n'esxiste pas error 403");
+            throw new Exception("La page n'existe pas error 403");
             break;
         case "error404":
-            throw new Exception("La page n'esxiste pas error 404");
+            throw new Exception("La page n'existe pas error 404");
             break;
         case "error500":
-            throw new Exception("La page n'esxiste pas error 500");
+            throw new Exception("La page n'existe pas error 500");
             break;
 
         default:

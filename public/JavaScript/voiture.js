@@ -1,77 +1,69 @@
+
 var baseUrl = "https://app-ecf-garage-3d639a49eac3.herokuapp.com/";
-$(document).ready(function(){
+
+
+document.addEventListener("DOMContentLoaded",function(){
     filter_data();
-    function filter_data()
-    {
-        $('.filter_data').html('<div id="loading" style="" ></div>');
-        var action = 'filtre_voiture';
-        var minimum_price = $('#hidden_minimum_price').val();
-        var maximum_price = $('#hidden_maximum_price').val();
-        var minimum_kilometre = $('#hidden_minimum_kilometre').val();
-        var maximum_kilometre = $('#hidden_maximum_kilometre').val();
-        var minimum_year = $('#hidden_minimum_year').val();
-        var maximum_year = $('#hidden_maximum_year').val();
+    function filter_data() {
+        document.querySelector('.filter_data').innerHTML = '<div id="loading"></div>';
+       let action = 'filtre_voiture';
+       let minimum_price = document.querySelector('#minimum_price').value;
+       let maximum_price = document.querySelector('#maximum_price').value;
+       let minimum_kilometre = document.querySelector('#minimum_kilometre').value;
+       let maximum_kilometre = document.querySelector('#maximum_kilometre').value;
+       let minimum_year = document.querySelector('#minimum_year').value;
+       let maximum_year = document.querySelector('#maximum_year').value;
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-         });
-      
+       let formData = new FormData();
+        formData.append('csrf_token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+        formData.append('action', action);
+        formData.append('minimum_price', minimum_price);
+        formData.append('maximum_price', maximum_price);
+        formData.append('minimum_kilometre', minimum_kilometre);
+        formData.append('maximum_kilometre', maximum_kilometre);
+        formData.append('minimum_year', minimum_year);
+        formData.append('maximum_year', maximum_year);
 
-        $.ajax({
-            url: baseUrl + "Voitures/filtre_voiture",
-            method:"POST",
-            data:{csrf_token: $('meta[name="csrf-token"]').attr('content'),action:action, minimum_price:minimum_price,
-             maximum_price:maximum_price, minimum_kilometre:minimum_kilometre,
-                 maximum_kilometre:maximum_kilometre, minimum_year:minimum_year, maximum_year:maximum_year},
-            success:function(data){
-                $('.filter_data').html(data);
-            }
+        fetch(baseUrl + "Voitures/filtre_voiture", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data)
+            document.querySelector('.filter_data').innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Une erreur est survenue');
         });
     }
-    $('#price_range').slider({
-        range:true,
-        min:50,
-        max:50000,
-        values:[50, 50000],
-        step:50,
-        stop:function(event, ui)
-        {
-            $('#price_show').html(ui.values[0] + ' - ' + ui.values[1]);
-            $('#hidden_minimum_price').val(ui.values[0]);
-            $('#hidden_maximum_price').val(ui.values[1]);
-            filter_data();
-        }
-    });
 
-        $('#kilometre_range').slider({
-        range:true,
-        min:50,
-        max:500000,
-        values:[50, 500000],
-        step:50,
-        stop:function(event, ui)
-        {
-            $('#kilometre_show').html(ui.values[0] + ' - ' + ui.values[1]);
-            $('#hidden_minimum_kilometre').val(ui.values[0]);
-            $('#hidden_maximum_kilometre').val(ui.values[1]);
-            filter_data();
-        }
-    });
-    $('#year_range').slider({
-        range:true,
-        min:1980,
-        max:2023,
-        values:[1980, 2023],
-        step:1,
-        stop:function(event, ui)
-        {
-            $('#year_show').html(ui.values[0] + ' - ' + ui.values[1]);
-            $('#hidden_minimum_year').val(ui.values[0]);
-            $('#hidden_maximum_year').val(ui.values[1]);
-            filter_data();
-        }
-    });
+    let minPrice = document.getElementById('minimum_price');
+    let maxPrice = document.getElementById('maximum_price');
+    let minKilometre = document.getElementById('minimum_kilometre');
+    let maxKilometre = document.getElementById('maximum_kilometre');
+    let minYear= document.getElementById('minimum_year');
+    let maxYear = document.getElementById('maximum_year');
+
+    minPrice.addEventListener('input', filter_data);
+    maxPrice.addEventListener('input', filter_data);
+    minKilometre.addEventListener('input', filter_data);
+    maxKilometre.addEventListener('input', filter_data);
+    minYear.addEventListener('input', filter_data);
+    maxYear.addEventListener('input', filter_data);
+    
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 

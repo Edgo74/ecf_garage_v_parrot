@@ -1,4 +1,4 @@
-<h1 class="text-center">Modifier/Supprimer une Voiture</h1>
+<h1 class="text-center">Modifier/Supprimer une Voiture 📝</h1>
 
 <div class="container">
     <form method="POST" action="<?= URL ?>Voitures/ValidationModifVoiture" enctype="multipart/form-data">
