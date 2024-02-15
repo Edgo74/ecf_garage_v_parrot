@@ -20,7 +20,7 @@
     </div>
 
     <div class="mt-2">
-        <a href="<?= URL ?>compte/modificationPassword" class="btn btn-primary">Changer le mot de passe</a>
+        <a href="<?= URL ?>compte/modificationPassword" class="btn btn-primary">Changer de mot de passe</a>
     </div>
 
 </div>

@@ -1,80 +1,119 @@
-<h1 class="text-center mb-5">Tableau de Bord</h1>
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand ps-3" href="<?= URL; ?>accueil">Garage V. Perrot</a>
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+
+    </form>
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a href="<?= URL; ?>compte/deconnexion" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Deconnexion</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">Core</div>
+                    <a href="<?= URL; ?>accueil" class="nav-link <?= (page == 'accueil') ? "active" : ""; ?>">
+                        <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                        Accueil
+                    </a>
+                    <a href="<?= URL; ?>compte/profil" class="nav-link <?= (page == 'profil') ? "active" : ""; ?>">
+                        <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                        Profil
+                    </a>
+                    <div class="sb-sidenav-menu-heading">Interface</div>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Voitures
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="<?= URL ?>Voitures/ajoutVoiture" title="ajouter une voiture">Ajout Voiture</a>
+                            <a class="nav-link" href="<?= URL ?>Voitures/page_modifier_supprimer_voiture">Supprimer Voiture</a>
+                        </nav>
+                    </div>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAvis" aria-expanded="false" aria-controls="collapsePages">
+                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                        Avis
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseAvis" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                            <a class="nav-link" href="<?= URL ?>Avis/ajouterAvis">Ajout Avis</a>
+                            <a class="nav-link" href="<?= URL ?>Avis/page_valider_supprimer_avis">Supprimer Avis</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">Dashboard</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+                <div class="row">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-primary text-white mb-4">
+                            <div class="card-body">Primary Card</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <a class="small text-white stretched-link" href="#">View Details</a>
+                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-warning text-white mb-4">
+                            <div class="card-body">Warning Card</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <a class="small text-white stretched-link" href="#">View Details</a>
+                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-success text-white mb-4">
+                            <div class="card-body">Success Card</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <a class="small text-white stretched-link" href="#">View Details</a>
+                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-danger text-white mb-4">
+                            <div class="card-body">Danger Card</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <a class="small text-white stretched-link" href="#">View Details</a>
+                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-<div class="container titres ">
-    <div class="col-2 "> <a href="<?= URL ?>Voitures/page_modifier_supprimer_voiture" class="text-decoration-none">Voiture</a></div>
-    <div class="col-2 "> <a href="<?= URL ?>Avis/page_valider_supprimer_avis" class="text-decoration-none">Avis</a></div>
-    <div class="col-2"> <a href="<?= URL ?>Voitures/ajoutVoiture" class="text-decoration-none">Ajout Voiture </a></div>
-    <div class="col-2"> <a href="<?= URL ?>Avis/ajouterAvis" class="text-decoration-none">Ajout Avis</a></div>
-</div>
-
-<div class="row g-0" id="table">
-    <div class="col-md-3 g-0 mt-3 text-center">
-        <a href="<?= URL ?>Voitures/ajoutVoiture" data-bs-toggle="tooltip" data-bs-placement="top" title="ajouter une voiture" class="justify-content-center ">
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="96" height="96" viewBox="0 0 48 48">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 48 48">
-                    <path fill="#FF4081" d="M5,22c2,0,2-10,15-10s12.466,9.29,15.466,10.29V27H5V22z"></path>
-                    <path fill="#FF4081" d="M46,31.25c0,0,0,1.75-2,1.75c-3,0-39,0-39,0c-1.657,0-3-1.344-3-3v-5c0,0,0-3,3-3c4,0,26,0,26,0c10,0,15,4,15,6V31.25z"></path>
-                    <path fill="#455A64" d="M41 30c0 2.761-2.238 5-5 5s-5-2.239-5-5 2.238-5 5-5S41 27.239 41 30M17 30c0 2.761-2.239 5-5 5s-5-2.239-5-5 2.239-5 5-5S17 27.239 17 30"></path>
-                    <path fill="#B0BEC5" d="M38 30c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2S38 28.895 38 30M14 30c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2S14 28.895 14 30"></path>
-                    <g>
-                        <path fill="#FFC107" d="M3.5 25H2v4h1.5C4.329 29 5 28.328 5 27.5v-1C5 25.672 4.329 25 3.5 25zM43 24.658V27.5c0 .828.672 1.5 1.5 1.5H46v-1C46 27.106 44.995 25.815 43 24.658z"></path>
-                    </g>
-                    <g>
-                        <path fill="#660636" d="M32.328 22c-.293-.456-.565-.945-.841-1.445-1.535-2.791-3.442-6.226-10.487-6.525V22H32.328zM19 22v-7.967c-7.281.336-9.313 4.284-10.668 6.942C8.155 21.321 7.975 21.668 7.783 22H19z"></path>
-                    </g>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" x="25px" y="5px" width="24" height="24" viewBox="0 0 48 48">
-                    <linearGradient id="YT1YFZGinBDJ1OgDZNBs_a_IA4hgI5aWiHD_gr1" x1="9.858" x2="38.142" y1="9.858" y2="38.142" gradientUnits="userSpaceOnUse">
-                        <stop offset="0" stop-color="#21ad64"></stop>
-                        <stop offset="1" stop-color="#088242"></stop>
-                    </linearGradient>
-                    <path fill="url(#YT1YFZGinBDJ1OgDZNBs_a_IA4hgI5aWiHD_gr1)" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path>
-                    <path d="M34,21h-7v-7c0-1.105-0.895-2-2-2h-2c-1.105,0-2,0.895-2,2v7h-7c-1.105,0-2,0.895-2,2v2	c0,1.105,0.895,2,2,2h7v7c0,1.105,0.895,2,2,2h2c1.105,0,2-0.895,2-2v-7h7c1.105,0,2-0.895,2-2v-2C36,21.895,35.105,21,34,21z" opacity=".05"></path>
-                    <path d="M34,21.5h-7.5V14c0-0.828-0.672-1.5-1.5-1.5h-2c-0.828,0-1.5,0.672-1.5,1.5v7.5H14	c-0.828,0-1.5,0.672-1.5,1.5v2c0,0.828,0.672,1.5,1.5,1.5h7.5V34c0,0.828,0.672,1.5,1.5,1.5h2c0.828,0,1.5-0.672,1.5-1.5v-7.5H34	c0.828,0,1.5-0.672,1.5-1.5v-2C35.5,22.172,34.828,21.5,34,21.5z" opacity=".07"></path>
-                    <path fill="#fff" d="M23,13h2c0.552,0,1,0.448,1,1v20c0,0.552-0.448,1-1,1h-2c-0.552,0-1-0.448-1-1V14	C22,13.448,22.448,13,23,13z"></path>
-                    <path fill="#fff" d="M35,23v2c0,0.552-0.448,1-1,1H14c-0.552,0-1-0.448-1-1v-2c0-0.552,0.448-1,1-1h20	C34.552,22,35,22.448,35,23z"></path>
-                </svg>
-            </svg>
-        </a>
-    </div>
-    <div class="col-md-3 g-0 mt-3 text-center">
-        <a href="<?= URL ?>Avis/ajouterAvis" data-bs-toggle="tooltip" data-bs-placement="top" title="ajouter un avis">
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="96" height="96" viewBox="0 0 128 128">
-                <path fill="#fff" d="M64 14A50 50 0 1 0 64 114A50 50 0 1 0 64 14Z"></path>
-                <path fill="#444b54" d="M78.6,89.5c-0.5,0-1-0.1-1.4-0.3l-13.2-7l-13.2,7c-1,0.5-2.2,0.4-3.2-0.2c-0.9-0.7-1.4-1.8-1.2-2.9l2.5-14.7L38.2,60.8c-1.2-1.2-1.2-3.1-0.1-4.2s3.1-1.2,4.2-0.1l11.8,11.5c0.7,0.7,1,1.7,0.9,2.7L53.4,81l9.2-4.9c0.9-0.5,1.9-0.5,2.8,0l9.2,4.9l-1.8-10.3c-0.2-1,0.2-2,0.9-2.7l7.5-7.3l-10.3-1.5c-1-0.1-1.8-0.8-2.3-1.6L64,48.3l-0.4,0.8c-0.7,1.5-2.5,2.1-4,1.4c-1.5-0.7-2.1-2.5-1.4-4l3.1-6.3c0.5-1,1.5-1.7,2.7-1.7l0,0c1.1,0,2.2,0.6,2.7,1.7l6.6,13.4l14.8,2.1c1.1,0.2,2.1,1,2.4,2c0.4,1.1,0.1,2.3-0.8,3.1L79.1,71.3L81.6,86c0.2,1.1-0.3,2.3-1.2,2.9C79.9,89.3,79.2,89.5,78.6,89.5z"></path>
-                <path fill="#444b54" d="M56.7,59.3c-0.8,0-1.6-0.3-2.1-0.9c-0.1-0.1-0.3-0.3-0.4-0.5c-0.1-0.2-0.2-0.3-0.3-0.5c-0.1-0.2-0.1-0.4-0.2-0.6c0-0.2-0.1-0.4-0.1-0.6c0-0.8,0.3-1.6,0.9-2.1c0.7-0.7,1.7-1,2.7-0.8c0.2,0,0.4,0.1,0.6,0.2c0.2,0.1,0.4,0.2,0.5,0.3c0.2,0.1,0.3,0.2,0.5,0.4c0.6,0.6,0.9,1.3,0.9,2.1c0,0.2,0,0.4-0.1,0.6c0,0.2-0.1,0.4-0.2,0.6c-0.1,0.2-0.2,0.4-0.3,0.5c-0.1,0.2-0.2,0.3-0.4,0.5c-0.1,0.1-0.3,0.3-0.5,0.4c-0.2,0.1-0.3,0.2-0.5,0.3c-0.2,0.1-0.4,0.1-0.6,0.2C57.1,59.3,56.9,59.3,56.7,59.3z"></path>
-                <path fill="#444b54" d="M64,117c-29.2,0-53-23.8-53-53s23.8-53,53-53s53,23.8,53,53S93.2,117,64,117z M64,17c-25.9,0-47,21.1-47,47s21.1,47,47,47s47-21.1,47-47S89.9,17,64,17z"></path>
-            </svg>
-        </a>
-    </div>
-    <div class="col-md-3 g-0 mt-3 text-center">
-        <a href="<?= URL ?>Voitures/page_modifier_supprimer_voiture" data-bs-toggle="tooltip" data-bs-placement="top" title="modifier/supprimer une voiture">
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="96" height="96" viewBox="0 0 64 64">
-                <ellipse cx="30.999" cy="61" opacity=".3" rx="20" ry="3"></ellipse>
-                <path fill="orange" d="M9.22,44c-1.741,0-3.281-1.121-3.811-2.779C4.941,39.757,4.5,37.878,4.5,36c0-8,14-8,14-8	l5.209-7.441C24.831,18.955,26.666,18,28.624,18H36.5c9,0,9,11,9,11c2,0,7,4,7,9s-6,6-6,6h-2H9.22z"></path>
-                <path fill="#fff" d="M23.709,20.559L18.5,28c0,0-14,0-14,8c0,1.756,0.388,3.5,0.821,4.917	C7.69,40.524,9.5,38.48,9.5,36c0-1.685,5.468-2.981,9-3c1.632,0,3.16-0.796,4.096-2.133l5.21-7.442	C27.992,23.159,28.298,23,28.624,23c2.762,0,5-2.239,5-5h-5C26.666,18,24.831,18.955,23.709,20.559z" opacity=".3"></path>
-                <path fill="#fd3c4f" d="M30.5,35.5L30.5,35.5c0-0.828,0.672-1.5,1.5-1.5h3c0.828,0,1.5,0.672,1.5,1.5l0,0	c0,0.828-0.672,1.5-1.5,1.5h-3C31.172,37,30.5,36.328,30.5,35.5z"></path>
-                <path fill="#fd3c4f" d="M5.679,32.447C4.949,33.409,4.5,34.576,4.5,36c0,0.987,0.125,1.97,0.309,2.897	C6.35,38.531,7.5,37.153,7.5,35.5C7.5,34.179,6.759,33.043,5.679,32.447z"></path>
-                <circle cx="14" cy="43.5" r="5.5" fill="#9c34c2"></circle>
-                <circle cx="14" cy="43.5" r="2.5" fill="#37d0ee"></circle>
-                <path fill="#a7b3c7" d="M51.999,6.311l0,5.012c0.001,1.381-0.559,2.63-1.464,3.536c-0.865,0.865-2.046,1.415-3.355,1.461	C44.333,16.421,42,13.934,42,11.084V6.311c0-1.788-2.152-2.666-3.426-1.411c-0.694,0.684-1.323,1.476-1.867,2.383	c-2.478,4.139-2.232,9.501,0.679,13.349c1.03,1.36,2.277,2.415,3.637,3.199c-0.003,0.075-0.022,0.145-0.023,0.221v24.991	c0,3.314,2.686,6,5.999,5.999c1.656,0,3.156-0.671,4.242-1.757c1.086-1.086,1.757-2.586,1.757-4.243V24.05	c0-0.075-0.019-0.145-0.022-0.22c1.36-0.783,2.607-1.838,3.637-3.199c2.911-3.847,3.157-9.21,0.679-13.349	C56.75,6.375,56.12,5.583,55.427,4.9C54.153,3.645,51.999,4.523,51.999,6.311z M48.414,50.457c-0.781,0.781-2.048,0.781-2.828,0	c-0.781-0.781-0.781-2.047,0-2.828s2.047-0.781,2.828,0C49.194,48.409,49.195,49.675,48.414,50.457z"></path>
-                <path d="M52.999,49.042V24.05c0-0.075-0.019-0.145-0.022-0.22c1.36-0.783,2.607-1.838,3.637-3.199 c2.911-3.847,3.157-9.21,0.679-13.349C56.75,6.375,56.12,5.583,55.427,4.9c-1.273-1.255-3.426-0.377-3.426,1.411v2.244 c0.376,0.385,0.716,0.816,1.003,1.296c1.452,2.425,1.302,5.546-0.376,7.764c-0.578,0.76-1.298,1.393-2.147,1.883 c-1.607,0.927-2.568,2.664-2.499,4.517c0.004,0.097,0.011,0.194,0.019,0.291l0.001,23.012c0.145,0.087,0.286,0.185,0.412,0.31 c0.781,0.781,0.781,2.047,0,2.828c-0.046,0.046-0.099,0.081-0.148,0.122c0.431,1.326,1.386,2.407,2.636,2.988 c0.112-0.096,0.236-0.177,0.341-0.281C52.328,52.199,52.999,50.699,52.999,49.042z M47.999,24.051c0,0.013-0.001,0.026-0.001,0.039 C47.999,24.077,47.999,24.064,47.999,24.051z" opacity=".15"></path>
-                <path fill="#9c34c2" d="M35.5,23h-6.876c-0.326,0-0.632,0.159-0.818,0.425c0,0-2.655,3.785-4.212,6.004	C23.128,30.092,23.605,31,24.415,31H35.5c0.552,0,1-0.448,1-1v-6C36.5,23.448,36.052,23,35.5,23z"></path>
-                <path fill="#fff" d="M12.441,33.947c-0.615,0-1.192-0.381-1.412-0.994c-0.279-0.78,0.126-1.639,0.905-1.918	c2.421-0.869,4.241-0.815,4.446-0.806c0.827,0.037,1.468,0.738,1.431,1.565c-0.036,0.825-0.752,1.445-1.558,1.432	c-0.049-0.007-1.455-0.031-3.306,0.633C12.78,33.918,12.609,33.947,12.441,33.947z"></path>
-            </svg>
-        </a>
-    </div>
-    <div class="col-md-3 g-0 mt-3 text-center">
-        <a href="<?= URL ?>Avis/page_valider_supprimer_avis" data-bs-toggle="tooltip" data-bs-placement="top" title="valider/supprimer un avis">
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="96" height="96" viewBox="0 0 128 128">
-                <path fill="#fff" d="M90,111H37c-5.523,0-10-4.477-10-10V32c0-5.523,4.477-10,10-10h53c5.523,0,10,4.477,10,10v69 C100,106.523,95.523,111,90,111z"></path>
-                <path fill="#cfcece" d="M47 22L47 34 80 34 80 22"></path>
-                <path fill="none" stroke="#444b54" stroke-miterlimit="10" stroke-width="6" d="M90,111H37c-5.523,0-10-4.477-10-10V32 c0-5.523,4.477-10,10-10h53c5.523,0,10,4.477,10,10v69C100,106.523,95.523,111,90,111z"></path>
-                <path fill="none" stroke="#444b54" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="6" d="M47 22H80V34H47z"></path>
-                <path fill="none" stroke="#444b54" stroke-miterlimit="10" stroke-width="6" d="M64 8A7 7 0 1 0 64 22A7 7 0 1 0 64 8Z"></path>
-                <path fill="none" stroke="#8ccfb9" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="6" d="M44 72.029L56.318 83 84 51"></path>
-            </svg>
-        </a>
+            </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Garage V. Perrot 2024</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </div>

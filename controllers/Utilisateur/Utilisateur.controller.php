@@ -90,8 +90,9 @@ class UtilisateurController extends MainController
             "page_description" => "Page d'admin",
             "page_title" => "Page d'administration du site",
             "page_css" => "admin.css",
+            "page_javascript" => "admin.js",
             "view" => "views/Utilisateur/admin.view.php",
-            "template" => "views/Commons/template.php"
+            "template" => "views/Commons/adminTemplate.php"
         ];
         $this->genererPage($data_page);
     }
@@ -170,8 +171,9 @@ class UtilisateurController extends MainController
             "page_description" => "Page de gestion pour les employé",
             "page_title" => "Page de gestion des employés",
             "page_css" => "admin.css",
+            "page_javascript" => "admin.js",
             "view" => "views/Utilisateur/employe.view.php",
-            "template" => "views/Commons/template.php"
+            "template" => "views/Commons/adminTemplate.php"
         ];
         $this->genererPage($data_page);
     }
