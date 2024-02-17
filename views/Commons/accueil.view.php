@@ -6,9 +6,10 @@
     <main class="main-content">
         <h2>&lt; Nos Services &gt;</h2>
         <div class="container ">
-
             <?php if (Securite::estConnecte() && Securite::isAdmin()) : ?>
-                <a href="<?= URL ?>Services/ajouterService" class="btn text-center">Ajouter un Service</a>
+                <div class="d-flex">
+                    <a href="<?= URL ?>Services/ajouterService" class="btn mx-auto">Ajouter un Service</a>
+                </div>
             <?php endif ?>
             <div class="row  my-container">
                 <?php if (!empty($services)) : ?>

@@ -235,7 +235,7 @@ Modal
   background-color: transparent;
   border: 1px solid transparent;
   color: whitesmoke;
-  text-align: right;
+  text-align: start;
 }
 
 .modal-close-btn:hover,
@@ -302,6 +302,18 @@ input{
     border-radius: 5px;
 }
 
+input {
+    padding: 0.5em;
+    margin-bottom: 0.75em;
+    border: 2px solid #d1d5db;
+}
+
+input:focus {
+    outline: none;
+    border-color: #8a71ec;
+    background-color: #e6e8ec;
+} 
+
 /* =================
 Media queries 
 ================= */
@@ -345,7 +357,7 @@ Media queries
         min-height: 300px;
         text-align: center;
         color: #fff;
-        background: #9480e4 url("https://app-ecf-garage-3d639a49eac3.herokuapp.com/public/Assets/images/redcar.jpeg");
+        background: #bd1a25 url("https://app-ecf-garage-3d639a49eac3.herokuapp.com/public/Assets/images/redcar.jpeg");
         background-size: cover;
         padding-bottom: 1.5em;
 
