@@ -25,7 +25,7 @@
                 </li>
                 <?php if (Securite::estConnecte() && !Securite::isAdmin()) : ?>
                     <li class="nav-item">
-                        <a href="<?= URL; ?>compte/page_gestion_employe" class="nav-link <?= (page == 'compte/page_gestion_employe') ? "active" : ""; ?>">Page gestion employés</a>
+                        <a href="<?= URL; ?>compte/page_gestion_employe" class="nav-link <?= (page == 'compte/page_gestion_employe') ? "active" : ""; ?>">Panel Employes</a>
                     </li>
                 <?php endif ?>
                 <li class="nav-item">
@@ -33,7 +33,7 @@
                 </li>
                 <?php if (Securite::isAdmin()) : ?>
                     <li class="nav-item">
-                        <a href="<?= URL; ?>administrateur/administration" class="nav-link <?= (page == 'administrateur/administration') ? "active" : ""; ?>">Administration</a>
+                        <a href="<?= URL; ?>administrateur/administration" class="nav-link <?= (page == 'administrateur/administration') ? "active" : ""; ?>">Panel Admin</a>
                     </li>
                 <?php endif; ?>
             <?php endif; ?>

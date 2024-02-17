@@ -42,7 +42,7 @@
             <input type="number" class="form-control" id="price" name="price" value="" required>
         </div>
         <h3>Images :</h3>
-        <img id="image" src="<?= URL ?>public/Assets/images/" alt="l'image de la voiture">
+        <img class="car-image" id="image" src="<?= URL ?>public/Assets/images/" alt="l'image de la voiture">
         <div class="form-group mb-3">
             <label for="image" class="form-label mt-3">Changer Image: </label>
             <input type="file" class="form-control " id="image" name="image">

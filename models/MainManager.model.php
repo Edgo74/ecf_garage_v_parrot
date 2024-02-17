@@ -1,5 +1,5 @@
 <?php
-require_once("objects/Model.class.php");
+require_once("entities/Model.class.php");
 
 abstract class MainManager extends Model
 {

@@ -1,7 +1,7 @@
 <?php
 
 require_once("models/MainManager.model.php");
-require("objects/Services/Service.class.php");
+require("entities/Services/Service.class.php");
 
 
 class ServiceManager extends Model

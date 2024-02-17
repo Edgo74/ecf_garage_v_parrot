@@ -1,6 +1,6 @@
 <?php
 require_once "models/MainManager.model.php";
-require_once("objects/Horaires/Horaires.class.php");
+require_once("entities/Horaires/Horaires.class.php");
 
 
 class HoraireManager extends Model

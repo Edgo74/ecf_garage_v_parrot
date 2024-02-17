@@ -1,7 +1,7 @@
 <?php
 
 require_once("models/MainManager.model.php");
-require("objects/Garage/Garage.class.php");
+require("entities/Garage/Garage.class.php");
 
 
 class GarageManager extends Model

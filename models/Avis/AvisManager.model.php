@@ -1,7 +1,7 @@
 <?php
 
 require_once("models/MainManager.model.php");
-require("objects/Avis/Avis.class.php");
+require("entities/Avis/Avis.class.php");
 
 
 

@@ -1,6 +1,6 @@
 <?php
 require_once("models/MainManager.model.php");
-require_once("objects/Voitures/Voiture.class.php");
+require_once("entities/Voitures/Voiture.class.php");
 
 class VoitureManager extends Model
 {

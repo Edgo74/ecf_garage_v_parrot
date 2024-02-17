@@ -2,7 +2,7 @@
 <?php
 
 require_once "models/MainManager.model.php";
-require_once "objects/Utilisateur/Utilisateur.class.php";
+require_once "entities/Utilisateur/Utilisateur.class.php";
 
 class UtilisateurManager extends MainManager
 {
