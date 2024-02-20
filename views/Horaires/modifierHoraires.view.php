@@ -1,7 +1,6 @@
 <style>
   body {
     background-color: #FFFFFF;
-    font-family: Arial, Helvetica, sans-serif;
   }
 </style>
 

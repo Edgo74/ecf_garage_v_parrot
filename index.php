@@ -104,6 +104,8 @@ try {
             } else if ($url[1] === "modifierHorairesValidation") {
                 Securite::isConnectedAndAdmin();
                 $horaireController->modifierHorairesValidation();
+            } else {
+                throw new Exception("La page n'existe pas");
             }
             break;
 
@@ -123,6 +125,8 @@ try {
             } else if ($url[1] === "page_valider_supprimer_avis") {
                 Securite::verifierConnexion();
                 $avisController->pageAdminValiderAvis();
+            } else {
+                throw new Exception("La page n'existe pas");
             }
             break;
 

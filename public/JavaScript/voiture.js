@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded",function(){
         })
         .then(response => response.text())
         .then(data => {
-            console.log(data)
+            //console.log(data)
             document.querySelector('.filter_data').innerHTML = data;
         })
         .catch(error => {
