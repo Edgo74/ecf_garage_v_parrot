@@ -5,7 +5,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <div class="text-center mt-4">
-                            <img class="mb-4 img-error" src="<?= URL ?>public/assets/images/error404.svg" />
+                            <img class="mb-4 img-error" src="/public/Assets/images/error404.svg" />
                             <p class="lead"><?= $msg ?></p>
                             <a href="<?= URL ?>accueil">
                                 <i class="fas fa-arrow-left me-1"></i>
