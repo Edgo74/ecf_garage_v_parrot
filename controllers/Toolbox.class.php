@@ -24,8 +24,12 @@ class Toolbox
         $random = rand(0, 99999);
         $target_file = $dir . $random . "_" . $file['name'];
 
+        if (empty($file["tmp_name"]) || !file_exists($file["tmp_name"]))
+            throw new Exception("Le fichier temporaire n'existe pas");
+
         if (!getimagesize($file["tmp_name"]))
             throw new Exception("Le fichier n'est pas une image");
+
         if ($extension !== "jpg" && $extension !== "jpeg" && $extension !== "png" && $extension !== "gif")
             throw new Exception("L'extension du fichier n'est pas reconnu");
         if (file_exists($target_file))
