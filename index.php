@@ -65,6 +65,8 @@ try {
             } else if ($url[1] === "modifier_supprimer_voiture") {
                 Securite::verifierConnexion();
                 $voitureController->modifier_supprimer_voiture();
+            } else {
+                throw new Exception("La page n'existe pas");
             }
             break;
 
@@ -92,6 +94,8 @@ try {
             } else if ($url[1] ===  "modifier_supprimer_service") {
                 Securite::isConnectedAndAdmin();
                 $serviceController->modifier_supprimer_service();
+            } else {
+                throw new Exception("La page n'existe pas");
             }
             break;
 
