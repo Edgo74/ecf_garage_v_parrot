@@ -21,7 +21,7 @@ services.forEach(service => {
     const unService = service.nextElementSibling;
     
     service.addEventListener("click", function(){
-        unService.classList.toggle('service-hover');
+        unService.classList.toggle('d-block');
     });
 
 });
