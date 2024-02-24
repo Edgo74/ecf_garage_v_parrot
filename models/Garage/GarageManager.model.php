@@ -29,7 +29,7 @@ class GarageManager extends Model
         $stmt->closeCursor();
 
         foreach ($garages as $garage) {
-            $g = new Garage($garage["id"], $garage["adresse"], $garage["numero"]);
+            $g = new Garage($garage["garage_id"], $garage["adresse"], $garage["numero"]);
             $this->ajoutGarage($g);
         }
     }

@@ -27,7 +27,7 @@ class HoraireManager extends Model
         $stmt->closeCursor();
 
         foreach ($nosHoraires as $horaire) {
-            $s = new Horaires($horaire["id"], $horaire["jour"], $horaire["debut_heures_AM"], $horaire["fin_heures_AM"], $horaire["debut_heures_PM"], $horaire["fin_heures_PM"], $horaire["est_ouvert"]);
+            $s = new Horaires($horaire["horaire_id"], $horaire["jour"], $horaire["debut_heures_AM"], $horaire["fin_heures_AM"], $horaire["debut_heures_PM"], $horaire["fin_heures_PM"], $horaire["est_ouvert"]);
             $this->ajoutHoraires($s);
         }
     }
@@ -43,7 +43,7 @@ class HoraireManager extends Model
     public function ModifierHorairesBD($index, $debutHeure_AM, $finHeure_AM, $debutHeure_PM, $finHeure_PM, $status)
     {
         $req = "UPDATE horaires SET debut_heures_AM = :debutHeure_AM, fin_heures_AM = :finHeure_AM, debut_heures_PM = :debutHeure_PM,
-         fin_heures_PM = :finHeure_PM, est_ouvert = :status WHERE id = :id";
+         fin_heures_PM = :finHeure_PM, est_ouvert = :status WHERE horaire_id = :id";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":id", $index, PDO::PARAM_INT);
         $stmt->bindValue(":debutHeure_AM", $debutHeure_AM, PDO::PARAM_STR);

@@ -14,9 +14,9 @@
             <div class="row  my-container">
                 <?php if (!empty($services)) : ?>
                     <?php for ($i = 0; $i < count($services); $i++) : ?>
-                        <div class="joke">
-                            <p class="question"><?= $services[$i]->getTitre(); ?> </p>
-                            <p class="punchline"><?= $services[$i]->getDescription(); ?> </p>
+                        <div class="service-wrapper">
+                            <p class="titre-service"><?= $services[$i]->getTitre(); ?> </p>
+                            <p class="description-service"><?= $services[$i]->getDescription(); ?> </p>
                         </div>
                     <?php endfor; ?>
                 <?php else : ?>

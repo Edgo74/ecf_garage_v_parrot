@@ -44,10 +44,12 @@ class VoitureController extends MainController
     public function afficherVoiture($id)
     {
         $voiture = $this->voitureManager->getVoitureById($id);
+        $equipements = $this->voitureManager->getEquipements($id);
         $data_page = [
             "page_description" => "page afficher voiture",
             "page_title" => "Afficher une Voiture",
             "voiture" => $voiture,
+            "equipements" => $equipements,
             "page_css" => "main.css",
             "view" => "views/Voitures/afficherVoiture.view.php",
             "template" => "views/Commons/template.php"
@@ -79,11 +81,15 @@ class VoitureController extends MainController
         $immatriculation = Securite::SecureHTML($_POST["immatriculation"]);
         $type = Securite::SecureHTML($_POST["type"]);
         $date = Securite::SecureHTML($_POST["date"]);
+        $garantie = !isset($_POST["garantie"]) ?  0 :  1;
         $file = $_FILES["image"];
         $repertoire = "public/Assets/images/";
         $nomImageAjoute = Toolbox::ajoutImage($file, $repertoire);
         if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
             Toolbox::ajouterMessageAlerte("vous n'avez pas le droit d envoyer ce formulaire", Toolbox::COULEUR_ROUGE);
+        } else if (!isset($_POST["Titre"]) && !isset($_POST["year"]) && !isset($_POST["carburant"]) && !isset($_POST["kilometre"]) && isset($_POST["price"]) && isset($_POST["immatriculation"])  && !isset($_FILES["image"])) {
+            Toolbox::ajouterMessageAlerte("Veuillez renseigner tous les champs demandés", Toolbox::COULEUR_ROUGE);
+            header("location:" . URL . "Voitures/ajouterVoiture");
         } else {
             $this->voitureManager->AjoutVoitureBD(
                 $titre,
@@ -94,7 +100,8 @@ class VoitureController extends MainController
                 $nomImageAjoute,
                 $immatriculation,
                 $type,
-                $date
+                $date,
+                $garantie
             );
 
             Toolbox::ajouterMessageAlerte("Ajout Réalisé",  Toolbox::COULEUR_VERTE);
@@ -127,6 +134,7 @@ class VoitureController extends MainController
         $immatriculation = Securite::SecureHTML($_POST["immatriculation"]);
         $type = Securite::SecureHTML($_POST["type"]);
         $date = Securite::SecureHTML($_POST["date"]);
+        $garantie = Securite::SecureHTML($_POST["garantie"]);
         $file = $_FILES["image"];
         $imageActuelle = $this->voitureManager->getVoitureById($identifiant)->getImage();
         $file = $_FILES["image"];
@@ -147,7 +155,8 @@ class VoitureController extends MainController
             $nomImageToAdd,
             $immatriculation,
             $type,
-            $date
+            $date,
+            $garantie
         );
 
         Toolbox::ajouterMessageAlerte("Modification Réalisé",  Toolbox::COULEUR_VERTE);

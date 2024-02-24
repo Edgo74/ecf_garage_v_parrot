@@ -42,3 +42,27 @@
         <?php endif; ?>
     </table>
 </div>
+
+<?php
+$url = explode("/", filter_var($_GET["page"], FILTER_SANITIZE_URL));
+$page = isset($url[2]) && !empty($url[2]) ? $url[2] : 1;
+
+
+$pageLink = " <div class = 'd-flex' > </div><ul class='pagination mx-auto'>";
+
+if ($page > 1) {
+    $pageLink .= "<a class='page-link' href='" . URL . "Avis/page_valider_supprimer_avis/1'>First</a>";
+    $pageLink .= "<a class='page-link' href='" . URL . "Avis/page_valider_supprimer_avis/" . ($page - 1) . "'><<<</a>";
+}
+
+for ($i = 1; $i <= $totalPages; $i++) {
+    $pageLink .= "<a class='page-link' href='" . URL . "Avis/page_valider_supprimer_avis/" . $i . "'>" . $i . "</a>  ";
+}
+
+if ($page <= $totalPages) {
+    $pageLink .= "<a class='page-link' href='" . URL . "Avis/page_valider_supprimer_avis/"  . ($page + 1) . "'>>>></a>";
+    $pageLink .= "<a class='page-link' href='" . URL . "Avis/page_valider_supprimer_avis/"  . $totalPages . "'>Last</a>";
+}
+echo $pageLink . "</ul> </div>";
+print_r($avis)
+?>

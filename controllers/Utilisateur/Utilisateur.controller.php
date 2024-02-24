@@ -25,6 +25,34 @@ class UtilisateurController extends MainController
         ];
         $this->genererPage($data_page);
     }
+
+    public function reset_password()
+    {
+        $data_page = [
+            "page_description" => "réinistialisation du mot de passe",
+            "page_title" => "Titre page de réinitialisation du mot de passe",
+            "page_css" => "login.css",
+            "view" => "views/Utilisateur/reset_password.view.php",
+            "template" => "views/Commons/template.php"
+        ];
+        $this->genererPage($data_page);
+    }
+
+
+    public function update_password($token)
+    {
+        $_SESSION['token'] = $token;
+        $data_page = [
+            "page_description" => "réinistialisation du mot de passe",
+            "page_title" => "Titre page de réinitialisation du mot de passe",
+            "page_css" => "login.css",
+            "view" => "views/Utilisateur/update_password.view.php",
+            "template" => "views/Commons/template.php"
+        ];
+        $this->genererPage($data_page);
+    }
+
+
     public function Profil()
     {
         $datas = $this->utilisateurManager->getUserInformation($_SESSION["profil"]["login"]);
@@ -75,6 +103,41 @@ class UtilisateurController extends MainController
         }
     }
 
+    public function validation_reset_password($email)
+    {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            Toolbox::ajouterMessageAlerte("vous n'avez pas le droit d envoyer ce formulaire", Toolbox::COULEUR_ROUGE);
+            header("location:" . URL . "reset_password");
+        } elseif ($this->utilisateurManager->getUserInformation($email)) {
+            $this->utilisateurManager->validationResetPassword($email);
+            header("location:" . URL . "reset_password");
+        } else {
+            Toolbox::ajouterMessageAlerte("Aucun utilisateur avec cette adresse mail", Toolbox::COULEUR_ROUGE);
+            header("location:" . URL . "reset_password");
+        }
+    }
+
+
+
+    public function validation_update_password($password, $token)
+    {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            Toolbox::ajouterMessageAlerte("vous n'avez pas le droit d envoyer ce formulaire", Toolbox::COULEUR_ROUGE);
+            header("location:" . URL . "update_password/" . $token);
+        } elseif (self::checkMatchPasswords($password)) {
+            Toolbox::ajouterMessageAlerte("Le mot de passe doit contenir au moins 10 caractères, au moins un minuscule, un majuscule et un caractère spécial.", Toolbox::COULEUR_ROUGE);
+            header("location:" . URL . "update_password/" . $token);
+        } else {
+            $passwordCrypte = password_hash($password, PASSWORD_DEFAULT);
+            if ($this->utilisateurManager->validationUpdatePassword($passwordCrypte, $token)) {
+                Toolbox::ajouterMessageAlerte("La modification du password a été effectuée", Toolbox::COULEUR_VERTE);
+                header("location:" . URL . "login");
+            } else {
+                Toolbox::ajouterMessageAlerte("La modification a échouée", Toolbox::COULEUR_ROUGE);
+                header("location:" . URL . "update_password/" . $token);
+            }
+        }
+    }
 
     public function deconnexion()
     {
@@ -196,6 +259,9 @@ class UtilisateurController extends MainController
         $employe_mail = Securite::SecureHTML($_POST["employe_mail"]);
         if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
             Toolbox::ajouterMessageAlerte("vous n'avez pas le droit d envoyer ce formulaire", Toolbox::COULEUR_ROUGE);
+            header("location:" . URL . "administrateur/generer_compte_employe");
+        } elseif ($this->utilisateurManager->getUserInformation($employe_mail)) {
+            Toolbox::ajouterMessageAlerte("Un utilisateur avec cette adresse mail existe déjà", Toolbox::COULEUR_ROUGE);
             header("location:" . URL . "administrateur/generer_compte_employe");
         } elseif (self::checkMatchPasswords($employe_password)) {
             Toolbox::ajouterMessageAlerte("Le mot de passe doit contenir au moins 10 caractères, au moins un minuscule, un majuscule et un caractère spécial.", Toolbox::COULEUR_ROUGE);

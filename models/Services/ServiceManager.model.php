@@ -21,14 +21,14 @@ class ServiceManager extends Model
 
     public function chargementService()
     {
-        $req = "SELECT * FROM services";
+        $req = "SELECT * FROM service";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->execute();
         $nosServices = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
 
         foreach ($nosServices as $service) {
-            $s = new Services($service["id"], $service["titre"], $service["description"]);
+            $s = new Services($service["service_id"], $service["titre"], $service["description"]);
             $this->ajoutService($s);
         }
     }
@@ -44,7 +44,7 @@ class ServiceManager extends Model
 
     public function AjoutServiceBD($titre, $description)
     {
-        $req = "INSERT INTO services(titre, description) VALUES(:titre, :description)";
+        $req = "INSERT INTO service(titre, description) VALUES(:titre, :description)";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":titre", $titre, PDO::PARAM_STR);
         $stmt->bindValue(":description", $description, PDO::PARAM_STR);
@@ -58,7 +58,7 @@ class ServiceManager extends Model
 
     public function SupprimeServiceBD($id)
     {
-        $req = "DELETE FROM services WHERE id = :id";
+        $req = "DELETE FROM service WHERE service_id = :id";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
         $resultat = $stmt->execute();
@@ -71,7 +71,7 @@ class ServiceManager extends Model
 
     public function ModificationServiceBD($titre, $description, $id)
     {
-        $req = "UPDATE services SET titre = :titre , description = :description WHERE id = :id";
+        $req = "UPDATE service SET titre = :titre , description = :description WHERE service_id = :id";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":titre", $titre, PDO::PARAM_STR);
         $stmt->bindValue(":description", $description, PDO::PARAM_STR);
@@ -88,7 +88,7 @@ class ServiceManager extends Model
     public function modifier_supprimer_service_BD()
     {
         $id = Securite::SecureHTML($_POST["serviceId"]);
-        $stmt = $this->getBdd()->prepare("SELECT * FROM services WHERE id = :id");
+        $stmt = $this->getBdd()->prepare("SELECT * FROM service WHERE service_id = :id");
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $resultat = $stmt->execute();
         $output = '';

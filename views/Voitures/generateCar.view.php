@@ -5,6 +5,11 @@
         <h3><?= $car->year ?></h3>
         <p><?= $car->carburant ?> <span><?= $car->kilometre ?>km</span></p>
         <h3><span class="badge bg-success card-price"><?= $car->price ?>€</span></h3>
-        <span><a class="link-1" href="<?= URL ?>Voitures/afficherVoiture/<?= $car->id ?>">Details</a> <span><a class="link-2" href="<?= URL ?>contact/<?= urlencode($car->titre) ?>">Contact</a></span></span>
+        <span><a class="link-1" href="<?= URL ?>Voitures/afficherVoiture/<?= $car->voiture_id ?>">Details</a> <span><a class="link-2" href="<?= URL ?>contact/<?= urlencode($car->titre) ?>">Contact</a></span></span>
     </div>
+    <?php if ($car->garantie === 1) : ?>
+        <span class="garantie">
+            Garantie 1 an
+        </span>
+    <?php endif ?>
 </section>

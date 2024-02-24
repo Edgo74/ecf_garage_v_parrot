@@ -29,9 +29,9 @@
     <?php
     if (!empty($_SESSION['alert'])) {
         foreach ($_SESSION['alert'] as $alert) {
-            echo "<div class='alert " .  $alert['type'] . "' role='alert'>
+            echo "<div class = 'container'><div class='alert " .  $alert['type'] . "' role='alert'>
                         " . $alert['message'] . "
-                    </div>";
+                    </div></div>";
         }
         unset($_SESSION['alert']);
     }

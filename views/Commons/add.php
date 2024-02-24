@@ -40,6 +40,10 @@
                     <input type="number" class="form-control" id="price" name="price">
                 </div>
                 <div class="form-group mb-3">
+                    <label for="garantie" class="form-check-label">Garantie : </label>
+                    <input type="checkbox" class="form-check-input" id="garantie" name="garantie" value="1">
+                </div>
+                <div class="form-group mb-3">
                     <label for="image" class="form-label">Image: </label>
                     <input type="file" class="form-control " id="image" name="image">
                 </div>

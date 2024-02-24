@@ -8,6 +8,12 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+
+$dotenv->load();
+
 class ContactController extends MainController
 {
 
@@ -52,6 +58,7 @@ class ContactController extends MainController
             $mail->SMTPAuth = true;
             $mail->Username = getenv('MAILTRAP_USERNAME');
             $mail->Password = getenv('MAILTRAP_PASSWORD');
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 465;
 
             $mail->setFrom('adambayar1357@gmail.com',  $nom . "-" . $prenom);
@@ -70,6 +77,40 @@ class ContactController extends MainController
                 Toolbox::ajouterMessageAlerte("Message Envoyé", Toolbox::COULEUR_VERTE);
                 header("location:" . URL . "accueil");
             }
+        }
+    }
+
+
+
+    public function sendEmailResetPassword($email, $token)
+    {
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = "adambayar1357@gmail.com";
+        $mail->Password   = $_ENV["PASSWORD_EMAIL"];       // Mot de passe Gmail env file
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587; // Port SMTP
+        $mail->isHTML(true);
+
+        $mail->setFrom("adambayar1357@gmail.com");
+        $mail->addAddress("lerepairedu74@gmail.com");
+
+        $mail->Subject = "Reset Password";
+        $mail->Body = <<<END
+        <h1>Reset Password</h1>
+        <p>Click the link below to reset your password</p>
+        <a href="https://app-ecf-garage-3d639a49eac3.herokuapp.com/update_password/$token">Reset Password</a>
+        END;
+
+        try {
+            $mail->send();
+            Toolbox::ajouterMessageAlerte("Un email de réinitialisation de mot de passe a été envoyé à votre adresse e-mail", Toolbox::COULEUR_VERTE);
+            header("location:" . URL . "login");
+        } catch (Exception $e) {
+            Toolbox::ajouterMessageAlerte("Un probleme est survenu veuillez réessayer", Toolbox::COULEUR_ROUGE);
+            header("location:" . URL . "reset_password");
         }
     }
 }

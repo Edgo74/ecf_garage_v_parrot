@@ -33,6 +33,10 @@
             <label for="price" class="form-label">Prix : </label>
             <input type="number" class="form-control" id="price" name="price" value="<?= $voiture->getPrice() ?>">
         </div>
+        <div class="form-group mb-3">
+            <label for="garantie" class="form-check-label">Garantie : </label>
+            <input type="checkbox" class="form-check-input" id="garantie" name="garantie" <?= $voiture->getGarantie() === 1 ? "checked" : "" ?>>
+        </div>
         <h3>Images :</h3>
         <img src="<?= URL ?>public/Assets/images/<?= $voiture->getImage(); ?>" alt="l'image de la voiture">
         <div class="form-group mb-3">

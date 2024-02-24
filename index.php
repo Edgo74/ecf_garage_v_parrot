@@ -102,8 +102,8 @@ try {
         case "Horaires":
             if (empty($url[1])) {
                 $serviceController->accueil();
-                Securite::isConnectedAndAdmin();
             } else if ($url[1] === "modifierHoraires") {
+                Securite::isConnectedAndAdmin();
                 $horaireController->modifierHoraires();
             } else if ($url[1] === "modifierHorairesValidation") {
                 Securite::isConnectedAndAdmin();
@@ -145,6 +145,35 @@ try {
 
         case "login":
             $utilisateurController->login();
+            break;
+
+        case "reset_password":
+            $utilisateurController->reset_password();
+            break;
+
+        case "validation_reset_password":
+            if (isset($_POST["reset_email"]) && !empty($_POST["reset_email"])) {
+                $email = Securite::SecureHTML($_POST["reset_email"]);
+                $utilisateurController->validation_reset_password($email);
+            } else {
+                Toolbox::ajouterMessageAlerte("Email non renseigné", Toolbox::COULEUR_ROUGE);
+                header("location:" . URL . "reset_password");
+            }
+            break;
+
+        case "update_password":
+            $utilisateurController->update_password($url[1]);
+            break;
+
+        case "validation_update_password":
+            if (isset($_POST["reset_password"]) && !empty($_POST["reset_password"])) {
+                $token = $_SESSION["token"];
+                $password = Securite::SecureHTML($_POST["reset_password"]);
+                $utilisateurController->validation_update_password($password, $token);
+            } else {
+                Toolbox::ajouterMessageAlerte("Mot de passe non renseigné", Toolbox::COULEUR_ROUGE);
+                header("location:" . URL . "update_password/" . $token);
+            }
             break;
 
         case "validation_login":

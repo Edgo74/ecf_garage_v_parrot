@@ -2,15 +2,15 @@
 
 class Utilisateur
 {
-    private $id;
+    private $utilisateur_id;
     private $password;
     private $mail;
     private $role;
     private $image;
 
-    public function __construct($id, $password, $mail, $role, $image)
+    public function __construct($utilisateur_id, $password, $mail, $role, $image)
     {
-        $this->id = $id;
+        $this->utilisateur_id = $utilisateur_id;
         $this->password = $password;
         $this->mail = $mail;
         $this->role = $role;
@@ -19,13 +19,13 @@ class Utilisateur
 
     public function getId()
     {
-        return $this->id;
+        return $this->utilisateur_id;
     }
 
 
-    public function setId($id)
+    public function setId($utilisateur_id)
     {
-        $this->id = $id;
+        $this->utilisateur_id = $utilisateur_id;
 
         return $this;
     }

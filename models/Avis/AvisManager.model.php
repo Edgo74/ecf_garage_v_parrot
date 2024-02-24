@@ -22,14 +22,20 @@ class AvisManager extends Model
 
     public function chargementAvis()
     {
-        $req = "SELECT * FROM avis";
+        $url = isset($_GET["page"]) ? explode("/", filter_var($_GET["page"], FILTER_SANITIZE_URL)) : 1;
+        $page = isset($url[2]) ? $url[2] : 1;
+        $limit = 5;
+        $start = ($page - 1) * $limit;
+        $req = "SELECT * FROM avis LIMIT :start, :limit";
         $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
+        $stmt->bindValue(":start", $start, PDO::PARAM_INT);
         $stmt->execute();
         $lesAvis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
 
         foreach ($lesAvis as $avis) {
-            $s = new Avis($avis["id"], $avis["nom"], $avis["commentaire"], $avis["note"],  $avis["estValide"]);
+            $s = new Avis($avis["avis_id"], $avis["nom"], $avis["commentaire"], $avis["note"],  $avis["estValide"]);
             $this->ajoutAvis($s);
         }
     }
@@ -60,7 +66,7 @@ class AvisManager extends Model
 
     public function supprimeAvisBD($id)
     {
-        $req = "DELETE FROM avis WHERE id = :id";
+        $req = "DELETE FROM avis WHERE avis_id = :id";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
         $resultat = $stmt->execute();
@@ -73,11 +79,21 @@ class AvisManager extends Model
 
     public function validerAvisBD($id)
     {
-        $req = "UPDATE avis SET estValide = 1 WHERE id = :id";
+        $req = "UPDATE avis SET estValide = 1 WHERE avis_id = :id";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
         $resultat = $stmt->execute();
         $stmt->closeCursor();
         return $resultat;
+    }
+
+    public function getTotalPages()
+    {
+        $req = "SELECT COUNT(avis_id) FROM avis";
+        $stmt = $this->getBdd()->query($req);
+        $row = $stmt->fetch(PDO::FETCH_NUM);
+        $totalRecords = $row[0];
+        $totalPages = ceil($totalRecords / 5);
+        return $totalPages;
     }
 }

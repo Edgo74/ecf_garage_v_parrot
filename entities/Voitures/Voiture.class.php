@@ -2,7 +2,7 @@
 
 class Voitures
 {
-    private $id;
+    private $voiture_id;
     private $titre;
     private $year;
     private $carburant;
@@ -12,10 +12,11 @@ class Voitures
     private $immatriculation;
     private $type;
     private $date;
+    private $garantie;
 
-    public function  __construct($id, $titre, $year, $carburant, $kilometre, $price, $image, $immatriculation, $type, $date)
+    public function  __construct($voiture_id, $titre, $year, $carburant, $kilometre, $price, $image, $immatriculation, $type, $date, $garantie)
     {
-        $this->id = $id;
+        $this->voiture_id = $voiture_id;
         $this->titre = $titre;
         $this->year = $year;
         $this->carburant = $carburant;
@@ -25,12 +26,13 @@ class Voitures
         $this->immatriculation = $immatriculation;
         $this->type = $type;
         $this->date = $date;
+        $this->garantie = $garantie;
     }
 
 
     public function getId()
     {
-        return $this->id;
+        return $this->voiture_id;
     }
     public function getTitre()
     {
@@ -75,9 +77,9 @@ class Voitures
 
 
 
-    public function setId($id)
+    public function setId($voiture_id)
     {
-        $this->id = $id;
+        $this->voiture_id = $voiture_id;
     }
     public function setTitre($titre)
     {
@@ -121,6 +123,26 @@ class Voitures
     public function setDate($date)
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of garantie
+     */
+    public function getGarantie()
+    {
+        return $this->garantie;
+    }
+
+    /**
+     * Set the value of garantie
+     *
+     * @return  self
+     */
+    public function setGarantie($garantie)
+    {
+        $this->garantie = $garantie;
 
         return $this;
     }

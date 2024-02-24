@@ -2,27 +2,27 @@
 
 class Garage
 {
-    private $id;
+    private $garage_id;
     private $adresse;
     private $numero;
 
 
-    public function __construct($id, $adresse, $numero)
+    public function __construct($garage_id, $adresse, $numero)
     {
-        $this->id = $id;
+        $this->garage_id = $garage_id;
         $this->adresse = $adresse;
         $this->numero = $numero;
     }
 
     public function getId()
     {
-        return $this->id;
+        return $this->garage_id;
     }
 
 
-    public function setId($id)
+    public function setId($garage_id)
     {
-        $this->id = $id;
+        $this->garage_id = $garage_id;
 
         return $this;
     }

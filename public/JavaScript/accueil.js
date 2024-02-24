@@ -6,6 +6,7 @@ const consentForm = document.getElementById('consent-form')
 const modalText = document.getElementById('modal-text')
 const declineBtn = document.getElementById('decline-btn')
 const modalChoiceBtns = document.getElementById('modal-choice-btns')
+const services = document.querySelectorAll('.titre-service');
 
 showFooter.addEventListener('click', function() {
     footer.classList.toggle('d-block');
@@ -16,7 +17,14 @@ showFooter.addEventListener('click', function() {
     }
 });
 
+services.forEach(service => {
+    const unService = service.nextElementSibling;
+    
+    service.addEventListener("click", function(){
+        unService.classList.toggle('service-hover');
+    });
 
+});
 
 if(modal){
     setTimeout(function(){

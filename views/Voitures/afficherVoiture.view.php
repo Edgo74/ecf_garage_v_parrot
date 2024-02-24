@@ -2,8 +2,8 @@
     <div class="row ">
         <div class="col-md-4 mb-5">
             <div class="card ">
-
                 <img src="<?= URL ?>public/Assets/images/<?= $voiture->getImage() ?>" class="card-img-top" alt="voiture">
+
                 <div class="card-body shadow">
                     <h5 class="card-title"><?= $voiture->getTitre() ?></h5>
                     <p class="card-text">Année : <?= $voiture->getYear() ?></p>
@@ -21,7 +21,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="info">
+            <div class="info ">
                 <div class="details">
                     Immatriculation
                 </div>
@@ -47,9 +47,7 @@
                     <?= $voiture->getType() ?>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="info">
+            <div class="info ">
                 <div class="details">
                     Année
                 </div>
@@ -75,6 +73,12 @@
                     <?= $voiture->getDate() ?>
                 </div>
             </div>
+        </div>
+        <div class="equipements col-md-4 text-center">
+            <h3 class="equipement">Equipements</h3>
+            <?php foreach ($equipements as $equipement) : ?>
+                <div><?php echo $equipement["titre"] ?></div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>

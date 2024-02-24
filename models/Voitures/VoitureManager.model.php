@@ -1,7 +1,6 @@
 <?php
 require_once("models/MainManager.model.php");
 require_once("entities/Voitures/Voiture.class.php");
-
 class VoitureManager extends Model
 {
 
@@ -19,14 +18,14 @@ class VoitureManager extends Model
 
     public function chargementVoiture()
     {
-        $req = $this->getBdd()->prepare("SELECT * FROM voitures");
+        $req = $this->getBdd()->prepare("SELECT * FROM voiture");
         $req->execute();
         $nosvoitures = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
 
         foreach ($nosvoitures as $voiture) {
             $v = new Voitures(
-                $voiture["id"],
+                $voiture["voiture_id"],
                 $voiture["titre"],
                 $voiture["year"],
                 $voiture["carburant"],
@@ -35,7 +34,8 @@ class VoitureManager extends Model
                 $voiture["image"],
                 $voiture["immatriculation"],
                 $voiture["type"],
-                $voiture["date"]
+                $voiture["date"],
+                $voiture["garantie"]
             );
             $this->ajoutVoiture($v);
         }
@@ -50,10 +50,10 @@ class VoitureManager extends Model
         }
     }
 
-    public function AjoutVoitureBD($titre, $year, $carburant, $kilometre, $price, $image, $immatriculation, $type, $date)
+    public function AjoutVoitureBD($titre, $year, $carburant, $kilometre, $price, $image, $immatriculation, $type, $date, $garantie)
     {
-        $req = "INSERT INTO voitures(titre, year, carburant, kilometre, price, image, immatriculation, type , date ) 
-        VALUES(:titre, :year, :carburant, :kilometre, :price, :image, :immatriculation, :type , :date )";
+        $req = "INSERT INTO voiture(titre, year, carburant, kilometre, price, image, immatriculation, type , date, garantie ) 
+        VALUES(:titre, :year, :carburant, :kilometre, :price, :image, :immatriculation, :type , :date, garantie = :garantie)";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":titre", $titre, PDO::PARAM_STR);
         $stmt->bindValue(":year", $year, PDO::PARAM_STR);
@@ -64,20 +64,33 @@ class VoitureManager extends Model
         $stmt->bindValue(":immatriculation", $immatriculation, PDO::PARAM_STR);
         $stmt->bindValue(":type", $type, PDO::PARAM_STR);
         $stmt->bindValue(":date", $date, PDO::PARAM_STR);
+        $stmt->bindValue(":garantie", $garantie, PDO::PARAM_INT);
         $resultat = $stmt->execute();
         $stmt->closeCursor();
 
         if ($resultat > 0) {
-            $voiture = new Voitures($this->getBdd()->lastInsertId(), $titre, $year, $carburant, $kilometre, $price, $image, $immatriculation, $type, $date);
+            $voiture = new Voitures(
+                $this->getBdd()->lastInsertId(),
+                $titre,
+                $year,
+                $carburant,
+                $kilometre,
+                $price,
+                $image,
+                $immatriculation,
+                $type,
+                $date,
+                $garantie
+            );
             $this->ajoutVoiture($voiture);
         }
     }
 
-    public function modificationVoitureBD($id, $titre, $year, $carburant, $kilometre, $price, $image, $immatriculation, $type, $date)
+    public function modificationVoitureBD($id, $titre, $year, $carburant, $kilometre, $price, $image, $immatriculation, $type, $date, $garantie)
     {
-        $req = "UPDATE voitures SET titre = :titre, year = :year, carburant = :carburant,
+        $req = "UPDATE voiture SET titre = :titre, year = :year, carburant = :carburant,
          kilometre = :kilometre, price = :price, image = :image, immatriculation = :immatriculation,
-          type = :type , date = :date WHERE id = :id";
+          type = :type , date = :date, garantie = :garantie WHERE voiture_id = :id";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":titre", $titre, PDO::PARAM_STR);
         $stmt->bindValue(":year", $year, PDO::PARAM_STR);
@@ -88,25 +101,31 @@ class VoitureManager extends Model
         $stmt->bindValue(":immatriculation", $immatriculation, PDO::PARAM_STR);
         $stmt->bindValue(":type", $type, PDO::PARAM_STR);
         $stmt->bindValue(":date", $date, PDO::PARAM_STR);
+        $stmt->bindValue(":garantie", $garantie, PDO::PARAM_INT);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
-        $resultat = $stmt->execute();
+        $stmt->execute();
         $stmt->closeCursor();
+        $resultat = $stmt->execute();
         if ($resultat > 0) {
-            $this->getVoitureById($id)->setTitre($titre);
-            $this->getVoitureById($id)->setYear($year);
-            $this->getVoitureById($id)->setCarburant($carburant);
-            $this->getVoitureById($id)->setKilometre($kilometre);
-            $this->getVoitureById($id)->setPrice($price);
-            $this->getVoitureById($id)->setImage($image);
-            $this->getVoitureById($id)->setImmatriculation($immatriculation);
-            $this->getVoitureById($id)->setType($type);
-            $this->getVoitureById($id)->setDate($date);
+            $voiture = $this->getVoitureById($id);
+            if ($voiture !== null) {
+                $voiture->setTitre($titre);
+                $voiture->setYear($year);
+                $voiture->setCarburant($carburant);
+                $voiture->setKilometre($kilometre);
+                $voiture->setPrice($price);
+                $voiture->setImage($image);
+                $voiture->setImmatriculation($immatriculation);
+                $voiture->setType($type);
+                $voiture->setDate($date);
+                $voiture->setGarantie($garantie);
+            }
         }
     }
 
     public function supprimerVoitureBD($id)
     {
-        $req = "DELETE FROM voitures WHERE id = :id";
+        $req = "DELETE FROM voiture WHERE voiture_id = :id";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
         $resultat = $stmt->execute();
@@ -130,8 +149,9 @@ class VoitureManager extends Model
         $minimum_year = Securite::SecureHTML($_POST["minimum_year"]);
         $maximum_year = Securite::SecureHTML($_POST["maximum_year"]);
         if (isset($_POST["action"])) {
-            $stmt = $this->getBdd()->prepare("SELECT * FROM voitures WHERE price BETWEEN :minimum_price AND :maximum_price AND kilometre 
-                BETWEEN :minimum_kilometre AND :maximum_kilometre AND year BETWEEN :minimum_year AND :maximum_year");
+            $stmt = $this->getBdd()->prepare("SELECT * FROM voiture WHERE price BETWEEN :minimum_price 
+            AND :maximum_price AND kilometre BETWEEN :minimum_kilometre AND :maximum_kilometre AND year
+             BETWEEN :minimum_year AND :maximum_year");
             $stmt->bindValue(':minimum_price', $minimum_price, PDO::PARAM_INT);
             $stmt->bindValue(':maximum_price', $maximum_price, PDO::PARAM_INT);
             $stmt->bindValue(':minimum_kilometre', $minimum_kilometre, PDO::PARAM_INT);
@@ -152,10 +172,25 @@ class VoitureManager extends Model
     }
 
 
+    public function getEquipements($id)
+    {
+        $req = "SELECT * FROM equipement e  
+        INNER JOIN voiture_equipement ve 
+        ON e.equipement_id = ve.equipement_id
+        WHERE ve.voiture_id = :id";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $equipements = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $equipements;
+    }
+
+
     public function modifier_supprimer_voiture_BD()
     {
         $id = Securite::SecureHTML($_POST["voitureId"]);
-        $stmt = $this->getBdd()->prepare("SELECT * FROM voitures WHERE id = :id");
+        $stmt = $this->getBdd()->prepare("SELECT * FROM voiture WHERE voiture_id = :id");
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $resultat = $stmt->execute();
         $output = '';
@@ -165,7 +200,6 @@ class VoitureManager extends Model
         } else {
             $output = json_encode(['error' => 'No Data Found']);
         }
-        $output = html_entity_decode($output, ENT_QUOTES, 'UTF-8');
         echo $output;
     }
 }

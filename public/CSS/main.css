@@ -134,3 +134,24 @@ background-color:white;
   justify-content: center;
   color: black;
 }
+
+.equipement {
+  text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+  .equipements {
+      margin-top: 1em;
+  }
+
+  header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  body{
+    margin-top: 6em;
+  }
+}

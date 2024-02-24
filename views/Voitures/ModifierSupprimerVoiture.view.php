@@ -41,6 +41,10 @@
             <label for="price" class="form-label">Prix : </label>
             <input type="number" class="form-control" id="price" name="price" value="" required>
         </div>
+        <div class="form-group mb-3">
+            <label for="garantie" class="form-check-label">Garantie : </label>
+            <input type="checkbox" class="form-check-input" id="garantie" name="garantie">
+        </div>
         <h3>Images :</h3>
         <img class="car-image" id="image" src="<?= URL ?>public/Assets/images/" alt="l'image de la voiture">
         <div class="form-group mb-3">

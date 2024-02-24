@@ -22,6 +22,18 @@
 </head>
 
 <body class="sb-nav-fixed">
+
+    <?php
+    if (!empty($_SESSION['alert'])) {
+        foreach ($_SESSION['alert'] as $alert) {
+            echo "<div class = 'container'><div class='alert " .  $alert['type'] . "' role='alert'>
+                        " . $alert['message'] . "
+                    </div></div>";
+        }
+        unset($_SESSION['alert']);
+    }
+    ?>
+
     <?= $page_content ?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <?php if (!empty($page_javascript)) : ?>

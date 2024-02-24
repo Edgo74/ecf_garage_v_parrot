@@ -3,14 +3,14 @@ CREATE DATABASE garage;
 USE garage; 
 
 CREATE TABLE garage (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  garage_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   numero varchar(50) NOT NULL,
   adresse varchar(250) NOT NULL
 );
 
 
 CREATE TABLE avis (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  avis_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   nom varchar(50) NOT NULL,
   commentaire TEXT NOT NULL,
   note INT NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE avis (
 );
 
 CREATE TABLE horaires (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  horaire_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   debut_heures_AM time DEFAULT NULL,
   fin_heures_AM time DEFAULT NULL,
   debut_heures_PM time DEFAULT NULL,
@@ -31,8 +31,8 @@ CREATE TABLE horaires (
   CONSTRAINT fk_horaires_garage FOREIGN KEY (garage_id) REFERENCES garage(id) 
 );
 
-CREATE TABLE services (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE service (
+  service_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   titre varchar(100) NOT NULL,
   description TEXT NULL,
   garage_id INT NOT NULL  DEFAULT 1,
@@ -40,7 +40,7 @@ CREATE TABLE services (
 );
 
 CREATE TABLE utilisateur (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  utilisateur_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   password varchar(100) NOT NULL,
   mail varchar(100) NOT NULL,
   role varchar(50) NOT NULL DEFAULT 'employe',
@@ -49,8 +49,8 @@ CREATE TABLE utilisateur (
   CONSTRAINT fk_utilisateur_garage FOREIGN KEY (garage_id) REFERENCES garage(id) 
 );
 
-CREATE TABLE voitures (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE voiture (
+  voiture_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   titre varchar(50) NOT NULL,
   year varchar(20) NOT NULL,
   carburant varchar(50) NOT NULL,
@@ -60,10 +60,22 @@ CREATE TABLE voitures (
   immatriculation VARCHAR(50) NULL,
   type VARCHAR(50) NULL,
   date DATE NULL,
+  garantie TINYINT NULL DEFAULT 0,
   garage_id INT NOT NULL  DEFAULT 1,
   CONSTRAINT fk_voitures_garage FOREIGN KEY (garage_id) REFERENCES garage(id) 
 );
 
+CREATE TABLE equipement (
+  equipement_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  titre varchar(255) NOT NULL,
+);
+
+CREATE TABLE voiture_equipement (
+  voiture_id INT NOT NULL,
+  equipement_id INT NOT NULL,
+  FOREIGN KEY (voiture_id) REFERENCES voiture(voiture_id),
+  FOREIGN KEY (equipement_id) REFERENCES equipement(equipement_id)
+);
 
 
 -- Insertion de donnees fictives dans la base de données
@@ -98,8 +110,35 @@ INSERT INTO services (titre, description) VALUES
 ('Services de carrosserie', 'Réparation des dommages de carrosserie, peinture, polissage.'),
 ('Pneus et roues', 'Rotation des pneus, équilibrage, alignement, remplacement des pneus.');
 
-INSERT INTO voitures (titre, year, carburant, kilometre, price, image, immatriculation, type, date) VALUES
-('Renault', '2002', 'diesel', 50000, 15000, '17424_voiture2.jpg', 'zsx-56-23', 'utilitaire', '2022-12-24' ),
-('Ferrari', '2009', 'diesel', 33000, 42000, '20511_voiture2.jpg', 'sdf-78-62', 'sport', '2022-06-11' ),
-('Mercedes', '2000', 'diesel', 220000, 16000, '34235_voiture.jpg', 'xyz-21-81', 'sport', '2023-08-02' ),
-('Alpha Romeo', '2009', 'diesel', 180000, 42000, '82328_voiture2.jpg', 'abc-12-89', 'utilitaire', '2023-11-16' );
+INSERT INTO voitures (titre, year, carburant, kilometre, price, image, immatriculation, type, date, garantie) VALUES
+('Renault', '2002', 'diesel', 50000, 15000, '17424_voiture2.jpg', 'zsx-56-23', 'utilitaire', '2022-12-24', "oui" ),
+('Ferrari', '2009', 'diesel', 33000, 42000, '20511_voiture2.jpg', 'sdf-78-62', 'sport', '2022-06-11',"oui" ),
+('Mercedes', '2000', 'diesel', 220000, 16000, '34235_voiture.jpg', 'xyz-21-81', 'sport', '2023-08-02',"oui" ),
+('Alpha Romeo', '2009', 'diesel', 180000, 42000, '82328_voiture2.jpg', 'abc-12-89', 'utilitaire', '2023-11-16', "non" );
+
+
+INSERT INTO equipement (titre) VALUES
+('Système de navigation GPS'),
+('Système audio haut de gamme'),
+('Caméra de recul'),
+('Sièges chauffants'),
+('Toit ouvrant panoramique'),
+('Régulateur de vitesse adaptatif'),
+('Système de démarrage sans clé'),
+('Connexion Bluetooth pour téléphone'),
+('Assistance au stationnement'),
+('Climatisation automatique');
+
+INSERT INTO voiture_equipement (voiture_id, equipement_id) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+-- (2, 1),
+-- (2, 2),
+-- (2, 3),
+-- (3, 1),
+-- (3, 2),
+-- (3, 3),
+-- (4, 1),
+-- (4, 2),
+-- (4, 3);
