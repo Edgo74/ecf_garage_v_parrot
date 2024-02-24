@@ -33,11 +33,11 @@ document.addEventListener("DOMContentLoaded", function() {
           document.querySelector('input[name="carburant"]').value = voitureData.carburant;
           document.querySelector('input[name="kilometre"]').value = voitureData.kilometre;
           document.querySelector('input[name="price"]').value = voitureData.price;
-          document.querySelector('input[name="identifiant"]').value = voitureData.id;
+          document.querySelector('input[name="identifiant"]').value = voitureData.voiture_id;
           document.querySelector('input[name="immatriculation"]').value = voitureData.immatriculation;
           document.querySelector('input[name="type"]').value = voitureData.type;
           document.querySelector('input[name="date"]').value = voitureData.date;
-          document.getElementById('deleteButton').setAttribute('href', baseUrl + 'Voitures/supprimerVoiture/' + voitureData.id);
+          document.getElementById('deleteButton').setAttribute('href', baseUrl + 'Voitures/supprimerVoiture/' + voitureData.voiture_id);
           document.getElementById('image').src = baseUrl + 'public/Assets/images/'+ voitureData.image;
         }
       })

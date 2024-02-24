@@ -64,5 +64,4 @@ if ($page <= $totalPages) {
     $pageLink .= "<a class='page-link' href='" . URL . "Avis/page_valider_supprimer_avis/"  . $totalPages . "'>Last</a>";
 }
 echo $pageLink . "</ul> </div>";
-print_r($avis)
 ?>

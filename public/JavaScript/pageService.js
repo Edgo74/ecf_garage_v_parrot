@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
           document.querySelector('input[name="Titre"]').value = serviceData.titre;
           document.querySelector('textarea[name="description"]').value = serviceData.description;
-          document.querySelector('input[name="identifiant"]').value = serviceData.id;
-          document.getElementById('deleteButton').setAttribute('href', baseUrl + 'Services/supprimerService/' + serviceData.id);
+          document.querySelector('input[name="identifiant"]').value = serviceData.service_id;
+          document.getElementById('deleteButton').setAttribute('href', baseUrl + 'Services/supprimerService/' + serviceData.service_id);
         }
       })
       .catch(error => console.log('error', error));
