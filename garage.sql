@@ -45,6 +45,8 @@ CREATE TABLE utilisateur (
   mail varchar(100) NOT NULL,
   role varchar(50) NOT NULL DEFAULT 'employe',
   image varchar(50) NOT NULL DEFAULT "profils/profil.png",
+  reset_token_hash VARCHAR(64) NULL UNIQUE  DEFAULT NULL,
+  reset_token_expires_at DATETIME NULL DEFAULT NULL,
   garage_id INT NOT NULL  DEFAULT 1,
   CONSTRAINT fk_utilisateur_garage FOREIGN KEY (garage_id) REFERENCES garage(id) 
 );
