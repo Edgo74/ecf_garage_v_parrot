@@ -23,7 +23,7 @@ class AvisManager extends Model
     public function chargementAvis()
     {
         $url = isset($_GET["page"]) ? explode("/", filter_var($_GET["page"], FILTER_SANITIZE_URL)) : 1;
-        $page = isset($url[2]) ? $url[2] : 1;
+        $page = isset($url[2]) ? intval($url[2]) : 1;
         $limit = 5;
         $start = ($page - 1) * $limit;
         $req = "SELECT * FROM avis LIMIT :start, :limit";
