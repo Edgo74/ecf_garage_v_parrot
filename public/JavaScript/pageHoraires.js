@@ -1,5 +1,4 @@
-
-var baseUrl = "http://localhost/garage_localhost/";
+var baseUrl = "https://app-ecf-garage-3d639a49eac3.herokuapp.com/";
 let select = document.querySelector('select[name="statut"]');
 
 
