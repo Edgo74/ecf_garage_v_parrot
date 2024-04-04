@@ -44,6 +44,7 @@
     <?php require("views/Commons/footer.php") ?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="<?= URL ?>public/bootstrap/js/bootstrap.js"></script>
+    <script src="<?= URL ?>public/JavaScript/main.js"></script>
     <?php if (!empty($page_javascript)) : ?>
         <?php foreach ($page_javascript as $fichier_javascript) : ?>
             <script src="<?= URL ?>public/JavaScript/<?= $fichier_javascript ?>"></script>
