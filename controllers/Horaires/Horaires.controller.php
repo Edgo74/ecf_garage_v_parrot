@@ -26,6 +26,7 @@ class HorairesController extends MainController
             "page_description" => "Description de la page modification Horaires",
             "page_title" => " page  modification Horaires",
             "horaires" => $horaires,
+            "page_javascript" => ["pageHoraires.js"],
             "view" => "views/Horaires/modifierHoraires.view.php",
             "template" => "views/Commons/template.php"
         ];
@@ -34,20 +35,26 @@ class HorairesController extends MainController
 
     public function modifierHorairesValidation()
     {
-        $heures = $_POST["hours"];
-        foreach ($heures as $index => $heure) {
-            $debutHeure_AM = $heure['debutHeure_AM'];
-            $finHeure_AM = $heure['finHeure_AM'];
-            $debutHeure_PM = $heure['debutHeure_PM'];
-            $finHeure_PM = $heure['finHeure_PM'];
-            $status = $heure['status'];
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-                Toolbox::ajouterMessageAlerte("vous n'avez pas le droit d envoyer ce formulaire", Toolbox::COULEUR_ROUGE);
-            } else {
-                $this->horaireManager->ModifierHorairesBD($index, $debutHeure_AM, $finHeure_AM, $debutHeure_PM, $finHeure_PM, $status);
-            }
-        }
+        $id = Securite::SecureHTML($_POST["horaire_id"]);
+        $statut = Securite::SecureHTML($_POST["statut"]);
+        $debutAM = Securite::SecureHTML($_POST["debutAM"]);
+        $finAM = Securite::SecureHTML($_POST["finAM"]);
+        $debutPM = Securite::SecureHTML($_POST["debutPM"]);
+        $finPM = Securite::SecureHTML($_POST["finPM"]);
+        $this->horaireManager->ModifierHorairesBD($id, $statut, $debutAM, $finAM, $debutPM, $finPM);
         Toolbox::ajouterMessageAlerte("Horaires Modifié",  Toolbox::COULEUR_VERTE);
-        header("location:" . URL . "administrateur/administration");
+        header("location:" . URL . "Horaires/modifierHoraires");
+    }
+
+
+    public function modifierLesHoraires()
+    {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            $output = json_encode(['error' => 'CSRF Token Invalid']);
+            echo $output;
+            return;
+        } else {
+            $this->horaireManager->modifierLesHorairesBD();
+        }
     }
 }

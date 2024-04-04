@@ -1,0 +1,41 @@
+.img-error {
+    width: 200px;
+    max-height: 250px;
+}
+
+.layoutError {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.error-title {
+    font-size: 2.5rem;
+    color: darkgoldenrod;
+}
+
+.lead-error {
+    font-size: 1.25rem;
+    color: burlywood;
+}
+
+@media (min-width: 768px) {
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .img-error {
+        width: 300px;
+    }
+}

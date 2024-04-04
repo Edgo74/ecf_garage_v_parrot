@@ -43,6 +43,7 @@ class VoitureController extends MainController
 
     public function afficherVoiture($id)
     {
+        $voitureIds = $this->voitureManager->getAllVoituresId();
         $voiture = $this->voitureManager->getVoitureById($id);
         $equipements = $this->voitureManager->getEquipements($id);
         $data_page = [
@@ -50,7 +51,8 @@ class VoitureController extends MainController
             "page_title" => "Afficher une Voiture",
             "voiture" => $voiture,
             "equipements" => $equipements,
-            "page_css" => "main.css",
+            "voitureIds" => $voitureIds,
+            "page_css" => "voitures.css",
             "view" => "views/Voitures/afficherVoiture.view.php",
             "template" => "views/Commons/template.php"
         ];
@@ -70,6 +72,20 @@ class VoitureController extends MainController
         $this->genererPage($data_page);
     }
 
+    public function listeVoitures()
+    {
+        $voitures = $this->voitureManager->getVoitures();
+        $data_page = [
+            "page_description" => " listes des  voitures",
+            "page_title" => "Liste Voitures",
+            "voitures" => $voitures,
+            "page_css" =>  "voitures.css",
+            "view" => "views/Voitures/listeVoiture.view.php",
+            "template" => "views/Commons/template.php"
+        ];
+        $this->genererPage($data_page);
+    }
+
 
     public function ajouterVoitureValidation()
     {
@@ -81,7 +97,7 @@ class VoitureController extends MainController
         $immatriculation = Securite::SecureHTML($_POST["immatriculation"]);
         $type = Securite::SecureHTML($_POST["type"]);
         $date = Securite::SecureHTML($_POST["date"]);
-        $garantie = !isset($_POST["garantie"]) ?  0 :  1;
+        $garantie = isset($_POST["garantie"]) && $_POST["garantie"] === "1" ? 1 :  0;
         $file = $_FILES["image"];
         $repertoire = "public/Assets/images/";
         $nomImageAjoute = Toolbox::ajoutImage($file, $repertoire);
@@ -105,7 +121,7 @@ class VoitureController extends MainController
             );
 
             Toolbox::ajouterMessageAlerte("Ajout Réalisé",  Toolbox::COULEUR_VERTE);
-            header("location:" . URL . "Voitures");
+            header("location:" . URL . "Voitures/listeVoitures");
         }
     }
 
@@ -116,7 +132,7 @@ class VoitureController extends MainController
             "page_description" => " page modification voiture",
             "page_title" => "Modification Voiture",
             "voiture" => $voiture,
-            "page_css" => "main.css",
+            "page_css" => "voitures.css",
             "view" => "views/Voitures/modifierVoiture.view.php",
             "template" => "views/Commons/template.php"
         ];
@@ -160,17 +176,20 @@ class VoitureController extends MainController
         );
 
         Toolbox::ajouterMessageAlerte("Modification Réalisé",  Toolbox::COULEUR_VERTE);
-        header("location:" . URL . "Voitures");
+        header("location:" . URL . "Voitures/listeVoitures");
     }
 
     public function supprimerVoiture($id)
     {
         $nomImage = $this->voitureManager->getVoitureById($id)->getImage();
-        unlink("public/Assets/images" . $nomImage);
+        $imagePath = "public/Assets/images/" . $nomImage;
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
         $this->voitureManager->supprimerVoitureBD($id);
 
         Toolbox::ajouterMessageAlerte("Suppression Réalisé",  Toolbox::COULEUR_VERTE);
-        header("location:" . URL . "Voitures");
+        header("location:" . URL . "Voitures/listeVoitures");
     }
 
     public function pageAdminModifierVoiture()

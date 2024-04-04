@@ -1,32 +1,41 @@
-<div class="container my-5">
+<div class="container mt-5">
+    <?php
+
+
+    $cardIds = array_map(function ($item) {
+        return $item['voiture_id'];
+    }, $voitureIds);
+
+    $maxId = max($cardIds);
+    $minId = min($cardIds);
+    $url = explode("/", filter_var($_GET["page"], FILTER_SANITIZE_URL));
+    $currentId = $url[2];
+    $next  = $cardIds[array_search($currentId, $cardIds) + 1] ?? $maxId;
+    $prev  = $cardIds[array_search($currentId, $cardIds) - 1] ?? $minId;
+
+    ?>
+    <div class="position-relative">
+        <a href="<?= URL ?>Voitures/afficherVoiture/<?= $prev != $minId ? $prev : "" ?>" class="<?php echo $prev == $minId ? 'd-none' : "" ?> position-absolute start-0 translate-middle-y" style="z-index: 1;">
+            <i class="fa-regular fa-circle-left"></i>
+        </a>
+        <a href="<?= URL ?>Voitures/afficherVoiture/<?= $next != $maxId ? $next : "" ?> " class="<?php echo $next  == $maxId ? 'd-none' : "" ?> position-absolute end-0 translate-middle-y" style="z-index: 1;">
+            <i class="fa-regular fa-circle-right"></i>
+        </a>
+    </div>
     <div class="row ">
         <div class="col-md-4 mb-5">
-            <div class="card ">
+            <div class="card mt-5">
                 <img src="<?= URL ?>public/Assets/images/<?= $voiture->getImage() ?>" class="card-img-top" alt="voiture">
-
-                <div class="card-body shadow">
-                    <h5 class="card-title"><?= $voiture->getTitre() ?></h5>
-                    <p class="card-text">Année : <?= $voiture->getYear() ?></p>
-                    <p class="card-text"><?= $voiture->getCarburant() ?></p>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="card-text"><?= $voiture->getKilometre() ?> km</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="card-text"><span class="badge bg-success">Prix : <?= $voiture->getPrice() ?>€</span></p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 mt-5">
             <div class="info ">
-                <div class="details">
-                    Immatriculation
+                <div class="details green-price">
+                    Prix
                 </div>
                 <div class="details2">
-                    <?= $voiture->getImmatriculation() ?>
+                    <?= $voiture->getPrice() ?>€
                 </div>
             </div>
 
@@ -73,12 +82,44 @@
                     <?= $voiture->getDate() ?>
                 </div>
             </div>
+            <div class="info">
+                <div class="details">
+                    Garantie
+                </div>
+                <div class="details2">
+                    <?= $voiture->getGarantie() == 1 ? "Oui" : "Non" ?>
+                </div>
+            </div>
+
         </div>
-        <div class="equipements col-md-4 text-center">
-            <h3 class="equipement">Equipements</h3>
-            <?php foreach ($equipements as $equipement) : ?>
-                <div><?php echo $equipement["titre"] ?></div>
-            <?php endforeach; ?>
+        <div class="equipements col-md-4 text-center mt-5">
+            <div class="info ">
+                <div class="details">
+                    Immatriculation
+                </div>
+                <div class="details2">
+                    <?= $voiture->getImmatriculation() ?>
+                </div>
+            </div>
+
+            <div class="info">
+                <div class="details">
+                    Carburant
+                </div>
+                <div class="details2">
+                    <?= $voiture->getCarburant() ?>
+                </div>
+            </div>
+            <?= $equipements  ? '<h3 class="equipement mt-3">Equipements</h3>' : "" ?>
+            <ol class="liste-equipement">
+                <?php foreach ($equipements as $equipement) : ?>
+                    <li>
+                        <div><?php echo $equipement["titre"] ?></div>
+                    </li>
+                <?php endforeach; ?>
+
+            </ol>
+            <a href="<?= URL ?>contact/<?= urlencode($voiture->getTitre()) ?>" class="bouton ">Nous contacter a propos de cette voiture</a>
         </div>
     </div>
 </div>

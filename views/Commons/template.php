@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= URL ?>public/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="<?= URL ?>public/CSS/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <?php if (!empty($page_css)) : ?>
@@ -28,11 +29,13 @@
 
     <?php
     if (!empty($_SESSION['alert'])) {
+        echo "<div id = 'alert-container'class='container'>";
         foreach ($_SESSION['alert'] as $alert) {
-            echo "<div class = 'container'><div class='alert " .  $alert['type'] . "' role='alert'>
-                        " . $alert['message'] . "
-                    </div></div>";
+            echo "<div id = 'cross' class='alert alert-fixed d-flex justify-content-between align-items-center " . $alert['type'] . "' role='alert'>
+                " . $alert['message'] . "<i id = 'crossicon'class='fas fa-times'></i>" . "
+              </div>";
         }
+        echo "</div>";
         unset($_SESSION['alert']);
     }
     ?>

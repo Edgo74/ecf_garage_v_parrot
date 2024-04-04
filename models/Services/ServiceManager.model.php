@@ -61,12 +61,8 @@ class ServiceManager extends Model
         $req = "DELETE FROM service WHERE service_id = :id";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
-        $resultat = $stmt->execute();
+        $stmt->execute();
         $stmt->closeCursor();
-        if ($resultat > 0) {
-            $service = $this->getServiceById($id);
-            unset($service);
-        }
     }
 
     public function ModificationServiceBD($titre, $description, $id)

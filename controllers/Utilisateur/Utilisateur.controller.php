@@ -13,9 +13,11 @@ class UtilisateurController extends MainController
     public function __construct()
     {
         $this->utilisateurManager = new UtilisateurManager();
+        $this->utilisateurManager->chargementUtilisateur();
     }
     public function login()
     {
+        //echo password_hash("P@ssw0rd!", PASSWORD_DEFAULT);
         $data_page = [
             "page_description" => "page de login",
             "page_title" => "Titre page de login",
@@ -74,7 +76,6 @@ class UtilisateurController extends MainController
         if (
             $this->utilisateurManager->isCombinaisonValide($email, $password)
         ) {
-
             $token = Securite::generateToken($this->utilisateurManager->getUserRole($email));
 
             setcookie('token', $token, [
@@ -153,9 +154,9 @@ class UtilisateurController extends MainController
             "page_description" => "Page d'admin",
             "page_title" => "Page d'administration du site",
             "page_css" => "admin.css",
-            "page_javascript" => "admin.js",
+            "page_javascript" => ["admin.js"],
             "view" => "views/Utilisateur/admin.view.php",
-            "template" => "views/Commons/adminTemplate.php"
+            "template" => "views/Commons/template.php"
         ];
         $this->genererPage($data_page);
     }
@@ -234,16 +235,18 @@ class UtilisateurController extends MainController
             "page_description" => "Page de gestion pour les employé",
             "page_title" => "Page de gestion des employés",
             "page_css" => "admin.css",
-            "page_javascript" => "admin.js",
+            "page_javascript" => ["admin.js"],
             "view" => "views/Utilisateur/employe.view.php",
-            "template" => "views/Commons/adminTemplate.php"
+            "template" => "views/Commons/template.php"
         ];
         $this->genererPage($data_page);
     }
 
     public function generateEmploye()
     {
+        $utilisateurs = $this->utilisateurManager->getUsers();
         $data_page = [
+            "utilisateurs" => $utilisateurs,
             "page_description" => "Page pour créer un compte employé",
             "page_title" => "Génerer un compte employé",
             "page_css" => "login.css",
@@ -271,6 +274,13 @@ class UtilisateurController extends MainController
             Toolbox::ajouterMessageAlerte("Création de compte effectué avec succes", Toolbox::COULEUR_VERTE);
             header("location:" . URL .  "administrateur/generer_compte_employe");
         }
+    }
+
+    public function supprimerEmploye($id)
+    {
+        $this->utilisateurManager->supprimerEmployeBD($id);
+        Toolbox::ajouterMessageAlerte("Employé supprimé", Toolbox::COULEUR_VERTE);
+        header("location:" . URL . "administrateur/page_gestion_employe");
     }
 
 

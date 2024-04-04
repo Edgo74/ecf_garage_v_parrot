@@ -1,13 +1,5 @@
 <div class="container ">
-    <?php if (Securite::estConnecte()) : ?>
-        <div class="text-center">
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Ajouter une voiture</button>
-        </div>
-        <?php include "views/Commons/add.php" ?>
-    <?php endif ?>
-
     <div class="row d-flex mx-5 ">
-
         <div class="col-md-4 ">
             <div>
                 <label>Prix : </label>

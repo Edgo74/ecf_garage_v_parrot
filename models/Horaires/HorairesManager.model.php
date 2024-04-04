@@ -40,18 +40,36 @@ class HoraireManager extends Model
         }
     }
 
-    public function ModifierHorairesBD($index, $debutHeure_AM, $finHeure_AM, $debutHeure_PM, $finHeure_PM, $status)
+    public function ModifierHorairesBD($id, $statut, $debutAM, $finAM, $debutPM, $finPM)
     {
         $req = "UPDATE horaires SET debut_heures_AM = :debutHeure_AM, fin_heures_AM = :finHeure_AM, debut_heures_PM = :debutHeure_PM,
-         fin_heures_PM = :finHeure_PM, est_ouvert = :status WHERE horaire_id = :id";
+        fin_heures_PM = :finHeure_PM, est_ouvert = :status WHERE horaire_id = :id";
         $stmt = $this->getBdd()->prepare($req);
-        $stmt->bindValue(":id", $index, PDO::PARAM_INT);
-        $stmt->bindValue(":debutHeure_AM", $debutHeure_AM, PDO::PARAM_STR);
-        $stmt->bindValue(":finHeure_AM", $finHeure_AM, PDO::PARAM_STR);
-        $stmt->bindValue(":debutHeure_PM", $debutHeure_PM, PDO::PARAM_STR);
-        $stmt->bindValue(":finHeure_PM", $finHeure_PM, PDO::PARAM_STR);
-        $stmt->bindValue(":status", $status, PDO::PARAM_STR);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        $stmt->bindValue(":debutHeure_AM", $debutAM, PDO::PARAM_STR);
+        $stmt->bindValue(":finHeure_AM", $finAM, PDO::PARAM_STR);
+        $stmt->bindValue(":debutHeure_PM", $debutPM, PDO::PARAM_STR);
+        $stmt->bindValue(":finHeure_PM", $finPM, PDO::PARAM_STR);
+        $stmt->bindValue(":status", $statut, PDO::PARAM_STR);
         $stmt->execute();
         $stmt->closeCursor();
+    }
+
+
+    public function modifierLesHorairesBD()
+    {
+        $jour = Securite::SecureHTML($_POST["jourId"]);
+        $stmt = $this->getBdd()->prepare("SELECT * FROM horaires WHERE horaire_id= :jour");
+        $stmt->bindValue(':jour', $jour, PDO::PARAM_INT);
+        $resultat = $stmt->execute();
+        $output = '';
+        if ($resultat > 0) {
+            $serviceDetails = $stmt->fetch(PDO::FETCH_OBJ);
+            $output = json_encode($serviceDetails);
+        } else {
+            $output = json_encode(['error' => 'No Data Found']);
+        }
+        $output = html_entity_decode($output, ENT_QUOTES, 'UTF-8');
+        echo $output;
     }
 }

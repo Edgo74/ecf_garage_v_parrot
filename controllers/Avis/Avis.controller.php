@@ -52,11 +52,13 @@ class AvisController extends MainController
         } else {
             if (!Securite::estConnecte()) {
                 $this->avisManager->validerAjoutAvisBD($nom, $note, $comment, $nonValide);
+                header("location:" . URL . "accueil");
+                Toolbox::ajouterMessageAlerte("Avis Ajouté",  Toolbox::COULEUR_VERTE);
             } else {
                 $this->avisManager->validerAjoutAvisBD($nom, $note, $comment, $valide);
+                header("location:" . URL . "Avis/ajouterAvis");
+                Toolbox::ajouterMessageAlerte("Avis Ajouté",  Toolbox::COULEUR_VERTE);
             }
-            Toolbox::ajouterMessageAlerte("Avis Ajouté",  Toolbox::COULEUR_VERTE);
-            header("location:" . URL . "accueil");
         }
     }
 

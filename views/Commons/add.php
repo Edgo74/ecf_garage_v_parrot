@@ -8,7 +8,7 @@
             <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>" />
             <div class="container">
                 <div class="form-group mb-3">
-                    <label for="Titre" class="form-label">Marque :</label>
+                    <label for="Titre" class="form-label">Titre :</label>
                     <input type="text" class="form-control" id="Titre" name="Titre">
                 </div>
                 <div class="form-group mb-3">

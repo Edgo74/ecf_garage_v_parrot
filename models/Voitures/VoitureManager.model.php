@@ -43,6 +43,14 @@ class VoitureManager extends Model
 
     public function getVoitureById($id)
     {
+        $cardIds = array_map(function ($item) {
+            return $item['voiture_id'];
+        }, $this->getAllVoituresId());
+
+        if (!in_array($id, $cardIds)) {
+            throw new Exception("Cette page n'existe pas");
+            exit();
+        }
         for ($i = 0; $i < count($this->voitures); $i++) {
             if ((int)$this->voitures[$i]->getId() === (int)$id) {
                 return $this->voitures[$i];
@@ -50,10 +58,19 @@ class VoitureManager extends Model
         }
     }
 
+    public function getAllVoituresId()
+    {
+        $req = $this->getBdd()->prepare("SELECT voiture_id FROM voiture");
+        $req->execute();
+        $voituresId = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $voituresId;
+    }
+
     public function AjoutVoitureBD($titre, $year, $carburant, $kilometre, $price, $image, $immatriculation, $type, $date, $garantie)
     {
         $req = "INSERT INTO voiture(titre, year, carburant, kilometre, price, image, immatriculation, type , date, garantie ) 
-        VALUES(:titre, :year, :carburant, :kilometre, :price, :image, :immatriculation, :type , :date, garantie = :garantie)";
+        VALUES(:titre, :year, :carburant, :kilometre, :price, :image, :immatriculation, :type , :date, :garantie)";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":titre", $titre, PDO::PARAM_STR);
         $stmt->bindValue(":year", $year, PDO::PARAM_STR);
@@ -130,10 +147,15 @@ class VoitureManager extends Model
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
         $resultat = $stmt->execute();
         $stmt->closeCursor();
+
+        $req1 = "SELECT image FROM voiture WHERE voiture_id = :id";
+        $stmt1 = $this->getBdd()->prepare($req1);
+        $stmt1->bindValue(":id", $id, PDO::PARAM_INT);
+        $stmt1->execute();
+        $image = $stmt1->fetch(PDO::FETCH_ASSOC);
+
         if ($resultat > 0) {
-            $voiture = $this->getVoitureById($id);
-            $imagePath = "public/Assets/images/" . $voiture->getImage();
-            unset($voiture);
+            $imagePath = "public/Assets/images/" . $image["image"];
             if (file_exists($imagePath)) {
                 unlink($imagePath);
             }

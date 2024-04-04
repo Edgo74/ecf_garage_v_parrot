@@ -31,10 +31,18 @@ $garage = $garageController->getGarage();
                 </ul>
             </div>
             <div class="adresse">
-                <h3 class="ms-3">Adresse:</h3>
+                <div class="titre-horaires">
+                    <h3 class="ms-3">Contactez-Nous:</h3>
+                </div>
                 <ul>
+                    <li>Garage V. Parrot</li>
                     <li><?= $garage[0]->getAdresse(); ?></li>
                     <li><?= $garage[0]->getNumero(); ?></li>
+                </ul>
+            </div>
+            <div class="adresse">
+                <h3 class="ms-3"></h3>
+                <ul>
                     <li> <a href="<?= URL ?>mentions" class="text-decoration-none ">Mentions Légales</a></li>
                 </ul>
             </div>

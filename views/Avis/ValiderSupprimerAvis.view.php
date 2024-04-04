@@ -1,3 +1,9 @@
+<ul class="breadcrumb">
+    <li><a href="<?= URL ?>administrateur/administration">Panel Admin</a></li>
+    <li><a href="<?= URL ?>Avis/page_valider_supprimer_avis">Gestion Avis</a></li>
+</ul>
+<h1 class="text-center my-2">Gestion Avis 📝</h1>
+
 <div class="container">
     <table class="table text-center">
         <tr class="table-dark">

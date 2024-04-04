@@ -24,8 +24,9 @@ class AvisManager extends Model
     {
         $url = isset($_GET["page"]) ? explode("/", filter_var($_GET["page"], FILTER_SANITIZE_URL)) : 1;
         $page = isset($url[2]) ? intval($url[2]) : 1;
+        $check = $page == 0 ? 1 : $page;
         $limit = 5;
-        $start = ($page - 1) * $limit;
+        $start = ($check - 1) * $limit;
         $req = "SELECT * FROM avis LIMIT :start, :limit";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
@@ -69,12 +70,8 @@ class AvisManager extends Model
         $req = "DELETE FROM avis WHERE avis_id = :id";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
-        $resultat = $stmt->execute();
+        $stmt->execute();
         $stmt->closeCursor();
-        if ($resultat > 0) {
-            $avis = $this->getAvisById($id);
-            unset($avis);
-        }
     }
 
     public function validerAvisBD($id)

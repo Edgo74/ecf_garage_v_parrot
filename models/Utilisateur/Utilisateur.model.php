@@ -8,6 +8,33 @@ require_once "controllers/Utilisateur/Utilisateur.controller.php";
 class UtilisateurManager extends MainManager
 {
 
+
+    private $utilisateur;
+
+    public function ajoutUtilisateur($user)
+    {
+        $this->utilisateur[] = $user;
+    }
+
+    public function getUsers()
+    {
+        return $this->utilisateur;
+    }
+
+    public function chargementUtilisateur()
+    {
+        $req = "SELECT * FROM utilisateur";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->execute();
+        $utilisateurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+
+        foreach ($utilisateurs as $utilisateur) {
+            $u = new Utilisateur($utilisateur["utilisateur_id"], $utilisateur["password"], $utilisateur["mail"], $utilisateur["role"], $utilisateur["image"]);
+            $this->ajoutUtilisateur($u);
+        }
+    }
+
     public function getUserRole($mail)
     {
         $req = "SELECT * FROM utilisateur WHERE mail = :mail";
@@ -81,6 +108,15 @@ class UtilisateurManager extends MainManager
         $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         return $resultat;
+    }
+
+    public function supprimerEmployeBD($utilisateur_id)
+    {
+        $req = "DELETE FROM utilisateur WHERE utilisateur_id = :utilisateur_id";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":utilisateur_id", $utilisateur_id, PDO::PARAM_STR);
+        $stmt->execute();
+        $stmt->closeCursor();
     }
 
     public function validationCreationCompteEmploye($employe_password, $employe_mail)

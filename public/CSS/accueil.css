@@ -5,14 +5,9 @@
 }
 
 body {
-    color: #404040;
-    /* margin: 0; */
+    color: #5E5E5E;
     background: #F5F7F8;
 }
-
-/* =================
-Typography 
-================= */
 
 h1 {
     font-size: 2.5rem;
@@ -24,51 +19,9 @@ h1 {
 h2 {
     font-size: 2.25rem;
     margin: 0.167em 0;
+    border-bottom: 3px solid ;
 }
 
-.desc {
-    font-size: 1.125rem;
-}
-
-p,
-.desc {
-    line-height: 1.35;
-}
-
-.beta-text {
-    font-weight: 900;
-}
-
-.subheading {
-    color: #575757;
-    font-weight: 900;
-    margin-bottom: 0.5em;
-}
-
-.beta-text,
-.top-text,
-.subheading {
-    text-transform: uppercase;
-}
-
-.top-text {
-    font-size: 0.875rem;
-    font-weight: 900;
-    padding-top: 0.25em;
-    border-top: 5px solid;
-    order: -1;
-    margin: 0 auto;
-}
-
-.fine-print {
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-    color: #858585;
-}
-
-/* =================
-Flex containers
-================= */
 
 .intro,
 .main-content {
@@ -76,7 +29,6 @@ Flex containers
     flex-direction: column;
     padding-left: 2em;
     padding-right: 2em;
-    background:  #F8F6F5;;
 }
 
 /* =================
@@ -91,6 +43,11 @@ Intro
     background:  #bd1a25 url("https://app-ecf-garage-3d639a49eac3.herokuapp.com/public/Assets/images/redcar.jpeg");
     background-size: cover;
     padding-bottom: 1.5em;
+    border-radius: 10px;
+    margin-left: 15px;
+    margin-right:15px ;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 /* ====================
@@ -102,10 +59,6 @@ Main content
     padding-top: 2.5em;
 }
 
-.img-main {
-    width: 120px;
-    border-radius: 50%;
-}
 
 .main-content p,
 form {
@@ -118,13 +71,14 @@ form {
     padding: 0.5 0;
     border: none;
     cursor: pointer;
-    background-color:#485AAC
+    background-color:#3D3D3D;
+    color: #fff
 }
 
 
 .btn:hover,
 .btn:focus {
-    background-color: #5C7AC5 !important;
+    background-color: #333333 !important;
     color: #fff !important;
 }
 
@@ -160,17 +114,11 @@ Services
     margin-bottom: 0;
 }
 
-/* .service-wrapper:hover .description-service, .service-wrapper:focus .description-service, .service-wrapper:active .description-service{
-    display: block;
-} */
 
 h3{
     margin: 0;
 }
 
-footer{
-    display: none;
-}
 
 .d-block{
     display: block;
@@ -180,140 +128,13 @@ footer{
 Footer
 ================= */
 
+footer{
+    display: none;
+}
+
 #footer-show{
     cursor: pointer;
 }
-/* =================
-Modal
-================= */
-.modal {
-    display: none;
-    position: fixed;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    height: 420px;
-    width: 350px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 6px 2px #666;
-    background-color: #212529;
-    color: whitesmoke;
-}
-
-.h2modal{
-    font-size: 1.6rem;
-    text-align: left;
-    letter-spacing: 0;
-}
-.modal-text-p{
-    margin-top: 1em;
-    text-align: left;
-    letter-spacing: 1;
-
-}
-
-.modal-inner{
-    width: 290px;
-    margin: 0 auto;
-}
-
-.modal-inner-loading{
-    text-align: center;
-}
-
-/* modal buttons */
-
-.close-modal-btn-container{
-    display: flex;
-    margin: 9px;
-}
-
-.modal-close-btn {
-  font-size: 22px;
-  font-weight: bold;
-  background-color: transparent;
-  border: 1px solid transparent;
-  color: whitesmoke;
-  text-align: start;
-}
-
-.modal-close-btn:hover,
-.modal-close-btn:active{
-    color: red;
-    cursor: pointer;
-}
-
-.modal-close-btn:disabled{
-    color: whitesmoke;
-    opacity: 0.2;
-    cursor: not-allowed;
-}
-
-.modal-choice-btns{
-    margin-top: 10px;
-    padding: 8px 16px;
-    display: flex;
-    justify-content: center;
-}
-
-.modal-btn{
-    padding: 10px 24px;
-    cursor: pointer;
-}
-
-.modal-btns-reverse{
-    flex-direction: row-reverse;
-}
-
-/* modal input */
-
-input{
-    border: 1px solid #212529;
-    width: 100%;
-    border-radius: 3px;
-}
-
-/* modal after submit */
-
-.loading{
-    width: 100%; 
-    margin-top: 10px;
-}
-
-.modal-display-name{
-    color: fuchsia;
-}
-
-.modal-text{
-    height: 140px;
-    line-height: 23px;
-    margin-bottom: 0;
-}
-
-.idiot-gif{
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-}
-
-.idiot-gif img{
-    box-shadow: 1px 1px 3px #999;
-    border-radius: 5px;
-}
-
-input {
-    padding: 0.5em;
-    margin-bottom: 0.75em;
-    border: 2px solid #d1d5db;
-}
-
-input:focus {
-    outline: none;
-    border-color: #8a71ec;
-    background-color: #e6e8ec;
-} 
 
 /* =================
 Media queries 
@@ -373,3 +194,10 @@ Media queries
         font-weight: bolder;
     }
 }
+
+
+
+
+
+
+

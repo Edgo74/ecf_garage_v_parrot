@@ -1,7 +1,6 @@
 
 body {
   background-color:#F8F6F5;
-  /* font-family: 'Montserrat', sans-serif; */
   font-family:  Arial, Helvetica, sans-serif;
   margin: 0;
 }
@@ -10,11 +9,10 @@ body {
   box-sizing: border-box;
 }
 
-
 header{
-background-color:white;
-}
-
+  background-color:white;
+  }
+  
 .btn {
   color: white;
   border: none;
@@ -31,7 +29,7 @@ background-color:white;
 
 /* buttons */
  .btn:hover {
-  background-color: #0056b3;
+  filter: brightness(85%);
   color: white;
 }
 
@@ -67,12 +65,11 @@ background-color:white;
   padding: 8px 12px;
 }
 
-.footer {
-  margin-top: 100px;
-  margin-bottom: 30px;
-  background-color: white;
-  border-radius: 12px;
-
+footer {
+  margin-bottom: 0px;
+  background-color: #D3D3D3;
+  border-radius: 0px;
+  margin-top: 80px;
 }
 
 .footer li {
@@ -136,6 +133,55 @@ background-color:white;
   color: black;
 }
 
+.alert-fixed {
+  position: fixed;
+  top: 20px;
+  left: 50%; 
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 1;
+  transition: opacity 0.3s ease, top 0.3s ease; 
+}
+
+#crossicon{
+  font-size: 24px;
+  cursor: pointer;
+}
+
+  ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eee;
+  }
+
+  ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+  }
+  
+
+  ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+  }
+  
+  ul.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+  }
+  
+  ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+  }
+
+
 .equipement {
   text-decoration: underline;
 }
@@ -154,5 +200,23 @@ background-color:white;
 
   body{
     margin-top: 6em;
+  }
+  
+}
+
+@media (min-width: 760px) {
+  .alert-fixed {
+    position: fixed;
+    top: 20px;
+    left: 85%; 
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid;
+    border-radius: 5px;
+    opacity: 1;
+    transition: opacity 0.3s ease, top 0.3s ease; 
   }
 }

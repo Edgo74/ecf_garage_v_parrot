@@ -1,10 +1,13 @@
-<h1 class="text-center">Modifier/Supprimer un Service 📝</h1>
+<ul class="breadcrumb">
+    <li><a href="<?= URL ?>administrateur/administration">Panel Admin</a></li>
+    <li><a href="<?= URL ?>Services/page_modifier_supprimer_service">Gestion Services</a></li>
+</ul>
+<h1 class="text-center my-3 ">Gestion Service 📝</h1>
 
 <div class="container">
     <form method="POST" action="<?= URL ?>Services/ValidationModifService">
         <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>" />
         <select id="select" name="serviceId" class="form-select mt-2">
-            <option value=""></option>
             <?php foreach ($services as $service) : ?>
                 <option value="<?= $service->getId() ?>"><?= $service->getTitre() ?></option>
             <?php endforeach; ?>

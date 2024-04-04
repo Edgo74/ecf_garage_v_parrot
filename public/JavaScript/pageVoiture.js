@@ -36,7 +36,11 @@ document.addEventListener("DOMContentLoaded", function() {
           document.querySelector('input[name="identifiant"]').value = voitureData.voiture_id;
           document.querySelector('input[name="immatriculation"]').value = voitureData.immatriculation;
           document.querySelector('input[name="type"]').value = voitureData.type;
-          document.querySelector('input[name="date"]').value = voitureData.date;
+          const dateParts = voitureData.date.split('-');
+          const formattedDate = dateParts[0] + '-' + dateParts[1] + '-' + dateParts[2];
+          document.querySelector('input[name="date"]').value = formattedDate;
+          let garantieCheckbox = document.querySelector('input[name="garantie"]');
+          voitureData.garantie == 1 ? garantieCheckbox.checked = true : garantieCheckbox.checked = false;
           document.getElementById('deleteButton').setAttribute('href', baseUrl + 'Voitures/supprimerVoiture/' + voitureData.voiture_id);
           document.getElementById('image').src = baseUrl + 'public/Assets/images/'+ voitureData.image;
         }

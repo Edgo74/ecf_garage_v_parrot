@@ -11,21 +11,9 @@
   border-radius: 6px;
   font-size: 0.90rem;
 }
-h1{
-  font-weight: bold;
-  color: white;
-  text-shadow: -2px -2px 0 green, 2px -2px 0 green, -2px 2px 0 green, 2px 2px 0 green;
-  padding: 20px;
-  display: inline-block;
-}
 
 button:hover {
   opacity:1;
-}
-
-.btn-success:hover{
-  background-color: #218838;
-  color: white;
 }
 
 footer{
@@ -50,11 +38,10 @@ div.row.align-items-center{
   margin: auto;
 }
 
-a{
+div a{
   color: #007bff;
   text-decoration: none;
   background-color: transparent;
-  font-size: 0.83rem;
 }
 
 .forgot-password{

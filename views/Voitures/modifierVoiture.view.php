@@ -1,4 +1,4 @@
-<h1 class="text-center">Modifier une Voiture</h1>
+<h1 class="text-center mt-3">Modifier une Voiture</h1>
 <form method="POST" action="<?= URL ?>Voitures/ValidationModifVoiture" enctype="multipart/form-data">
     <div class="container">
         <div class="form-group mb-3">
@@ -35,10 +35,10 @@
         </div>
         <div class="form-group mb-3">
             <label for="garantie" class="form-check-label">Garantie : </label>
-            <input type="checkbox" class="form-check-input" id="garantie" name="garantie" <?= $voiture->getGarantie() === 1 ? "checked" : "" ?>>
+            <input type="checkbox" class="form-check-input" id="garantie" name="garantie" value="1" <?= $voiture->getGarantie() === 1 ? "checked" : "" ?>>
         </div>
         <h3>Images :</h3>
-        <img src="<?= URL ?>public/Assets/images/<?= $voiture->getImage(); ?>" alt="l'image de la voiture">
+        <img src="<?= URL ?>public/Assets/images/<?= $voiture->getImage(); ?>" class="car-img" alt="l'image de la voiture">
         <div class="form-group mb-3">
             <label for="image" class="form-label mt-3">Changer Image: </label>
             <input type="file" class="form-control " id="image" name="image">

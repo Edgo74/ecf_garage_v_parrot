@@ -57,7 +57,7 @@ class ServiceController extends MainController
             $this->serviceManager->AjoutServiceBD($titre, $description);
 
             Toolbox::ajouterMessageAlerte("Service Ajouté",  Toolbox::COULEUR_VERTE);
-            header("location:" . URL . "accueil");
+            header("location:" . URL . "Services/page_modifier_supprimer_service");
         }
     }
 
@@ -66,7 +66,7 @@ class ServiceController extends MainController
         $this->serviceManager->SupprimeServiceBD($id);
 
         Toolbox::ajouterMessageAlerte("Service Supprimé",  Toolbox::COULEUR_VERTE);
-        header("location:" . URL . "accueil");
+        header("location:" . URL . "Services/page_modifier_supprimer_service");
     }
 
     public function modifierService($id)
@@ -91,7 +91,7 @@ class ServiceController extends MainController
         $this->serviceManager->ModificationServiceBD($titre, $description, $identifiant);
 
         Toolbox::ajouterMessageAlerte("Service Modifié",  Toolbox::COULEUR_VERTE);
-        header("location:" . URL . "accueil");
+        header("location:" . URL . "Services/page_modifier_supprimer_service");
     }
 
     public function pageAdminModifierService()

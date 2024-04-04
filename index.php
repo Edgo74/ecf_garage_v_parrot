@@ -19,11 +19,10 @@ $serviceController = new  ServiceController();
 $horaireController = new HorairesController();
 $avisController = new AvisController();
 
-define("URL", str_replace("index.php", "", "https" .
-    "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
+
+define("URL", str_replace("index.php", "", "https" . "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
 
 define("page", (isset($_GET['page']) ? $_GET['page'] : 'accueil'));
-
 
 try {
     if (empty($_GET["page"])) {
@@ -40,6 +39,9 @@ try {
         case "Voitures":
             if (empty($url[1])) {
                 $voitureController->afficherVoitures();
+            } else if ($url[1] === "listeVoitures") {
+                Securite::verifierConnexion();
+                $voitureController->listeVoitures();
             } else if ($url[1] === "afficherVoiture") {
                 $voitureController->afficherVoiture($url[2]);
             } else if ($url[1] === "ajoutVoiture") {
@@ -108,6 +110,9 @@ try {
             } else if ($url[1] === "modifierHorairesValidation") {
                 Securite::isConnectedAndAdmin();
                 $horaireController->modifierHorairesValidation();
+            } else if ($url[1] === "modifierLesHoraires") {
+                Securite::isConnectedAndAdmin();
+                $horaireController->modifierLesHoraires();
             } else {
                 throw new Exception("La page n'existe pas");
             }
@@ -259,6 +264,9 @@ try {
                         break;
                     case "generer_compte_employe":
                         $utilisateurController->generateEmploye();
+                        break;
+                    case "supprimer_employe":
+                        $utilisateurController->supprimerEmploye($url[2]);
                         break;
                     case "validation_creation_compte":
                         $utilisateurController->validGenerationEmploye();
