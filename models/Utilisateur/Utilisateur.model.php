@@ -30,7 +30,7 @@ class UtilisateurManager extends MainManager
         $stmt->closeCursor();
 
         foreach ($utilisateurs as $utilisateur) {
-            $u = new Utilisateur($utilisateur["utilisateur_id"], $utilisateur["password"], $utilisateur["mail"], $utilisateur["role"], $utilisateur["image"]);
+            $u = new Utilisateur($utilisateur["utilisateur_id"], $utilisateur["password"], $utilisateur["mail"], $utilisateur["role"]);
             $this->ajoutUtilisateur($u);
         }
     }
@@ -70,28 +70,6 @@ class UtilisateurManager extends MainManager
     }
 
 
-    public function bdAjoutImage($mail, $image)
-    {
-        $req = "UPDATE utilisateur set image = :image WHERE mail = :mail";
-        $stmt = $this->getBdd()->prepare($req);
-        $stmt->bindValue(":mail", $mail, PDO::PARAM_STR);
-        $stmt->bindValue(":image", $image, PDO::PARAM_STR);
-        $stmt->execute();
-        $estModifier = ($stmt->rowCount() > 0);
-        $stmt->closeCursor();
-        return $estModifier;
-    }
-
-    public function getImageUtilisateur($mail)
-    {
-        $req = "SELECT image FROM utilisateur WHERE mail = :mail";
-        $stmt = $this->getBdd()->prepare($req);
-        $stmt->bindValue(":mail", $mail, PDO::PARAM_STR);
-        $stmt->execute();
-        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
-        $stmt->closeCursor();
-        return $resultat['image'];
-    }
 
     public function isCombinaisonValide($email, $password)
     {

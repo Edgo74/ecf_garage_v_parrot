@@ -224,16 +224,6 @@ try {
                             header("Location: " . URL . "compte/modificationPassword");
                         }
                         break;
-
-                    case "validationModificationProfilImage":
-                        if ($_FILES['image']['size'] > 0) {
-                            $utilisateurController->validationModificationProfilImage($_FILES['image']);
-                        } else {
-                            Toolbox::ajouterMessageAlerte("Vous n'avez pas modifié l'image", Toolbox::COULEUR_ROUGE);
-                            header("Location: " . URL . "compte/profil");
-                        }
-                        break;
-
                     case "page_gestion_employe":
                         $utilisateurController->page_gestion_employe();
                         break;
