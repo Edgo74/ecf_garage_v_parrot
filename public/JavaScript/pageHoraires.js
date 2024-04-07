@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(result => {
         var jourData = JSON.parse(result);
         if (jourData.error) {
-          alert(jourData.error);
+          console.log(jourData.error);
         } else {
 
             select.querySelectorAll('option').forEach(option => {

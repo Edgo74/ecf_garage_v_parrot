@@ -54,7 +54,7 @@ class HorairesController extends MainController
             echo $output;
             return;
         } else {
-            $this->horaireManager->modifierLesHorairesBD();
+            $this->horaireManager->selectionnerUnJourBD();
         }
     }
 }

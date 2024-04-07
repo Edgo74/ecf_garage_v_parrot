@@ -56,7 +56,7 @@ class HoraireManager extends Model
     }
 
 
-    public function modifierLesHorairesBD()
+    public function selectionnerUnJourBD()
     {
         $jour = Securite::SecureHTML($_POST["jourId"]);
         $stmt = $this->getBdd()->prepare("SELECT * FROM horaires WHERE horaire_id= :jour");
