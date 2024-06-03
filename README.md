@@ -35,6 +35,6 @@ mysql -u root -p garage < garage.sql
 Ouvrez un navigateur web et naviguez vers `http://localhost/ecf_garage_v_parrot`.
 
 Pour se connecter en tant qu'administrateur : 
-entrer  "adambayar1357@gmail.com" pour l'email. 
+entrer  "admin@mail.com" pour l'email. 
 entrer "Eucalyptus17?" pour le mot de passe. 
 
